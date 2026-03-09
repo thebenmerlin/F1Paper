@@ -1,0 +1,61 @@
+\section{Vehicle Architecture Overview}
+
+\begin{multicols}{2}
+The fundamental architecture of this 2026-compliant Formula 1 concept is dictated by the delicate interplay between the radically revised, highly electrified power unit and the restrictive aerodynamic and packaging envelopes mandated by the FIA. The vehicle employs a traditional rear-mid engine layout, optimized specifically to accommodate the structurally significant 4 megajoule (MJ) Energy Store while adhering to the stringent 800 kg minimum weight and aggressively shortened dimensional targets. This section details the macroscopic packaging strategy, mass distribution, and primary structural subsystems that define the vehicle's dynamic baseline.
+\end{multicols}
+
+\begin{table}[h]
+\centering
+\caption{Vehicle Architecture Design Parameters}
+\vspace{0.2cm}
+\begin{tabular}{@{}ll@{}}
+\toprule
+\textbf{Parameter} & \textbf{Value} \\
+\midrule
+Wheelbase & 3580 mm \\
+Overall Length & 5125 mm \\
+Vehicle Width & 2000 mm \\
+Front Track & 1600 mm \\
+Rear Track & 1620 mm \\
+CoG Height & 270 mm \\
+Weight Distribution & 45\% F / 55\% R \\
+Ground Clearance (F/R) & 32 mm / 30 mm \\
+Driver Recline & 42$^\circ$ \\
+Gearbox Length & 590 mm \\
+Total Mass & 800 kg \\
+Fuel Load & 70 kg \\
+Battery Energy & $\sim$4 MJ \\
+\bottomrule
+\end{tabular}
+\label{tab:architecture_params}
+\end{table}
+
+\begin{figure*}[h]
+\centering
+% \includegraphics[width=\textwidth]{architecture_diagram.pdf}
+\vspace{5cm} % Placeholder height for the visual representation
+\caption{Full Vehicle Architecture and Packaging Diagram (Placeholder).}
+\label{fig:architecture_diagram}
+\end{figure*}
+
+\begin{multicols}{2}
+\subsection{Dimensional Constraints and Mass Properties}
+
+Responding to the 2026 regulations aimed at enhancing agility and reducing overall vehicle footprint, the wheelbase is constrained exactly to 3580 mm, dictating a highly compact internal arrangement. The overall vehicle length spans 5125 mm, bounded by the strict aerodynamic dimensional boxes. Achieving the 800 kg minimum weight target represents a profound engineering challenge given the massive inclusion of the uprated 350 kW Motor Generator Unit-Kinetic (MGU-K) and the dense 4 MJ battery. 
+
+To maximize dynamic response, the vehicle achieves a static weight distribution of 45\% front and 55\% rear. This rearward bias naturally complements the rear-wheel propulsive characteristics of the dominant hybrid architecture while providing sufficient front-end authority for initial turn-in phases. A crucial performance differentiator is the Center of Gravity (CoG), which has been aggressively driven down to a height of 270 mm. This exceptionally low CoG minimizes lateral and longitudinal load transfer during dynamic maneuvers, directly enhancing mechanical grip. To facilitate this low CoG and further minimize the front-facing aerodynamic profile, the driver is positioned with an extreme 42-degree recline angle. Furthermore, the baseline static ride heights are set at 32 mm at the front axle and 30 mm at the rear, establishing a highly sensitive aerodynamic platform heavily reliant on stiff suspension architectures.
+
+\subsection{Powertrain and Energy Packaging}
+
+The core of the vehicle's motive force is the rear-mid mounted hybrid powertrain. The thermal component remains a 1.6-liter, 90-degree V6 internal combustion engine (ICE) featuring a single turbocharger, burning 100\% sustainable synthetic fuel within a reduced 70 kg volumetric fuel cell. This cell is structurally integrated into the monocoque immediately behind the driver's bulkhead.
+
+The defining characteristic of the 2026 architecture is the radical electrification of the propulsive system. The 350 kW MGU-K is packaged tightly alongside the ICE block, requiring significant localized structural reinforcements. The pivotal packaging challenge—the massive $\sim$4 MJ Energy Store—is integrated at the lowest extremity of the chassis floor beneath the fuel cell. Housing this heavy, dense component as low and centrally as possible is the primary enabler of the 270 mm CoG target. Power from the internal combustion and electrical systems is consolidated through a longitudinally mounted, 590 mm semi-automatic, seamless-shift gearbox casting.
+
+\subsection{Aerodynamic Architecture and Thermal Management}
+
+Conforming to the 2026 visual and functional mandates, the external aerodynamic surfaces are fundamentally simplified. The primary downforce generation mechanism relies acutely on the underbody floor structures, exploiting ground effect phenomena within the stringent volumetric boxes permitted downstream of the drastically simplified front wing assemblies. 
+
+Above the floor, the sidepods feature a minimalist, heavy-undercut profile. This geometry serves a dual purpose: aggressively channeling high-energy, undisturbed airflow down aggressively contoured flanks toward the critical floor edges and diffuser expansion zones, while simultaneously managing the intense thermal rejection requirements of the power unit. The undercut inlets feed structurally dense, highly efficient primary heat exchangers. Crucially, the extreme thermal loads generated by the MGU-K and the rapid charge/discharge cycles of the larger Energy Store necessitate a discrete, secondary dielectric thermal management loop operating independently from the primary ICE cooling architecture. 
+
+Finally, the electronic architecture is highly centralized to minimize long, heavy, high-voltage cable runs. The Engine Control Unit (ECU) is mounted within the protective survival cell adjacent to the driver, while the heavy, high-current phase power electronics are integrated immediately adjacent to the MGU-K housing, ensuring minimal inductive losses between the battery, inverter, and motor systems.
+\end{multicols}

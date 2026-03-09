@@ -1,0 +1,67 @@
+\section{Aerodynamics}
+
+\begin{multicols}{2}
+The aerodynamic philosophy defining the 2026 Formula 1 technical cycle represents a paradigm shift necessitated by the aggressive electrification of the power unit. The aerodynamic framework, delineated by the FIA Technical Regulations \cite{FIA_2026_Chassis_Regulations}, mandates a holistic reduction in overall vehicle drag to offset the depletion characteristics of the 4 megajoule (MJ) Energy Store and the heavily reliant 350 kW Motor Generator Unit-Kinetic (MGU-K). Concurrently, the regulations stipulate a reduction in absolute aerodynamic downforce to improve the "wake" profile of the leading car, facilitating closer circuit racing. This section details the macroscopic aerodynamic structures, the dominant ground effect mechanisms, and the critical integration of dynamic, active aerodynamic surfaces.
+
+\subsection{Front Wing}
+The 2026 regulations mandate a radically simplified multi-element front wing structure \cite{FIA_2026_Technical_Regulations}. Compared to the preceding generation, the permissible number of aerodynamic elements is drastically reduced, severely restricting the wing's capacity for complex flow conditioning and localized high-pressure generation. 
+
+A primary focus in the design of this simplified structure is the optimization of the endplate geometry. Due to the narrowed 1600 mm front track width, the front wing must rapidly condition the freestream airflow directly ahead of the front tire face. The design necessitates a calculated trade-off between generating "outwash"—forcing turbulent tire wakes outward and away from the critical underfloor intakes—and centralized "inwash" to feed the core cooling structures. Given the stringent constraints on endplate outwash generation intended to improve the trailing car's aerodynamic environment \cite{FIA_2026_Chassis_Regulations}, the wing profiles are heavily optimized to maintain robust attachment along the narrower span while managing the destructive tire squirt phenomenon.
+
+\subsection{Floor \& Venturi Tunnels}
+With the aggressive simplification of upper aerodynamic surfaces, ground effect mechanics—specifically the underbody floor and venturi tunnels—re-emerge as the absolute primary source of total vehicle downforce \cite{FIA_2026_Chassis_Regulations}. The conceptual objective is to accelerate airflow through constricted underfloor channels, dropping static pressure and creating massive localized suction beneath the chassis.
+
+The geometry of the venturi tunnels and the subsequent expansion rate of the rear diffuser angle are paramount. Due to the incredibly low 32 mm front and 30 mm rear dynamic ride heights, the floor is exceptionally sensitive to pitch and roll deviations. To maximize the extraction velocity through the diffuser, the leading edge of the floor requires the cleanest, highest-energy airflow available. This fundamental requirement dictates the geometry of the upstream bodywork; any turbulent, low-energy flow ingested by the venturi tunnels drastically degrades the suction peak and overall downforce coefficient ($C_l$).
+\end{multicols}
+
+\begin{figure*}[h]
+\centering
+% \includegraphics[width=\textwidth]{aerodynamic_cfd_viz.pdf}
+\vspace{6cm} % Placeholder height
+\caption{Computational Fluid Dynamics (CFD) Flow Visualization of 2026 Aerodynamic Structures (Placeholder).}
+\label{fig:aero_flow}
+\end{figure*}
+
+\begin{table*}[h]
+\centering
+\caption{2026 Aerodynamic Targets and Operating Parameters}
+\vspace{0.2cm}
+\begin{tabular}{@{}ll@{}}
+\toprule
+\textbf{Parameter} & \textbf{Target Specification} \\
+\midrule
+Downforce Coefficient ($C_l$) & 3.0 -- 3.4 \\
+Drag Coefficient ($C_d$) & 0.9 -- 1.1 \\
+$C_l / C_d$ Ratio (Aerodynamic Efficiency) & $\sim$3.2 \\
+Front/Rear Downforce Split & 35\% F / 65\% R \\
+X-mode Drag Reduction (Active Aero) & $\sim$15--20\% \\
+Static Ride Height (Front) & 32 mm \\
+Static Ride Height (Rear) & 30 mm \\
+\bottomrule
+\end{tabular}
+\label{tab:aero_targets}
+\end{table*}
+
+\begin{multicols}{2}
+\subsection{Sidepods}
+To satisfy the fundamental requirement of delivering uncorrupted airflow to the floor edges and venturi inlets, the chassis utilizes a minimalist, heavy-undercut sidepod philosophy. The 2026 bodywork simplification rules heavily restrict the complex bargeboard and turning vane structures that historically conditioned this flow \cite{FIA_2026_Chassis_Regulations}. Consequently, the physical volume and shape of the sidepods themselves become the primary longitudinal flow conditioners.
+
+By aggressively reducing the physical volume of the sidepods and employing steep undercut profiles, the design minimizes localized form drag. More critically, the undercut acts as a dedicated aerodynamic trench, accelerating high-pressure freestream air directly towards the upper surface of the floor and the critical diffuser expansion region. This macroscopic shape must be carefully balanced against the internal volumetric requirements for the primary heat exchangers, ensuring the cooling inlet sizing remains sufficient to manage the immense thermal rejection of the ICE while preserving the external aerodynamic efficiency.
+
+\subsection{Rear Wing}
+A defining visual and functional alteration in the 2026 aerodynamic regulations is the heavily simplified rear wing and the complete prohibition of the secondary "beam wing" structure \cite{FIA_2026_Technical_Regulations}. The absence of the beam wing breaks the historical aerodynamic link between the upper rear wing elements and the exiting flow of the floor diffuser.
+
+Consequently, the remaining upper rear wing elements must be designed to operate highly independently. Without the beam wing to forcibly connect the low-pressure zone behind the rear wing with the diffuser exhaust, the overall rear downforce capacity is substantially reduced. The rear wing profiles are therefore optimized for maximal localized efficiency, carefully managing flow separation off the trailing edges to minimize the turbulent wake profile injected into the path of a following vehicle.
+
+\subsection{Active Aerodynamics}
+Perhaps the most significant technical innovation of the 2026 regulatory cycle is the mandated integration of fully Active Aerodynamics across both the front and rear wing assemblies \cite{FIA_2026_Chassis_Regulations}. This active system is not merely an overtaking aid (like the historical Drag Reduction System), but a fundamental requirement for the vehicle's standard operational lap profile.
+
+The system operates strictly within two FIA-mandated states: the high-downforce "Z-mode" utilized through cornering phases, and the ultra-low-drag "X-mode" deployed on straightaways \cite{FIA_2026_Technical_Regulations}. In Z-mode, the wing elements are closed, generating maximum $C_l$ for mechanical grip. Upon corner exit, the system actuates into X-mode, significantly flattening the wing profiles and radically reducing the localized $C_d$. 
+
+This active modulation is inextricably linked to the 350 kW electrical deployment strategy. As the vehicle accelerates onto a straight, the MGU-K deploys its massive electrical torque. However, to prevent premature depletion of the 4 MJ Energy Store and devastating velocity clipping at the end of the straight, X-mode is engaged to shed aerodynamic resistance. Thus, the active aero effectively compensates for the altered power delivery profile, maintaining high terminal velocities while rationing electrical energy. The FIA mandates strict actuation constraints, defining specific track zones and dynamic thresholds where modes can be swapped to ensure safety and prevent uncontrolled aerodynamic instability.
+
+\subsection{Drag Reduction \& Energy Interaction}
+Ultimately, the primary metric of success for a 2026 Formula 1 aerodynamic package is its interaction with the energy budget per lap. The macroscopic efficiency of the chassis—defined by the $C_l / C_d$ ratio—directly dictates the duration and magnitude of electrical deployment. 
+
+The targeted 15--20\% drag reduction achieved via X-mode actuation is critical. Lower inherent drag at high velocities directly reduces the resistive load on the powertrain. Consequently, the MGU-K does not need to deploy its maximum 350 kW output continuously simply to overcome aerodynamic resistance. By shedding drag mechanically, the vehicle requires less electrical energy to maintain its target velocity envelope. This extends the effective deployment range of the 4 MJ battery, mitigating severe derating events and directly yielding lower overall lap times. The aerodynamic design is therefore no longer evaluated solely on absolute downforce generation, but on its holistic symbiotic efficiency with the highly constrained electrical energy budget.
+\end{multicols}

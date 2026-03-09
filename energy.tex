@@ -1,0 +1,247 @@
+\section{Energy Storage System}
+
+\begin{multicols}{2}
+The transition from a combustion-dominant formula to a true 50/50 power division in 2026 places an unprecedented burden on the electrochemical Energy Storage System (ESS) \cite{FIA_2026_PU_Regulations}. The battery pack is no longer a secondary boost mechanism but a primary propulsive unit, simultaneously required to manage near-instantaneous 350 kilowatt (kW) charge and discharge events within a volumetrically compact, 4 megajoule (MJ) energy envelope. This section derives the fundamental pack architecture, current demands, thermal loads, and the overarching dynamic lap energy balance from electrochemical first principles.
+
+\subsection{Cell Chemistry Selection}
+
+The selection of the underlying cell chemistry dictates the macro-level packaging and thermal viability of the entire powertrain. The required performance matrix prioritizes extreme power density and high-rate cycling stability over absolute volumetric energy density. 
+
+Solid-state battery architectures were fundamentally rejected due to their current thermal immaturity; extracting 350 kW in transient pulses severely compromises the solid electrolyte interfaces at the mandated operational temperatures. Conversely, Lithium Iron Phosphate (LFP) chemistries, while highly stable, lack the requisite power density (W/kg) to satisfy the 350 kW draw without violating the 800 kg minimum chassis mass limitations. 
+
+Therefore, a high-power Nickel Manganese Cobalt (NMC) chemistry is selected \cite{nmc_chemistry_lit}. NMC provides the superior specific power necessary for extreme transient discharge. The cells are packaged in a cylindrical form factor rather than flat pouches; the rigid structural casing of cylindrical cells better mitigates the severe mechanical expansion and contraction experienced under immense charge/discharge (C-rate) thermal cycling. The fundamental parameters of the selected NMC cell are a nominal voltage ($V_{cell}$) of 3.6 V (operating between 4.2 V max and 3.0 V min), a highly power-dense capacity ($Q_{cell}$) of 1.5 Ah, and an exceptionally low internal resistance ($R_{cell}$) of 5 m$\Omega$.
+
+\subsection{Pack Architecture: 180S2P}
+
+The macro-level pack configuration is derived directly from the power unit inverter voltage targets and the FIA's 4 MJ storage limitation \cite{FIA_2026_PU_Regulations}. To minimize resistive ($I^2R$) losses across the high-voltage (HV) cabling while respecting modern inverter semiconductor breakdown thresholds, the nominal target pack voltage ($V_{pack}$) is established at 650 V. 
+
+The required number of cells connected in series ($N_s$) is calculated as:
+
+\begin{equation} \label{eq:series_cells}
+\begin{split}
+N_s &= \frac{V_{pack}}{V_{cell}} \\
+&= \frac{650\,\mathrm{V}}{3.6\,\mathrm{V}} \\
+&\approx 180\,\mathrm{S}
+\end{split}
+\end{equation}
+
+This yields an exact nominal pack voltage of:
+
+\begin{equation} \label{eq:actual_voltage}
+\begin{split}
+V_{pack(actual)} &= 180 \cdot 3.6\,\mathrm{V} \\
+&= 648\,\mathrm{V}
+\end{split}
+\end{equation}
+
+The FIA mandates an operational deployable energy capacity ($E_{pack}$) of approximately 4 MJ. Converting this to standard electrochemical units:
+
+\begin{equation} \label{eq:mj_conversion}
+\begin{split}
+E_{pack} &= \frac{4,000,000\,\mathrm{J}}{3600\,\mathrm{s}} \\
+&= 1,111\,\mathrm{Wh} \approx 1.11\,\mathrm{kWh}
+\end{split}
+\end{equation}
+
+With the required total energy ($E_{pack}$) and established pack voltage ($V_{pack}$), the required overall pack capacity ($Q_{pack}$) is:
+
+\begin{equation} \label{eq:pack_capacity}
+\begin{split}
+Q_{pack} &= \frac{E_{pack}}{V_{pack(actual)}} \\
+&= \frac{1111\,\mathrm{Wh}}{648\,\mathrm{V}} \\
+&\approx 1.714\,\mathrm{Ah}
+\end{split}
+\end{equation}
+
+Given the individual cell capacity ($Q_{cell}$) of 1.5 Ah, the required number of parallel strings ($N_p$) is 2. Therefore, the final derived pack architecture is \textbf{180S2P}, consisting of a total of 360 highly specialized NMC cylindrical cells.
+
+\subsection{C-Rate Analysis}
+
+The most brutal engineering metric of the 2026 ESS is the operational current draw defined by the 350 kW peak capability of the MGU-K. The peak pack current ($I_{pack}$) during full acceleration is:
+
+\begin{equation} \label{eq:pack_current}
+\begin{split}
+I_{pack} &= \frac{P_{peak}}{V_{pack(actual)}} \\
+&= \frac{350,000\,\mathrm{W}}{648\,\mathrm{V}} \\
+&\approx 540\,\mathrm{A}
+\end{split}
+\end{equation}
+
+Because the pack utilizes a 2P parallel configuration, this current is halved across the strings, resulting in a per-cell current ($I_{cell}$) of:
+
+\begin{equation} \label{eq:cell_current}
+\begin{split}
+I_{cell} &= \frac{I_{pack}}{N_p} \\
+&= \frac{540\,\mathrm{A}}{2} \\
+&= 270\,\mathrm{A}
+\end{split}
+\end{equation}
+
+The severity of this draw is quantified by the C-rate ($C$), calculated as the discharge current relative to total capacity:
+
+\begin{equation} \label{eq:crate}
+\begin{split}
+C &= \frac{I_{cell}}{Q_{cell}} \\
+&= \frac{270\,\mathrm{A}}{1.5\,\mathrm{Ah}} \\
+&= 180\,\mathrm{C}
+\end{split}
+\end{equation}
+
+To contextualize this extreme metric: consumer electric vehicles typically operate between 1 C and 3 C, while prior generations of high-performance motorsport (like Formula E) pushed boundaries near 50 C to 80 C. Discharging a chemical battery at 180 C represents the absolute frontier of electrochemical engineering. Such violence threatens rapid electrolyte vaporization and extreme degradation of the Solid Electrolyte Interphase (SEI) layer, cementing thermal management as the critical limiting factor of the vehicle.
+
+\subsection{Regenerative Energy Harvesting}
+
+The replenishment of the 180S2P pack relies entirely on the MGU-K operating as an electromagnetic retarder under braking. Assuming a profile of 5 major braking zones per lap, with the MGU-K harvesting at the mandated 350 kW peak limit for an average duration ($t$) of 2.5 seconds per zone, the energy harvested per zone ($E_{zone}$) is:
+
+\begin{equation} \label{eq:energy_zone}
+\begin{split}
+E_{zone} &= P_{regen} \cdot t \\
+&= 350\,\mathrm{kW} \cdot 2.5\,\mathrm{s} \\
+&= 875\,\mathrm{kJ}
+\end{split}
+\end{equation}
+
+The total raw harvest energy ($E_{raw}$) per lap is therefore the summation across the $n$ zones:
+
+\begin{equation} \label{eq:total_harvest}
+\begin{split}
+E_{raw} &= \sum_{i=1}^{n=5} (E_{zone})_i \\
+&= 5 \cdot 875\,\mathrm{kJ} \\
+&= 4375\,\mathrm{kJ} \\
+&= 4.375\,\mathrm{MJ}
+\end{split}
+\end{equation}
+
+This mathematical derivation reveals a critical system dynamic: the raw harvesting potential (4.375 MJ) explicitly exceeds the FIA-mandated storage capacity (4 MJ). Consequently, the Battery Management System (BMS) must algorithmically modulate or curtail regenerative harvesting during late-lap braking zones to prevent catastrophic over-voltage and thermal runaway within the almost-saturated cells.
+
+\subsection{Efficiency Chain: MGU-K to Battery}
+
+However, the raw harvested kinetic energy does not perfectly translate to stored chemical energy due to systemic thermal and switching losses. The cascaded efficiency chain ($\eta_{total}$) of the regenerative system is the product of the MGU-K motor efficiency ($\eta_m = 95\%$), the silicon carbide (SiC) inverter efficiency ($\eta_i = 97\%$), and the inherent coulombic efficiency of the NMC cells ($\eta_b = 98\%$) \cite{battery_thermal_lit}:
+
+\begin{equation} \label{eq:efficiency_chain}
+\begin{split}
+\eta_{total} &= \eta_m \cdot \eta_i \cdot \eta_b \\
+&= 0.95 \cdot 0.97 \cdot 0.98 \\
+&\approx 0.903
+\end{split}
+\end{equation}
+
+Applying this 90.3\% cascaded efficiency to the raw lap harvest yields the actual net stored energy ($E_{stored}$):
+
+\begin{equation} \label{eq:net_stored}
+\begin{split}
+E_{stored} &= E_{raw} \cdot \eta_{total} \\
+&= 4.375\,\mathrm{MJ} \cdot 0.903 \\
+&\approx 3.95\,\mathrm{MJ}
+\end{split}
+\end{equation}
+\end{multicols}
+
+\begin{figure*}[h]
+\centering
+% \includegraphics[width=\textwidth]{efficiency_chain_diagram.pdf}
+\vspace{4.5cm} % Placeholder height
+\caption{Cascaded Efficiency Chain Block Diagram from Kinetic Recovery to Chemical Storage (Placeholder).}
+\label{fig:efficiency_chain}
+\end{figure*}
+
+\begin{multicols}{2}
+\subsection{$I^2R$ Losses and Thermal Design Load}
+
+The primary byproduct of the colossal 180 C discharge rate ($\text{Eq. } \ref{eq:crate}$) is intense Joule heating ($I^2R$ loss) generated by the internal resistance of the pack configuration. With an individual cell internal resistance ($R_{cell}$) of 5 m$\Omega$, the total series resistance ($R_{series}$) is:
+
+\begin{equation} \label{eq:series_res}
+\begin{split}
+R_{series} &= N_s \cdot R_{cell} \\
+&= 180 \cdot 0.005\,\Omega = 0.9\,\Omega
+\end{split}
+\end{equation}
+
+The parallel strings halve this total resistance, establishing the overall dynamic pack resistance ($R_{pack}$):
+
+\begin{equation} \label{eq:pack_res}
+\begin{split}
+R_{pack} &= \frac{R_{series}}{N_p} \\
+&= \frac{0.9\,\Omega}{2} = 0.45\,\Omega
+\end{split}
+\end{equation}
+
+Consequently, when the MGU-K demands the peak 540 A draw ($\text{Eq. } \ref{eq:pack_current}$), the instantaneous thermal power dissipated ($P_{loss}$) entirely as heat within the core of the battery is:
+
+\begin{equation} \label{eq:thermal_loss}
+\begin{split}
+P_{loss} &= I_{pack}^2 \cdot R_{pack} \\
+&= (540\,\mathrm{A})^2 \cdot 0.45\,\Omega \\
+&= 131,220\,\mathrm{W} \approx 131\,\mathrm{kW}
+\end{split}
+\end{equation}
+
+This 131 kW metric represents the absolute minimum thermal management design load. It dictates the fundamental dimensions, flow rates, and dielectric fluid properties of the mandated, isolated battery cooling loop. If the sidepod primary heat exchangers fail to reject this 131 kW influx continuously, the 180S2P pack will rapidly exceed its maximum operational temperature envelope, triggering devastating software derates and instantaneous lap time degradation.
+
+\subsection{Lap Energy Budget}
+
+The culmination of these derivations forms the absolute net dynamic energy balance across a standardized racing lap. The vehicle recovers and stores a net total of 3.95 MJ ($\text{Eq. } \ref{eq:net_stored}$). However, if the powertrain algorithm dictates a 350 kW deployment for an average of 4 seconds exiting the 5 major traction zones, the required deployment demand ($E_{demand}$) is:
+
+\begin{equation} \label{eq:deployment_demand}
+\begin{split}
+E_{demand} &= P_{deploy} \cdot t_{sector} \cdot n \\
+&= 350\,\mathrm{kW} \cdot 4\,\mathrm{s} \cdot 5 \\
+&= 7000\,\mathrm{kJ} = 7\,\mathrm{MJ}
+\end{split}
+\end{equation}
+
+This creates a stark net electrical deficit ($\Delta E_{lap}$):
+
+\begin{equation} \label{eq:lap_deficit}
+\begin{split}
+\Delta E_{lap} &= E_{demand} - E_{stored} \\
+&= 7\,\mathrm{MJ} - 3.95\,\mathrm{MJ} \\
+&= 3.05\,\mathrm{MJ}
+\end{split}
+\end{equation}
+\end{multicols}
+
+\begin{figure*}[h]
+\centering
+% \includegraphics[width=\textwidth]{lap_energy_deployment.pdf}
+\vspace{6cm} % Placeholder height
+\caption{Software-Mapped Lap Energy Deployment vs. Kinetic Harvesting Matrix (Placeholder).}
+\label{fig:lap_energy_map}
+\end{figure*}
+
+\begin{table*}[h]
+\centering
+\caption{Electrical Engineering Parameterization of the 2026 Energy Storage System}
+\vspace{0.2cm}
+\begin{tabular}{@{}ll@{}}
+\toprule
+\textbf{Parameter} & \textbf{Value} \\
+\midrule
+Pack Configuration & 180S2P \\
+Total Cells & 360 \\
+Cell Chemistry & NMC High-Power \\
+Nominal Cell Voltage & 3.6 V \\
+Pack Voltage & 648 V \\
+Cell Capacity & 1.5 Ah \\
+Cell Internal Resistance & 5 m$\Omega$ \\
+Pack Resistance & 0.45 $\Omega$ \\
+Usable Energy & $\sim$4 MJ (1.11 kWh) \\
+Peak Discharge Power & 350 kW \\
+Peak Pack Current & 540 A \\
+Cell Current (2P) & 270 A \\
+Cell C-Rate & \textbf{180 C} \\
+Peak $I^2R$ Loss & 131 kW \\
+MGU-K Efficiency & 95\% \\
+Inverter Efficiency & 97\% \\
+Coulombic Efficiency & 98\% \\
+Total Chain Efficiency & 90.3\% \\
+Raw Harvest per Lap & 4.375 MJ \\
+Net Stored per Lap & 3.95 MJ \\
+\bottomrule
+\end{tabular}
+\label{tab:energy_params}
+\end{table*}
+
+\begin{multicols}{2}
+To sustain continuous performance over a race distance, this 3.05 MJ deficit must be systematically supplemented dynamically by the ICE operating as a secondary generator during specific non-traction limited phases. The software mapping must delicately thread this needle: commanding aggressive depletion on low-speed corner exits for lap time, dialing back MGU-K integration through high-speed aerodynamics-dependent corners, and dynamically throttling regenerative braking to protect the 131 kW thermal limit all while adhering to the 4 MJ physical volume constraint.
+\end{multicols}

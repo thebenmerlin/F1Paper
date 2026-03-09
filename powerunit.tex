@@ -1,0 +1,145 @@
+\section{Hybrid Electric Power Unit Architecture}
+
+\begin{multicols}{2}
+The paramount differentiator of the 2026 Formula 1 technical regulations lies in the total restructuring of the Power Unit (PU) \cite{FIA_2026_PU_Regulations}. The system transitions from an ICE-dominant architecture to a balanced, 50/50 split between internal combustion and electrical propulsion. The core philosophy demands massive electrical deployment capacity through an uprated Motor Generator Unit-Kinetic (MGU-K) operating within an approximate 4 megajoule (MJ) energy envelope, paired with a heavily constrained, sustainably fueled Internal Combustion Engine (ICE). This section examines the thermodynamic, structural, and control implications of the revised ICE underpinning this hybrid architecture.
+
+\subsection{Internal Combustion Engine}
+
+Despite retaining the foundational geometry of a 1.6-liter, 90-degree V6 with a single, centrally mounted turbocharger, the 2026 ICE is fundamentally distinct from its predecessors. The engine operates under a strict $\sim$15,000 RPM rev limit, with peak ICE output specifically legislated to fall within a restricted window of 400 to 450 kilowatts (kW) \cite{FIA_2026_PU_Regulations}. This reduction in absolute ICE power—down from the $\sim$630 kW peaks of the previous generation—is mathematically offset by the tripling of the MGU-K output to 350 kW, achieving the mandated 50/50 thermodynamic split.
+
+The most transformative regulatory mandate regarding the ICE is the compulsory transition to 100\% fully sustainable, "drop-in" synthetic fuels \cite{FIA_2026_PU_Regulations}. Synthesized from captured carbon and green hydrogen rather than extracted fossil deposits, these fuels possess distinctly altered molecular structures. Crucially, they exhibit significantly higher inherent oxygen content. This fundamental chemical shift forcibly alters the optimal stoichiometric air-to-fuel ratio ($\lambda$) required for complete combustion. 
+\end{multicols}
+
+\begin{table}[h]
+\centering
+\caption{2026 Internal Combustion Engine Parameters}
+\vspace{0.2cm}
+\begin{tabular}{@{}ll@{}}
+\toprule
+\textbf{Parameter} & \textbf{Value} \\
+\midrule
+Configuration & 1.6L V6 Turbo \\
+Power Output & 400--450 kW \\
+Rev Limit & $\sim$15,000 RPM \\
+Fuel & 100\% Sustainable \\
+MGU-H & Removed \\
+PU Position & Rear-Mid \\
+Gearbox Length & 590 mm \\
+\bottomrule
+\end{tabular}
+\label{tab:ice_params}
+\end{table}
+
+\begin{multicols}{2}
+Because the fuel is partially pre-oxygenated, the combustion event requires less atmospheric oxygen from the intake charge per unit mass of fuel. While this theoretically allows for higher fuel mass flow rates, the FIA strictly artificially limits total fuel energy flow to govern peak power \cite{FIA_2026_PU_Regulations}. Consequently, the combustion efficiency target requires a complete overhaul of engine mapping, ignition timing, and cylinder head design to extract maximum Brake Mean Effective Pressure (BMEP) from the synthetic hydrocarbon chains. The fundamental relationship governing the mechanical power output ($P_{mech}$) of the ICE remains:
+
+\begin{equation}
+P_{mech} = \frac{BMEP \cdot V_d \cdot N}{2}
+\end{equation}
+
+where $V_d$ is the displacement volume and $N$ is the engine speed. However, maximizing the overarching Brake Thermal Efficiency ($\eta_{th}$) is now heavily dependent on the lower heating value ($LHV_{synth}$) of the mandatory sustainable fuel:
+
+\begin{equation}
+\eta_{th} = \frac{P_{mech}}{\dot{m}_f \cdot LHV_{synth}}
+\end{equation}
+
+where $\dot{m}_f$ represents the highly regulated fuel mass flow rate.
+
+The complexity of optimizing this combustion process is brutally compounded by the regulatory removal of the Motor Generator Unit-Heat (MGU-H) \cite{FIA_2026_PU_Regulations}. In previous iterations, the MGU-H was structurally mounted to the turbocharger shaft. It served two critical functions: harvesting massive amounts of residual heat energy from the exhaust turbine to feed the battery, and acting as an electric motor to manually spool the compressor wheel, thereby entirely eliminating turbo lag during transient throttle applications.
+
+The absence of the MGU-H fundamentally shifts the burden of low-RPM response back onto the ICE tuning and the MGU-K. Without the MGU-H to spin the compressor, the engine is entirely reliant on exhaust gas enthalpy to build boost pressure. To mitigate the severe anticipated turbo lag exiting slow corners, the 350 kW MGU-K must execute aggressive "torque fill" strategies—deploying massive electrical torque directly to the crankshaft to accelerate the vehicle while the turbocharger organically spools up to operating pressure. This demands unparalleled synchronization between the ICE fuel mapping and the algorithmic electrical deployment matrix.
+
+Structurally, the ICE remains the foundational stressed member of the chassis. It utilizes a rear-mid positioning philosophy, bolting directly to the rear of the carbon fiber survival cell. The engine block and the structurally integrated 590 mm semi-automatic gearbox casing must tolerate the immense torsional loads transferred from the rear suspension elements. This compact, rearward consolidation of the heavy powertrain components—ICE, turbocharger, MGU-K, and gearbox—is meticulously engineered to maintain the critical 55\% rear static weight distribution, ensuring maximum traction for the 350 kW electrical torque spikes, while the extreme low-packaging of the crankcase supports the aggressive 270 mm Center of Gravity (CoG) target required for dynamic agility.
+
+\subsection{MGU-K}
+
+The ascendancy of the Motor Generator Unit-Kinetic (MGU-K) is the most consequential performance metric of the 2026 regulations. The mandated peak output of 350 kW represents a massive, nearly 200\% increase from the pre-2026 limitation of 120 kW \cite{FIA_2026_PU_Regulations}. This necessitates an exceptionally high-performance motor architecture; consequently, a Permanent Magnet Synchronous Motor (PMSM) is utilized due to its superior power density and efficiency at high rotor speeds compared to induction variants \cite{pmsm_control_lit}.
+
+The operational torque ($T_{mgu}$) generated by the MGU-K is derived from the fundamental relationship:
+
+\begin{equation} \label{eq:torque}
+T_{mgu} = \frac{P_{elec}}{\omega}
+\end{equation}
+
+where $P_{elec}$ is electrical power and $\omega$ is rotational velocity in rad/s. A critical analysis of this relationship reveals the MGU-K's torque contribution ($T_{mgu}$) is exponentially highest at low RPM. When the ICE is suffering from severe turbo lag at low engine speeds (e.g., exiting a hairpin), the MGU-K is capable of injecting crushing, instantaneous torque into the driveline to "fill the valley" left by the defunct MGU-H. As engine speed ($\omega$) climbs, the available torque exponentially decays even at peak 350 kW deployment, handing the primary motive responsibility back to the spooling ICE. 
+
+Controlling this PMSM requires sophisticated field-oriented control (FOC) governed by the intrinsic motor characteristics. The back-electromotive force (EMF), denoted as $E_{emf}$, generated during high-speed rotation is given by:
+
+\begin{equation} \label{eq:back_emf}
+E_{emf} = K_e \cdot \omega
+\end{equation}
+
+where $K_e$ is the back-EMF constant. The torque generated from the stator current ($I_{q}$) is determined by the torque constant ($K_t$):
+
+\begin{equation} \label{eq:torque_constant}
+\begin{split}
+T_m &= \frac{3}{2} p \lambda_m I_q \\
+&= K_t \cdot I_q
+\end{split}
+\end{equation}
+
+where $p$ represents pole pairs and $\lambda_m$ is the magnetic flux linkage.
+
+Equally critical to deployment is the MGU-K's harvesting capacity under braking. During a typical heavy braking event (e.g., 5 distinct zones per lap), the MGU-K acts as a generator operating precisely at the 350 kW limit \cite{FIA_2026_PU_Regulations}. If the driver maintains this peak regenerative braking threshold for 2.5 seconds per zone, the raw energy harvested ($E_{harv}$) per zone is calculated as:
+
+\begin{equation} \label{eq:harvest}
+\begin{split}
+E_{harv} &= P_{regen} \cdot t_{brake} \\
+&= 350,000\,\mathrm{W} \cdot 2.5\,\mathrm{s} \\
+&= 875\,\mathrm{kJ}
+\end{split}
+\end{equation}
+
+Extrapolated across 5 zones, this yields a raw harvest of 4.375 MJ—comfortably sustaining the ~4 MJ Energy Store capacity. The deployment strategy is therefore highly cyclical: aggressively dumping energy on slow-corner exits to combat turbo lag, blending deployment through medium-speed curves to maintain traction matrices, and actively clipping energy delivery entirely on long straights via aero X-mode to preserve the battery cycle.
+\end{multicols}
+
+\begin{figure*}[h]
+\centering
+% \includegraphics[width=\textwidth]{torque_curve_overlay.pdf}
+\vspace{6cm} % Placeholder height
+\caption{MGU-K Output Torque vs. ICE Torque Curve illustrating low-RPM Torque Fill Strategy (Placeholder).}
+\label{fig:torque_overlay}
+\end{figure*}
+
+\begin{table*}[h]
+\centering
+\caption{2026 MGU-K and Turbocharger Deployment Parameters}
+\vspace{0.2cm}
+\begin{tabular}{@{}ll@{}}
+\toprule
+\textbf{Parameter} & \textbf{Value} \\
+\midrule
+MGU-K Peak Power & 350 kW \\
+Pre-2026 MGU-K Power & 120 kW \\
+Motor Type & PMSM \\
+Braking Zones per Lap & 5 \\
+Harvest per Zone & 875 kJ \\
+Total Raw Harvest & 4.375 MJ \\
+Turbo Configuration & Single, No MGU-H \\
+Lag Compensation & MGU-K Torque Fill \\
+\bottomrule
+\end{tabular}
+\label{tab:mguk_turbo_params}
+\end{table*}
+
+\begin{multicols}{2}
+\subsection{Turbocharger System}
+
+The prohibition of the MGU-H mandates a return to a conventionally exhaust-driven, single turbocharger configuration \cite{FIA_2026_PU_Regulations}. In previous technical cycles, the MGU-H functioned as an electric motor coupled directly to the turbo shaft. Upon throttle application at low RPM (where exhaust gas volume is insufficient to spool the turbine), the MGU-H would draw electrical current to instantly spin the compressor, thereby entirely eliminating mechanical turbo lag. Without this assistance, the 2026 ICE suffers from a profound deficit in forced induction response.
+
+This creates a brutal aerodynamic sizing concession regarding the turbocharger itself. Designing a large turbocharger with a high-capacity compressor wheel facilitates greater peak power output (approaching the 450 kW ceiling) by flowing denser air masses at high engine speeds. However, the significantly higher rotational inertia of a large rotating assembly exacerbates the turbo lag issue exponentially. Conversely, a smaller turbo spooling rapidly to provide excellent drivability and low-speed response introduces a choking effect at high RPM, severely restricting the absolute power ceiling. This necessitates a compromised compressor map that prioritizes mid-range efficiency, relying entirely on the aforementioned MGU-K low-RPM "torque fill" to compensate for the delayed boost threshold.
+
+The overall efficiency of the turbocharger assembly ($\eta_{tc}$) governs this delicate equilibrium, combining the isentropic efficiencies of both the compressor ($\eta_c$) and the turbine ($\eta_t$), minus mechanical bearing losses ($\eta_m$):
+
+\begin{equation} \label{eq:turbo_efficiency}
+\eta_{tc} = \eta_c \cdot \eta_t \cdot \eta_m
+\end{equation}
+
+Furthermore, the operational pressure ratio ($\Pi_c$) defined by the intake manifold boost pressure against ambient preconditions strictly governs the compressor mapping:
+
+\begin{equation} \label{eq:pressure_ratio}
+\Pi_c = \frac{P_{boost} + P_{atm}}{P_{atm}}
+\end{equation}
+
+To manage this pressure ratio without MGU-H intervention, sophisticated wastegate strategies must control turbine speed to prevent damaging over-boost scenarios while attempting to maintain optimal momentum in the rotating group off-throttle. 
+\end{multicols}
