@@ -1,0 +1,91 @@
+\section{Chassis \& Materials}
+
+\begin{multicols}{2}
+Satisfying the paradox of the 2026 regulations—integrating a 350 kW electrical architecture and a 4 MJ Energy Storage System while aggressively adhering to an absolute 800 kg total vehicle mass target—demands extreme materials science \cite{FIA_2026_Chassis_Regulations}. This section details the structural engineering of the primary monocoque, the specific load-bearing alloys utilized, and the geometric packaging of the high-voltage hybrid components within the carbon structure.
+
+\subsection{Monocoque Design}
+
+The primary survival cell and structural backbone of the vehicle is the monocoque, constructed entirely from advanced Carbon Fiber Reinforced Polymer (CFRP). Extending continuously from the front suspension bulkhead to the primary firewall behind the driver, the tub is designed to act as an immensely rigid torsion box. Crucially, the V6 Internal Combustion Engine (ICE) acts as a fully stressed member of this chassis; the engine block bolts directly to the rear of the monocoque and directly carries the inboard suspension loads of the rear axle, completely eliminating the mass penalty of a traditional separate rear subframe.
+
+Monocoque wall thickness varies drastically from 3 mm to 10 mm depending on the localized stress tensor of the specific zone. The flexural stiffness ($EI$) of these composite panels is governed by the structural bending equation:
+
+\begin{equation} \label{eq:bending_stiffness}
+EI = E \cdot \frac{b \cdot t^3}{12}
+\end{equation}
+
+where $E$ is the Young’s modulus of the composite laminate, $b$ is the panel width, and $t$ is the cross-sectional thickness. Because $EI$ scales cubically with thickness, the ply stacking sequence is hyper-optimized per region. 
+
+In high-load, multi-directional stress zones—such as the front suspension pickup points—the layup utilizes a quasi-isotropic strategy (e.g., [0$^\circ$/45$^\circ$/90$^\circ$/-45$^\circ$] stacking) to ensure uniform load distribution regardless of the instantaneous suspension vector. Conversely, in the bending-dominant floor sills, heavily unidirectional [0$^\circ$] plies are layered longitudinally to maximize the effective $E$ in the primary load axis. This meticulous localized fiber alignment guarantees the stringent target torsional stiffness of $>30,000$ Nm/deg, an absolute prerequisite for maintaining millimeter-perfect aerodynamic ride heights and suspension geometry consistency under 5G dynamic-aero loads.
+
+\subsection{Material Selection}
+
+Hitting the 800 kg limit entirely precludes the use of standard commercial-grade carbon fiber. The primary structural fiber selected across the monocoque is ultra-high modulus T800/T1000 grade polyacrylonitrile (PAN) based carbon fiber \cite{cfrp_materials_lit}. This aerospace-grade filament boasts a tensile modulus of 294 GPa and an ultimate tensile strength ranging from 5490 to 6370 MPa. The superior specific stiffness ($E/\rho$) and specific strength of T1000 carbon justify its immense cost, as it allows structural engineers to drastically reduce ply counts (and therefore mass) without sacrificing the rigidity derived in Eq. \ref{eq:bending_stiffness}.
+
+The fiber matrix utilizes a toughened epoxy prepreg resin system, cured inside high-pressure autoclaves subjected to 120$^\circ$C and 6-7 bar of atmospheric pressure to aggressively eliminate microscopic voids and ensure absolute fiber compaction. For non-structural aerodynamic bodywork and the bulk of the underfloor, a Nomex aramid honeycomb core is sandwiched between ultra-thin composite skins. This provides immense geometric shear stiffness and buckling resistance at a negligible density penalty (48 kg/m$^3$).
+
+Metallic alloy usage is strictly relegated to components demanding extreme isotropic yield strengths or ultra-high thermal resistance. The mandatory safety Halo, suspension uprights, and highly stressed primary fasteners are machined from Ti-6Al-4V (Grade 5) titanium alloy \cite{ti6al4v_specs_lit}, characterized by a formidable tensile strength of 950 MPa at a density of 4430 kg/m$^3$ (nearly half that of high-tensile steel). Finally, the brake discs and pads utilize a highly specialized Carbon-Carbon (C/C) composite matrix, uniquely capable of maintaining a stable, aggressive coefficient of friction even as rotor core temperatures exceed 1000$^\circ$C.
+\end{multicols}
+
+\begin{table*}[h]
+\centering
+\caption{2026 Primary Chassis, Structural, and Component Material Properties}
+\vspace{0.2cm}
+\begin{tabularx}{\textwidth}{@{}XXXX@{}}
+\toprule
+\textbf{Material} & \textbf{Application} & \textbf{Tensile Strength} & \textbf{Density} \\
+\midrule
+T800/T1000 CFRP & Primary Monocoque, Stressed Bodywork & 5490-6370 MPa & 1800 kg/m$^3$ \\
+Toughened Epoxy & Composite Resin Matrix & 80-90 MPa & 1200 kg/m$^3$ \\
+Nomex Honeycomb & Floor Cores, Non-Structural Panels & --- & 48 kg/m$^3$ \\
+Ti-6Al-4V Alloy & Halo Structure, Uprights, Fasteners & 950 MPa & 4430 kg/m$^3$ \\
+Carbon-Carbon   & High-Temperature Brake Discs & --- & 1750 kg/m$^3$ \\
+\bottomrule
+\end{tabularx}
+\label{tab:materials}
+\end{table*}
+
+\begin{multicols}{2}
+\subsection{Impact Structures}
+
+To protect the driver from catastrophic ballistic energy, the monocoque is surrounded by sacrificial composite impact structures. The front nose cone features a mandatory geometry defined by the FIA \cite{FIA_2026_Chassis_Regulations}, acting as a progressive crush zone designed to instantaneously disintegrate and safely shed frontal impact energy. The kinetic energy absorbed ($E_{absorbed}$) during a collision is mathematically expressed as:
+
+\begin{equation} \label{eq:crush_energy}
+E_{absorbed} = \sigma_{crush} \cdot A \cdot \delta
+\end{equation}
+
+where $\sigma_{crush}$ is the dynamic composite crushing stress, $A$ is the instantaneous cross-sectional area of the nose, and $\delta$ is the longitudinal crush distance. A similar, smaller structure is appended directly behind the 590 mm transverse gearbox to mitigate rear impacts. 
+
+Side impact structures (SIPS) consist of heavily reinforced, specialized CFRP tubes and layered impact panels integrated directly into the monocoque flanks adjacent to the driver. All impact elements must survive brutal FIA mandatory static load homologation testing prior to track operation: 60 kN of sustained axial force on the frontal structures, and 25 kN of lateral force on the side panels. The engineering challenge lies in optimizing the crush geometry ($A$ and $\sigma_{crush}$) for maximum energy absorption while simultaneously minimizing the structure's physical aerodynamic footprint.
+
+\subsection{Safety Halo}
+
+The Titanium Ti-6Al-4V Halo is a mandatory upper safety structure engineered to prevent large debris from striking the driver's helmet. Weighing approximately 7 kg, the structure must withstand a staggering 125 kN static peak homologation load applied vertically from above. 
+
+The Halo legs are mechanically integrated deep into the CFRP monocoque sides, allowing the massive 125 kN external load vectors to transfer directly down into the primary tub without buckling the cockpit surround. The interface between the titanium pylons and the carbon tub represents the highest localized structural stress concentration zone on the entire vehicle, requiring intense reinforcement with specialized multidirectional carbon fiber plies to prevent galvanic corrosion and interlaminar delamination under sheer load.
+
+To verify the Ti-6Al-4V geometry, the primary cross-sectional tensile stress ($\sigma$) exerted on the Halo structure is derived as:
+
+\begin{equation} \label{eq:halo_stress}
+\sigma = \frac{F}{A_{cross}} = \frac{125,000\,\mathrm{N}}{A_{cross}}
+\end{equation}
+
+where $F$ is the applied FIA static load, and $A_{cross}$ is the structural cross-sectional area. By enforcing a strict safety factor against the 880 MPa yield strength of the Ti-6Al-4V alloy, engineers mathematically back-calculate the absolute minimum required $A_{cross}$ for the Halo pillars, aggressively shaving excess titanium mass to lower the vehicle center of gravity (CoG).
+\end{multicols}
+
+\begin{figure*}[h]
+\centering
+% \includegraphics[width=\textwidth]{chassis_cross_section.pdf}
+\vspace{7cm} % Placeholder height
+\caption{Monocoque Cross-Section Diagram illustrating CFRP Ply Orientation Zones, Battery Tub Integration, 648V Cable Routing limits, and Ti-6Al-4V Halo Attachment Points (Placeholder).}
+\label{fig:chassis_cross_section}
+\end{figure*}
+
+\begin{multicols}{2}
+\subsection{Hybrid Component Packaging}
+
+Integrating a 648V, 4MJ battery pack into the physical carbon chassis requires exquisite electrical and structural geometry. The primary battery tub is physically integrated into the lowest possible stratum of the chassis floor, nestled precisely between the driver's legs and the primary firewall. This strategic placement ensures the immense density of the 360 NMC cells forcefully anchors the global vehicle CoG exactly at the optimal 270 mm aerodynamic target. Furthermore, the localized dielectric liquid cold plates required to suppress the 131 kW $I^2R$ thermal loads (as derived in Section 10) are directly co-cured into the carbon floor structure to completely eliminate the mass of secondary heat-exchanger casings.
+
+Routing the extreme 648 V, 540 A phase cables through a conductive carbon fiber chassis poses a severe galvanic and safety threat. All high-voltage internal cables are heavily shielded and externally coded perfectly orange per strict FIA and ICE electrochemical regulations. These heavy cables are routed through completely dedicated, completely isolated CFRP conduits laminated physically into the monocoque sidewalls. 
+
+To prevent catastrophic galvanic interaction and carbon tracking at 648 V—which would instantly electrify the entire structural tub—the geometry mandates that all exposed HV cable routing maintains a rigid clearance of $>50$ mm from the raw structural carbon. Finally, the BMS logic boards are mounted immediately adjacent to the battery within a heavily shielded, temperature-conditioned zone to minimize signal degradation across the vital 360-channel balancing harness, protected from the ICE behind the mandatory flame-resistant composite physical firewall separating the driver's cockpit from the powertrain.
+\end{multicols}

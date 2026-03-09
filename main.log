@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.3.9)  9 MAR 2026 23:32
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.3.9)  10 MAR 2026 01:31
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -591,7 +591,151 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-) [16] [17] (./main.aux)
+) (./electrical.tex
+
+LaTeX Warning: Citation `FIA_2026_PU_Regulations' on page 16 undefined on input
+ line 4.
+
+
+LaTeX Warning: Citation `sic_power_lit' on page 16 undefined on input line 8.
+
+[16] [17]
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+Underfull \hbox (badness 7151) in paragraph at lines 68--68
+[]\OT1/cmr/bx/n/14.4 Field Ori-ented Con-trol
+ []
+
+
+LaTeX Warning: Citation `pmsm_foc_lit' on page 18 undefined on input line 70.
+
+[18]
+Underfull \hbox (badness 10000) in paragraph at lines 107--107
+[]\OT1/cmr/bx/n/14.4 Maximum Torque Per
+ []
+
+
+LaTeX Warning: Citation `pmsm_foc_lit' on page 19 undefined on input line 109.
+
+[19]
+Underfull \hbox (badness 10000) in paragraph at lines 125--125
+[]\OT1/cmr/bx/n/14.4 Space Vec-tor PWM
+ []
+
+
+LaTeX Warning: Citation `pmsm_foc_lit' on page 20 undefined on input line 127.
+
+[20]
+
+LaTeX Warning: Citation `kalman_soc_lit' on page 21 undefined on input line 169
+.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[21]
+
+LaTeX Warning: Citation `FIA_2026_Technical_Regulations' on page 22 undefined o
+n input line 250.
+
+[22]) (./thermal.tex
+
+LaTeX Warning: Citation `FIA_2026_PU_Regulations' on page 23 undefined on input
+ line 4.
+
+[23]
+
+LaTeX Warning: Citation `battery_thermal_lit' on page 24 undefined on input lin
+e 82.
+
+[24]
+Underfull \hbox (badness 10000) in paragraph at lines 152--152
+[]\OT1/cmr/bx/n/14.4 Turbocharger & In-ter-
+ []
+
+[25]
+Overfull \hbox (14.90254pt too wide) detected at line 192
+[]
+ []
+
+
+Overfull \hbox (107.57545pt too wide) in paragraph at lines 209--224
+ [][] 
+ []
+
+[26]) (./electronics.tex
+
+LaTeX Warning: Citation `FIA_2026_Technical_Regulations' on page 27 undefined o
+n input line 4.
+
+
+LaTeX Warning: Citation `mclaren_ecu_lit' on page 27 undefined on input line 8.
+
+
+[27]
+
+LaTeX Warning: Citation `automotive_networks_lit' on page 28 undefined on input
+ line 27.
+
+
+LaTeX Warning: Citation `FIA_2026_Technical_Regulations' on page 28 undefined o
+n input line 38.
+
+[28]
+
+LaTeX Warning: Citation `FIA_2026_Technical_Regulations' on page 29 undefined o
+n input line 54.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 100--101
+\OT1/cmr/m/n/12 The em-bed-ded firmware run-ning on
+ []
+
+[29]) (./chassis.tex
+
+LaTeX Warning: Citation `FIA_2026_Chassis_Regulations' on page 30 undefined on 
+input line 4.
+
+[30]
+
+LaTeX Warning: Citation `cfrp_materials_lit' on page 31 undefined on input line
+ 22.
+
+
+LaTeX Warning: Reference `eq:bending_stiffness' on page 31 undefined on input l
+ine 22.
+
+
+LaTeX Warning: Citation `ti6al4v_specs_lit' on page 31 undefined on input line 
+26.
+
+
+Overfull \hbox (50.44511pt too wide) in paragraph at lines 33--45
+ [][] 
+ []
+
+[31]
+
+LaTeX Warning: Citation `FIA_2026_Chassis_Regulations' on page 32 undefined on 
+input line 50.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 84--84
+[]\OT1/cmr/bx/n/14.4 Hybrid Com-po-nent
+ []
+
+[32]) [33] (./main.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
@@ -603,31 +747,40 @@ LaTeX Warning: There were undefined references.
 
 LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
-Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 6C441E428209DB2ED737A6CDDFF0BA72;5112.
+
+Package rerunfilecheck Warning: File `main.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `main.out':
+(rerunfilecheck)             Before: 2D582366CCC8B1556C683FD6EFEA17D4;9667
+(rerunfilecheck)             After:  B6E9F5EC0BA868ECED60F6A1EF59A9AA;10574.
  ) 
 Here is how much of TeX's memory you used:
- 9303 strings out of 467525
- 143109 string characters out of 5418983
- 581888 words of memory out of 5000000
- 38046 multiletter control sequences out of 15000+600000
+ 9515 strings out of 467525
+ 146171 string characters out of 5418983
+ 586984 words of memory out of 5000000
+ 38149 multiletter control sequences out of 15000+600000
  634014 words of font info for 62 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,16n,79p,1248b,605s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,20n,79p,1248b,627s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
 ></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb>
 </usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb><
-/usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></u
-sr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr
-/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/l
-ocal/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/loc
-al/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/
-texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/t
-exlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
-Output written on main.pdf (17 pages, 177107 bytes).
+/usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></u
+sr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr
+/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/l
+ocal/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/loc
+al/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local
+/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/te
+xlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texli
+ve/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texliv
+e/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/
+2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
+Output written on main.pdf (33 pages, 274062 bytes).
 PDF statistics:
- 299 PDF objects out of 1000 (max. 8388607)
- 257 compressed objects within 3 object streams
- 80 named destinations out of 1000 (max. 500000)
- 225 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 553 PDF objects out of 1000 (max. 8388607)
+ 487 compressed objects within 5 object streams
+ 177 named destinations out of 1000 (max. 500000)
+ 409 words of extra memory for PDF output out of 10000 (max. 10000000)
 

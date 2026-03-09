@@ -1,0 +1,108 @@
+\section{Electronics \& Control Systems}
+
+\begin{multicols}{2}
+Governing the 50/50 Internal Combustion Engine (ICE) and electrical power split across varying dynamic track conditions requires an immensely robust, real-time computational architecture \cite{FIA_2026_Technical_Regulations}. This systems-level section delineates the deterministic control networks, sensor topologies, and telemetry pipelines mandated to process roughly 500 MB of state-estimation data per lap.
+
+\subsection{Electronic Control Unit (ECU)}
+
+At the apex of the digital architecture sits the Electronic Control Unit (ECU). The FIA explicitly mandates the utilization of a standardized, homologated central ECU across the grid—specifically, the McLaren Applied MCA-11 unit \cite{mclaren_ecu_lit}. This homologation eliminates software-based traction control loopholes while enforcing a standardized data-logging envelope for scrutineering.
+
+The MCA-11 serves as the central brain of the vehicle, assuming sole responsibility for critical deterministic tasks: ICE volumetric mapping, transient fuel injection timing, ignition spark advancement, and the arbitration of instantaneous torque demands between the ICE and the 350 kW Motor Generator Unit-Kinetic (MGU-K). 
+
+To execute these tasks without catastrophic desynchronization, the ECU runs on a strictly deterministic Real-Time Operating System (RTOS). In this environment, there is zero latency tolerance on safety-critical channels; control loops must execute with microsecond precision. Consequently, all critical Input/Output (I/O) channels feature hardware-level dual redundancy. Furthermore, the ECU continuously interfaces with the mandatory FIA accident data logger, mirroring a tightly specified telemetry envelope for regulatory compliance checking.
+
+\subsection{Sensor Architecture}
+
+Feeding the ECU's state machine is a distributed architecture of approximately 300 discretely polled sensors. This array is rigorously categorized into four distinct measurement domains:
+
+1. \textbf{Powertrain Sensors:} Measuring high-frequency ICE states including wideband lambda (exhaust oxygen) ratio, multipoint coolant and oil pressures/temperatures, exhaust gas temperatures (EGT) exceeding 950$^\circ$C, turbocharger boost pressures, and direct MGU-K stator winding temperatures.
+2. \textbf{Battery Management (BMS):} The Energy Storage System demands individual voltage ($V_{cell}$) and temperature ($T_{cell}$) monitoring across all 360 Nickel Manganese Cobalt (NMC) cells. It relies on a high-precision Hall-effect pack current sensor and continuous chassis isolation monitoring.
+3. \textbf{Chassis \& Vehicle Dynamics:} Linear potentiometers at all four pushrod/pullrod corners track instantaneous suspension displacement. Tri-axial accelerometers and gyroscopes monitor yaw, pitch, and roll rates. High-resolution brake line pressure transducers and infrared Tire Pressure and Temperature Monitoring Systems (TPMS) provide critical grip estimates.
+4. \textbf{Navigation \& Positioning:} A dual-band GPS antenna works symbiotically with a 6-axis Inertial Measurement Unit (IMU) to provide absolute track positioning and attitude.
+
+Crucially, the raw data from the IMU and GPS are not utilized independently. A Sensor Data Fusion algorithm—typically a variant of an Extended Kalman Filter—mathematically merges the high-frequency inertial data with the low-frequency GPS coordinates to output an incredibly accurate, drift-free vehicle dynamics state estimation matrix.
+
+\subsection{Onboard Data Architecture}
+
+Transmitting this dense sensor payload requires a hardened digital backbone. Standard Controller Area Network (CAN) buses (capped at 1 Mbps) are insufficient for modern MGU-K control loops. Therefore, the 2026 architecture leverages a hybrid FlexRay and CAN FD (Flexible Data-Rate) topography \cite{automotive_networks_lit}. CAN FD unlocks bandwidths up to 10 Mbps, while FlexRay guarantees the strict, time-triggered deterministic timing critical for high-voltage inverter switching.
+
+The physical architecture is strictly segregated into isolated network domains:
+1. \textbf{Powertrain Network:} A high-priority FlexRay bus linking the ECU, the Silicon Carbide (SiC) inverter, and the BMS to execute the 350 kW torque requests seamlessly.
+2. \textbf{Chassis Network:} A CAN FD domain tracking suspension, active aerodynamic servos, and brake-by-wire hydraulic matrices.
+3. \textbf{Safety Network:} A completely isolated, fault-tolerant loop governing fire suppression, Halo structural integrity sensors, and the FIA accident data recorder. 
+
+This physical segregation enforces a strict cybersecurity and safety envelope: a catastrophic electrical short in a suspension potentiometer on the Chassis network fundamentally cannot propagate to or interfere with the Safety or Powertrain domains. Combined, the onboard telemetry generates approximately 500 MB of logged data per lap, saturating the internal memory at a rate of roughly 500 Mbps.
+
+\subsection{Telemetry System}
+
+Simultaneously, a fraction of this heavily encrypted data is downlinked in real-time to the pitwall. To comply with FIA sporting regulations \cite{FIA_2026_Technical_Regulations}, the telemetry system utilizes a 2-4 Mbps bandwidth microwave downlink. This permits pitwall engineers and factory-based operations rooms to monitor approximately 1000 highly prioritized channels live.
+
+The primary antennas are aerodynamically integrated directly into the carbon-fiber engine cover to preserve the laminar flow utilized by the rear wing. The uplink from the pitwall to the car is severely restricted; teams may only transmit permitted parameter adjustments (e.g., acknowledged pit-lane delta signals or standardized dashboard text). Two-way algorithmic adjustments during a race are strictly prohibited. 
+
+To prevent competitor interception of strategic variables, all transmitted data arrays are subjected to military-grade encryption payloads. Furthermore, the RF hardware guarantees an absolute latency requirement of $<100$ ms, ensuring that pitwall feedback remains actionable when identifying thermal anomalies or deploying strategic undercuts.
+
+\subsection{Power Distribution Architecture}
+
+The vehicle electrical tapestry is divided transversally into two strictly isolated voltage domains, necessitated by galvanic safety standards.
+
+The High-Voltage (HV) Traction Domain operates nominally at 648 V DC, encompassing the 180S2P battery pack, the MGU-K SiC inverter, and the step-down DC-DC buck converter. 
+
+The Low-Voltage (LV) Auxiliary Domain operates on standard 12 V and 24 V architectures, powering the ECU, the 300-sensor array, active aerodynamic hydraulic servos, and the telemetry transceivers. 
+
+Between these nets, a highly efficient, galvanically isolated DC-DC converter steps the 648 V traction battery down to 12/24 V, eliminating the need for a separate, heavy LV lead-acid battery. Standard mechanical fuses are entirely replaced by a solid-state Power Distribution Unit (PDU). The PDU utilizes programmable MOSFETs acting as solid-state relays, offering infinitely adjustable current tripping limits, microsecond cutoff times, and comprehensive fault logging. 
+
+Furthermore, engaging the HV domain requires a hardware pre-charge circuit \cite{FIA_2026_Technical_Regulations}. Upon startup, the circuit routes the DC link through a high-power resistor to slowly charge the inverter's 5.4 mF film capacitor, limiting the inrush current ($I_{inrush}$) that would otherwise weld the main contactors:
+
+\begin{equation} \label{eq:inrush}
+I_{inrush} = \frac{V_{dc}}{R_{precharge}}
+\end{equation}
+
+where $V_{dc}$ is the 648 V pack voltage and $R_{precharge}$ is the 64.8 $\Omega$ resistor calculated in Section 8.
+\end{multicols}
+
+\begin{figure*}[h]
+\centering
+% \includegraphics[width=\textwidth]{electronics_architecture.pdf}
+\vspace{6cm} % Placeholder height
+\caption{Electronics Architecture Block Diagram illustrating Network Domains, ECU, BMS, Inverter, Sensors, Telemetry, and Power Distribution Paths (Placeholder).}
+\label{fig:electronics_architecture}
+\end{figure*}
+
+\begin{table*}[h]
+\centering
+\caption{2026 Vehicle Electronics, Sensors, and Telemetry Specification}
+\vspace{0.2cm}
+\begin{tabularx}{\textwidth}{@{}XX@{}}
+\toprule
+\textbf{Subsystem} & \textbf{Key Specification} \\
+\midrule
+Electronic Control Unit (ECU) & McLaren Applied MCA-11 \\
+Operating System Type & Deterministic Real-Time (RTOS) \\
+Total Distributed Sensors & $\sim$300 \\
+ESS Cell Monitors & 360 (individual $V_{cell}$ + $T_{cell}$) \\
+Internal Onboard Data Rate & $\sim$500 Mbps \\
+Logged Data per Lap & $\sim$500 MB \\
+Telemetry Downlink Bandwidth & 2-4 Mbps (Encrypted) \\
+Live Pitwall Telemetry Channels & $\sim$1000 \\
+Telemetry RF Latency & $<$100 ms \\
+High-Voltage (HV) Domain & 648 V DC \\
+Low-Voltage (LV) Auxiliary Domain & 12 V / 24 V \\
+Network Backbone Protocols & FlexRay + CAN FD \\
+Segregated Network Domains & 3 (Powertrain, Chassis, Safety) \\
+\bottomrule
+\end{tabularx}
+\label{tab:electronics_params}
+\end{table*}
+
+\begin{multicols}{2}
+\subsection{Software \& Control Algorithms}
+
+The embedded firmware running on the MCA-11 follows a strictly layered, AUTOSAR-equivalent architecture to guarantee automotive-grade reliability. This prevents logical tangling between distinct functions. 
+
+1. \textbf{Hardware Abstraction Layer (HAL):} The lowest tier, directly interfacing with the physical world by running custom sensor drivers and interpreting analog signals or CAN FD packets.
+2. \textbf{Real-Time Control Layer:} The deterministic execution block running the FOC motor control vectors and interpreting the ICE lambda and ignition maps to synthesize immediate torque.
+3. \textbf{Energy Management Layer:} The strategic oversight block enforcing the SOC-based deployment strategy from Section 8, running the Harvest/Deploy/Conserve state machine derived from the 3.0 MJ usable constraint.
+4. \textbf{Telemetry Layer:} An asynchronous background thread responsible for data packaging, military-grade algorithmic encryption, and microwave downlink scheduling.
+
+All crucial calibrations—including granular ICE ignition timing maps, MGU-K transient torque curves, and brake-by-wire hydraulic balance maps—are flashed directly into the ECU's non-volatile memory, serving as the ultimate intellectual property of the team.
+\end{multicols}

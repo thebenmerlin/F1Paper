@@ -1,0 +1,230 @@
+\section{Thermal Management}
+
+\begin{multicols}{2}
+The transition to a 50/50 Internal Combustion Engine (ICE) and electrical power division under the 2026 regulations generates an unprecedented amalgamation of concentrated heat fluxes \cite{FIA_2026_PU_Regulations}. Reconciling total vehicle heat rejection approaching 500 kW within the severely constrained, minimalist sidepod aerodynamic volumes dictates a complex, multi-loop thermal architecture. This section derives the fundamental thermodynamic loads across the five primary heat-producing subsystems.
+
+\subsection{ICE Cooling}
+
+The fundamental thermal boundary condition of the ICE is defined by the mandated 70 kg sustainable fuel limit. Utilizing an average Lower Heating Value (LHV) of 42 MJ/kg for the 100\% sustainable drop-in fuel, the total chemical energy allocation per race is:
+
+\begin{equation} \label{eq:total_fuel_energy}
+\begin{split}
+E_{race} &= m_{fuel} \cdot LHV \\
+&= 70\,\mathrm{kg} \cdot 42\,\mathrm{MJ/kg} \\
+&= 2940\,\mathrm{MJ}
+\end{split}
+\end{equation}
+
+where $m_{fuel}$ is the permitted fuel mass and $LHV$ is the specific energy. Assuming a standard race duration of 90 minutes and a mean lap time of 70 seconds, the race distance constitutes 77 laps. The total chemical energy expended per lap ($E_{lap}$) is:
+
+\begin{equation} \label{eq:energy_per_lap}
+\begin{split}
+E_{lap} &= \frac{E_{race}}{N_{laps}} \\
+&= \frac{2940\,\mathrm{MJ}}{77} \\
+&\approx 38\,\mathrm{MJ}
+\end{split}
+\end{equation}
+
+where $N_{laps}$ is the total number of laps. With the V6 ICE operating at an estimated peak thermal efficiency ($\eta_{th}$) of 45\%, the remaining 55\% of the combustion energy is rejected as wasted heat ($Q_{rejected}$):
+
+\begin{equation} \label{eq:heat_rejected}
+\begin{split}
+Q_{rejected} &= E_{lap} \cdot (1 - \eta_{th}) \\
+&= 38\,\mathrm{MJ} \cdot 0.55 \\
+&= 20.9\,\mathrm{MJ}
+\end{split}
+\end{equation}
+
+where $\eta_{th}$ is the brake thermal efficiency. Converting this per-lap energy into a continuous heat rejection rate ($P_{reject}$) yields:
+
+\begin{equation} \label{eq:continuous_rejection}
+\begin{split}
+P_{reject} &= \frac{Q_{rejected}}{t_{lap}} \\
+&= \frac{20.9\,\mathrm{MJ}}{70\,\mathrm{s}} \\
+&\approx 300\,\mathrm{kW}
+\end{split}
+\end{equation}
+
+where $t_{lap}$ is the average lap duration in seconds. This 300 kW thermal burden is roughly split equally: 150 kW is expelled directly out the tailpipe via exhaust gases, leaving 150 kW to be absorbed by the primary water-glycol coolant loop and dissipated through the sidepod radiators.
+
+\subsection{Battery Thermal Management}
+
+The Energy Storage System (ESS) is subjected to violent 180 C discharge rates, resulting in extreme Joule heating. As previously derived, the peak $I^2R$ power loss ($P_{peak}$) across the 180S2P pack is:
+
+\begin{equation} \label{eq:ess_peak_loss}
+\begin{split}
+P_{peak} &= I^2_{pack} \cdot R_{pack} \\
+&= (540\,\mathrm{A})^2 \cdot 0.45\,\Omega \\
+&= 131\,\mathrm{kW}
+\end{split}
+\end{equation}
+
+where $I_{pack}$ is the peak DC current and $R_{pack}$ is the total dynamically operative pack resistance. However, this 131 kW load is heavily transient. A single 70-second lap features 5 deployment phases of 4 seconds (20s total) and 5 harvesting phases of 2.5 seconds (12.5s total). Therefore, the total active time ($t_{active}$) at the peak 540 A load is 32.5 seconds. For the remaining passive phase ($t_{passive} = 37.5\,\mathrm{s}$), a nominal baseline load of $\sim$50 A is assumed for ancillary systems, yielding a passive power loss ($P_{passive}$) of:
+
+\begin{equation} \label{eq:ess_passive_loss}
+\begin{split}
+P_{passive} &= I^2_{base} \cdot R_{pack} \\
+&= (50\,\mathrm{A})^2 \cdot 0.45\,\Omega \\
+&\approx 1.1\,\mathrm{kW}
+\end{split}
+\end{equation}
+
+where $I_{base}$ is the ancillary current draw. The time-averaged steady-state heat rejection requirement ($Q_{avg}$) for the battery loop is calculated as:
+
+\begin{equation} \label{eq:ess_avg_loss}
+\begin{split}
+Q_{avg} &= \frac{P_{peak} \cdot t_{active} + P_{passive} \cdot t_{passive}}{t_{lap}} \\
+&= \frac{(131\,\mathrm{kW} \cdot 32.5\,\mathrm{s}) + (1.1\,\mathrm{kW} \cdot 37.5\,\mathrm{s})}{70\,\mathrm{s}} \\
+&\approx 61.4\,\mathrm{kW}
+\end{split}
+\end{equation}
+
+This derivation dictates strict thermal design targets \cite{battery_thermal_lit}: the ESS loop must possess a transient peak absorption capacity of 131 kW but only requires a steady-state radiator sizing of 61.4 kW. Because the NMC chemistry requires a precise 20-40$^\circ$C operating window—far below the ICE coolant temperature—the ESS mandates an entirely independent, dedicated liquid cold-plate loop circulating specialized dielectric fluid to guarantee temperature uniformity across all 360 cells.
+
+\subsection{Inverter Thermal Management}
+
+The SiC inverter bridges the 350 kW electrical transmission. Assuming an inverter efficiency ($\eta_{i}$) of 97\%, the total dissipated thermal loss ($P_{inv\_loss}$) is:
+
+\begin{equation} \label{eq:inverter_loss}
+\begin{split}
+P_{inv\_loss} &= P_{output} \cdot (1 - \eta_{i}) \\
+&= 350,000\,\mathrm{W} \cdot 0.03 \\
+&= 10.5\,\mathrm{kW}
+\end{split}
+\end{equation}
+
+where $P_{output}$ is the peak MGU-K mechanical power output. This 10.5 kW load is concentrated almost entirely within the microscopic surface area of the SiC die junctions. Conduction losses ($P_{cond}$) for the 3-phase bridge (accounting for 2 switches per phase leg) are:
+
+\begin{equation} \label{eq:inverter_cond}
+\begin{split}
+P_{cond} &= 3 \cdot I^2_{phase} \cdot R_{ds(on)} \cdot 2 \\
+&= 3 \cdot (312\,\mathrm{A})^2 \cdot 0.005\,\Omega \cdot 2 \\
+&\approx 2.9\,\mathrm{kW}
+\end{split}
+\end{equation}
+
+where $I_{phase}$ is the RMS phase current and $R_{ds(on)}$ is the die on-resistance. The switching losses ($P_{sw}$) across all 6 devices are approximated as:
+
+\begin{equation} \label{eq:inverter_sw}
+\begin{split}
+P_{sw} &= f_{sw} \cdot E_{sw} \cdot 6 \\
+&= 20,000\,\mathrm{Hz} \cdot 0.002\,\mathrm{J} \cdot 6 \\
+&= 240\,\mathrm{W}
+\end{split}
+\end{equation}
+
+where $f_{sw}$ is the switching frequency and $E_{sw}$ is the switching energy. The remaining $\sim$7.4 kW comprises gate drive, anti-parallel diode, and stray inductive losses. Dissipating 10.5 kW from such a minuscule area yields an extreme local heat flux, demanding a direct-contact liquid-cooling heatsink designed to maintain the SiC junction temperatures strictly below 125$^\circ$C to guarantee reliability across a race distance.
+
+\subsection{MGU-K Motor Thermal Management}
+
+Operating at a 95\% efficiency ($\eta_m$), the MGU-K motor sheds the remaining 5\% of the 350 kW load as heat ($P_{mgu\_loss}$):
+
+\begin{equation} \label{eq:mgu_loss}
+\begin{split}
+P_{mgu\_loss} &= P_{output} \cdot (1 - \eta_m) \\
+&= 350,000\,\mathrm{W} \cdot 0.05 \\
+&= 17.5\,\mathrm{kW}
+\end{split}
+\end{equation}
+
+This continuous 17.5 kW burden is comprised of copper, iron, and mechanical losses. The stator copper $I^2R$ losses ($P_{copper}$) are:
+
+\begin{equation} \label{eq:mgu_copper_loss}
+\begin{split}
+P_{copper} &= 3 \cdot I^2_{phase} \cdot R_{phase} \\
+&= 3 \cdot (312\,\mathrm{A})^2 \cdot 0.002\,\Omega \\
+&\approx 585\,\mathrm{W}
+\end{split}
+\end{equation}
+
+where $R_{phase}$ is the winding resistance per phase. However, at 15,000 RPM, the electrical frequency ($f_{elec}$) for a typical 4-pole-pair machine reaches:
+
+\begin{equation} \label{eq:electrical_freq}
+\begin{split}
+f_{elec} &= \left( \frac{N}{60} \right) \cdot p \\
+&= \left( \frac{15,000}{60} \right) \cdot 4 \\
+&= 1000\,\mathrm{Hz}
+\end{split}
+\end{equation}
+
+where $N$ is the mechanical RPM and $p$ represents the pole pairs. At this extreme 1000 Hz operative frequency, hysteresis and eddy current iron losses fundamentally dominate the stator core ($\sim$8 kW). Windage and friction at 15,000 RPM account for an additional $\sim$2 kW, with the remaining $\sim$7 kW relegated to harmonic and stray losses. To respect the 180$^\circ$C Class H insulation limit, the MGU-K utilizes direct oil-spray cooling on the stator end-windings and a hollow shaft channel to extract heat from the permanent magnet rotor assembly.
+
+\subsection{Turbocharger \& Intercooler}
+
+The removal of the MGU-H dictates a fundamental redesign of the forced induction thermal management. The unassisted compressor must violently pressurize the intake charge, vastly increasing its operating temperature. Using the isentropic relation for an ideal gas, the ideal compressor outlet temperature ($T_{2\_ideal}$) is:
+
+\begin{equation} \label{eq:turbo_temp_ideal}
+\begin{split}
+T_{2\_ideal} &= T_1 \cdot \pi^{\frac{\gamma-1}{\gamma}} \\
+&= 298\,\mathrm{K} \cdot (4.0)^{0.286} \\
+&\approx 443\,\mathrm{K}
+\end{split}
+\end{equation}
+
+where $T_1$ is the ambient inlet temperature (298 K $\approx$ 25$^\circ$C), $\pi$ is an assumed pressure ratio of 4.0, and $\gamma$ is the specific heat ratio of air (1.4). Factoring in a realistic compressor efficiency ($\eta_c$) of 75\%, the actual outlet temperature ($T_{2\_actual}$) spikes to:
+
+\begin{equation} \label{eq:turbo_temp_actual}
+\begin{split}
+T_{2\_actual} &= T_1 + \frac{T_{2\_ideal} - T_1}{\eta_c} \\
+&= 298\,\mathrm{K} + \frac{443\,\mathrm{K} - 298\,\mathrm{K}}{0.75} \\
+&\approx 491\,\mathrm{K} \approx 218^\circ\mathrm{C}
+\end{split}
+\end{equation}
+
+where $\eta_c$ is the isentropic efficiency. To prevent devastating pre-ignition (engine knock), this 218$^\circ$C charge air must be violently cooled back down to $\sim$45$^\circ$C before entering the intake plenum. For a 1.6L V6 spinning at 15,000 RPM, the approximate air mass flow rate ($\dot{m}$) is:
+
+\begin{equation} \label{eq:mass_flow}
+\begin{split}
+\dot{m} &= V_d \cdot \left(\frac{N}{120}\right) \cdot \rho_{boost} \\
+&= 1.6 \cdot 10^{-3}\,\mathrm{m^3} \cdot \left(\frac{15000}{120}\right) \cdot 4\,\mathrm{kg/m^3} \\
+&\approx 0.8\,\mathrm{kg/s}
+\end{split}
+\end{equation}
+
+where $V_d$ is the engine displacement volume and $\rho_{boost}$ is the compressed air density. The resulting intercooler heat rejection requirement ($Q_{ic}$) is therefore:
+
+\begin{equation} \label{eq:intercooler_heat}
+\begin{split}
+Q_{ic} &= \dot{m} \cdot C_p \cdot \Delta T \\
+&= 0.8\,\mathrm{kg/s} \cdot 1005\,\mathrm{J/kg\cdot K} \cdot (218^\circ\mathrm{C} - 45^\circ\mathrm{C}) \\
+&\approx 139\,\mathrm{kW}
+\end{split}
+\end{equation}
+
+where $C_p$ is the specific heat capacity of air at constant pressure, and $\Delta T$ is the required temperature drop across the core. This massive 139 kW load, operating at vastly different temperature gradients than the ICE block, mandates a dedicated water-air intercooler circuit. Meanwhile, the turbine side operates uncooled despite $\sim$950$^\circ$C exhaust inlets, relying entirely on advanced ceramic thermal barrier coatings. The center bearing housing is oil-cooled, rejecting a minimal $\sim$5 kW load into the auxiliary oil system.
+\end{multicols}
+
+\begin{figure*}[h]
+\centering
+% \includegraphics[width=\textwidth]{thermal_architecture.pdf}
+\vspace{6cm} % Placeholder height
+\caption{Integrated Thermal Architecture Diagram demonstrating four independent cooling loops and their respective sidepod core packaging (Placeholder).}
+\label{fig:thermal_diagram}
+\end{figure*}
+
+\begin{table*}[h]
+\centering
+\caption{2026 Power Unit and Drivetrain Thermal Management Heat Load Parameterization}
+\vspace{0.2cm}
+\begin{tabularx}{\textwidth}{@{}XXXX@{}}
+\toprule
+\textbf{Heat Source} & \textbf{Peak Load} & \textbf{Average Load} & \textbf{Cooling Method} \\
+\midrule
+ICE Coolant      & 150 kW & 150 kW & Water-glycol, primary sidepod radiators \\
+Battery $I^2R$   & 131 kW & 61 kW  & Liquid cold plates, dedicated dielectric loop \\
+Intercooler      & 139 kW & 139 kW & Water-air, dedicated low-temp circuit \\
+MGU-K Motor      & 17.5 kW & 17.5 kW & Oil-spray winding control, hollow shaft channel \\
+Inverter SiC     & 10.5 kW & 10.5 kW & Direct-contact liquid heatsink \\
+Turbo Bearing    & 5 kW    & 5 kW    & High-flow oil cooling \\
+\midrule
+\textbf{Total System Rejection} & \textbf{$\sim$453 kW} & \textbf{$\sim$383 kW} & \\
+\bottomrule
+\end{tabularx}
+\label{tab:thermal_loads}
+\end{table*}
+
+\begin{multicols}{2}
+\subsection{Integrated Thermal Architecture}
+
+The culmination of these disparate thermal sources dictates a segmented, four-loop integrated cooling architecture. The system must distinctly isolate: (1) the primary 150 kW ICE coolant loop running at high temperatures, (2) the highly-sensitive 131 kW capable ESS dielectric cold-plate loop constrained to 40$^\circ$C, (3) the 139 kW water-air charge cooling intercooler circuit, and (4) an auxiliary integrated loop servicing the 10.5 kW SiC inverter and 17.5 kW MGU-K motor via oil-to-water heat exchangers. Packaging the physical radiator cores for all four circuits within the heavily restricted 2026 sidepod undercut philosophy—all while preserving underfloor aerodynamic airflow—represents the paramount packaging challenge of the entire vehicle architecture.
+\end{multicols}
