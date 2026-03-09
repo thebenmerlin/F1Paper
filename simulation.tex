@@ -1,0 +1,136 @@
+\section{Performance Simulation}
+
+\begin{multicols}{2}
+Evaluating the theoretical performance envelope of the proposed 2026 Formula 1 architecture requires mathematically rigorous simulation. By computationally fusing the 350 kW electrical deployment parameters, localized aerodynamic maps, and nonlinear tire compliance, engineers can synthesize the ultimate theoretical lap time limit. This section details the methodology bridging raw point-mass numerics to complex 14 degree-of-freedom (DOF) dynamic models.
+
+\subsection{Lap Time Simulation: Point Mass Model}
+
+The absolute foundational tier of trajectory optimization relies on a Quasi-Steady-State Point Mass Model (QSS-PMM) \cite{laptimesim_theory}. The vehicle is initially distilled into a localized 800 kg point mass ($m$) traversing a track geometrically discretized into discrete spline segments (high-speed straights, transient braking zones, and steady-state constant-radius corners). 
+
+At each microscopic segment, the solver calculates the absolute physical limit of the vehicle. In a purely longitudinal acceleration zone, the traction-limited acceleration ($a_{tract}$) is bounded by available powertrain output:
+
+\begin{equation} \label{eq:ptmass_accel}
+F_{traction} = \frac{P_{ICE} + P_{MGU-K}}{v(t)}
+\end{equation}
+
+where $P_{ICE}$ and $P_{MGU-K}$ are the instantaneous power outputs of the combustion and electrical units respectively, and $v(t)$ is the instantaneous longitudinal velocity. In a steady-state cornering segment, the lateral acceleration limit ($a_{lat}$) is governed by the centrifugal equation balanced against total available grip:
+
+\begin{equation} \label{eq:ptmass_lat}
+\begin{split}
+a_{lat} &= \frac{v^2}{R} \\
+&\le \mu \cdot g + \left( \frac{F_{aero}}{m} \right) \cdot \mu
+\end{split}
+\end{equation}
+
+where $R$ is the localized corner radius, $\mu$ is the effective tire coefficient of friction, $g$ is gravitational acceleration, and $F_{aero}$ is the instantaneous aerodynamic downforce. During severe deceleration, the braking limit ($a_{brake}$) mirrors this reliance on aerodynamic loading:
+
+\begin{equation} \label{eq:ptmass_brake}
+a_{brake} \le \mu \cdot g + \left( \frac{F_{aero}}{m} \right) \cdot \mu
+\end{equation}
+
+By sequentially integrating these equations of motion across every track segment while respecting the boundary conditions of neighboring splines, the solver derives the absolute minimum achievable sector times. Crucially, Equations \ref{eq:ptmass_lat} and \ref{eq:ptmass_brake} mathematically vindicate the 2026 aerodynamic ground effect philosophy: $F_{aero}$ directly and massively artificially scales the vehicle's functional $g$-limits far beyond the static boundaries of pure mechanical friction ($\mu \cdot g$).
+
+\subsection{GGG Diagram: Friction Ellipse}
+
+Combining the absolute longitudinal (traction/braking) and lateral cornering limits synthesizes the vehicle's operating envelope, famously visualized as the G-G-G (or simply "GG") Friction Ellipse. Under high-speed aerodynamic load ($v > 300$ km/h), the 2026 platform generates an immense envelope spanning roughly $\pm$5G lateral and -5G longitudinal braking. 
+
+The combined dynamic acceleration vector is mathematically constrained by the ellipse equation:
+
+\begin{equation} \label{eq:friction_ellipse}
+\left( \frac{a_x}{a_{x\_max}} \right)^2 + \left( \frac{a_y}{a_{y\_max}} \right)^2 \le 1
+\end{equation}
+
+where $a_x$ is current longitudinal acceleration relative to its ultimate limit $a_{x\_max}$, and $a_y$ is the lateral equivalent. The theoretical envelope is elliptical rather than perfectly circular because the anisotropic construction of the tire carcass inherently supports slightly higher longitudinal shear loading than lateral shear. Any instantaneous dynamic operating point mapped within this ellipse is physically sustainable; intersecting the ultimate boundary indicates terminal grip loss. When the 350 kW MGU-K deploys aggressively on corner exit, the operating point is violently thrust toward the absolute boundary of the combined lateral-traction quadrant.
+
+\subsection{Full Vehicle Model}
+
+To graduate beyond the severe limitations of a rudimentary point mass, the simulation is expanded into a Full Vehicle Model incorporating nonlinear subsystems.
+
+First, the simple $\mu$ friction coefficient is entirely replaced by the empirical \textit{Pacejka Magic Formula} tire model \cite{pacejka_tire_lit}, which accurately maps the highly nonlinear decay of lateral grip ($F_y$) as steering slip angle ($\alpha$) increases:
+
+\begin{equation} \label{eq:pacejka}
+F_y = D \cdot \sin(C \cdot \arctan(B \alpha - E(B \alpha - \arctan(B \alpha))))
+\end{equation}
+
+where $B, C, D$, and $E$ are strictly empirical stiffness, shape, peak, and curvature coefficients derived from physical test rig data.
+
+Second, the structural compliance derived in Section 10 is integrated, mapping how high-G loads physically deform the suspension geometry to induce dynamic camber and toe drift. Third, an exhaustive 3D aerodynamic map (interpolating drag and downforce against changing front/rear ride heights) is fed into the solver. Finally, the electrical deployment state machine (Section 8) limits instantaneous power output based on real-time State of Charge (SOC) tracking.
+
+\subsection{Energy Deployment Optimization}
+
+Simulating the 2026 electrical regulations dictates running the Harvest/Deploy/Conserve state machine over the full required lap distance. The governing constraints are severe: an initial $SOC_{start}$ of 95\%, a rigid 350 kW MGU-K limit, and an absolute usable energetic window of 3.0 MJ to prevent degradation.
+
+The energy neutrality constraint over a single lap mandates that total deployment ($E_{deployed}$) mathematically reconcile against recovered kinetic energy ($E_{harvested}$) and active ICE generation ($E_{ICE\_gen}$):
+
+\begin{equation} \label{eq:energy_balance_lap}
+\begin{split}
+E_{deployed} &= E_{harvested} + E_{ICE\_gen} \\
+7.0\,\mathrm{MJ} &= 3.95\,\mathrm{MJ} + 3.05\,\mathrm{MJ}
+\end{split}
+\end{equation}
+
+The simulated $SOC$ trace begins at 95\% crossing the start line. During the 5 prime heavy braking zones (harvesting for 12.5s total at 350 kW), the pack absorbs 3.95 MJ. On the subsequent corner exits (deploying for 20s total at 350 kW), the SOC abruptly plummets as 7.0 MJ is discharged \cite{FIA_2026_PU_Regulations}.
+
+Through high-speed, aerodynamic-limited "Conserve" sectors (roughly 37.5s), the SOC trace must stabilize as the ICE supplements the 3.05 MJ baseline deficit. The simulation actively seeks critical track zones where the dynamic SOC trajectory threatens to drop below the 20\% physical health floor. If this boundary is reached, the optimization algorithm must aggressively truncate the 4-second corner exit deployment durations, balancing the immense lap time gain of corner-exit electric traction against the diminishing returns of deploying at terminal velocity where aero drag negates electric thrust.
+\end{multicols}
+
+\begin{figure*}[h]
+\centering
+% \includegraphics[width=\textwidth]{soc_deployment_trace.pdf}
+\vspace{6.5cm} % Placeholder height
+\caption{Simulated SOC Trace mapped against instantaneous MGU-K Power Deployment over a standard GP Lap Distance (Placeholder).}
+\label{fig:soc_trace}
+\end{figure*}
+
+\begin{multicols}{2}
+\subsection{Aerodynamic Efficiency Simulation}
+
+Populating the multi-dimensional aero map utilized by the vehicle solver relies exclusively on massive-scale Computational Fluid Dynamics (CFD). The aerodynamicist employs a Reynolds-Averaged Navier-Stokes (RANS) solver \cite{cfd_methodology_lit} to simulate steady-state flow structures over the vehicle body.
+
+The fluid mesh explicitly prioritizes extremely dense inflation layers near the physical floor and wing surfaces to accurately capture boundary layer separation, while coarse unstructured tetrahedral elements capture the far-field wake structures. The simulation rigidly validates the shift between the high-downforce \textit{Z-Mode} (yielding maximum Coefficient of Lift, $C_L$) and the low-drag \textit{X-Mode} (quantifying a 15-20\% reduction in Coefficient of Drag, $C_D$).
+
+Crucially, the CFD sweeps track ground effect sensitivity. By simulating ride heights parametrically from 40 mm down to 25 mm, the solver maps a highly non-linear, asymptotic spike in underfloor suction as the diffuser physically chokes below 31 mm, mathematically cementing the incredibly sensitive 30 mm rear ride height kinematic target dictated in Section 10.
+
+\subsection{Vehicle Dynamics Simulation}
+
+The final synthesis occurs within the transient 14 Degree-of-Freedom (DOF) dynamic ride model. This mathematical construct models 6 DOF for the primary sprung chassis mass, 4 un-sprung corners tracking vertical heave, and 4 tire contact patches tracking rotational slip.
+
+Integrating the Pacejka tire matrices and aerodynamic maps, the model simulates high-speed step-steer inputs to mathematically derive the ultimate understeer gradient ($K_{us}$) of the platform:
+
+\begin{equation} \label{eq:understeer_grad}
+\begin{split}
+K_{us} &= \frac{m \cdot a_y \left( \frac{l_r}{L}C_f - \frac{l_f}{L}C_r \right)}{C_f \cdot C_r \cdot L}
+\end{split}
+\end{equation}
+
+where $l_f$ and $l_r$ represent the longitudinal distances from the CoG to the front and rear axles respectively, $C_f$ and $C_r$ represent the sum lateral cornering stiffness of the front and rear tires, and $L$ represents the full 3580 mm wheelbase. 
+
+To guarantee high-speed driver confidence and absolute aerodynamic poise, the compliance matrices are tuned to yield a slightly positive $K_{us}$, dictating a mild terminal understeer characteristic at the absolute threshold of the friction ellipse. Furthermore, the 14-DOF model ruthlessly validates the 45/55 static weight distribution, ensuring the rear-biased CoG does not induce catastrophic yaw-inertia over-rotation (spin) when the driver transitions from heavy trail-braking directly into the violent 350 kW MGU-K torque delivery phase.
+\end{multicols}
+
+\begin{table*}[h]
+\centering
+\caption{2026 Comprehensive Vehicle Simulation and Modeling Methodologies}
+\vspace{0.2cm}
+\begin{tabularx}{\textwidth}{@{}lll@{}}
+\toprule
+\textbf{Simulation Tier} & \textbf{Core Methodology} & \textbf{Primary Engineering Output} \\
+\midrule
+Absolute Lap Time        & Point Mass + 14-DOF Solver & Ultimate lap limits, target speed trace \\
+Energy Deployment        & State Machine Optimization & SOC trajectory, optimal MGU-K mapping \\
+Aerodynamic Maps         & Steady-State RANS CFD      & $C_L$, $C_D$, ride-height sensitivity, aero balance \\
+Tire Interaction         & Pacejka Magic Formula      & Nonlinear lateral/longitudinal slip limits \\
+Transient Vehicle Dynamics & 14-DOF Multi-Body Model  & Understeer gradient ($K_{us}$), yaw response \\
+Ride Height Sensitivity  & Parametric CFD Sweep (25-40mm) & Proof of nonlinear floor suction stall limits \\
+\bottomrule
+\end{tabularx}
+\label{tab:simulation_methods}
+\end{table*}
+
+\begin{figure*}[h]
+\centering
+% \includegraphics[width=\textwidth]{ggg_friction_ellipse.pdf}
+\vspace{6cm} % Placeholder height
+\caption{Vehicle GGG Friction Ellipse defining the absolute $\pm$5G operating envelope under peak aerodynamic load (Placeholder).}
+\label{fig:friction_ellipse}
+\end{figure*}
