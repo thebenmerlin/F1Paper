@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.3.9)  10 MAR 2026 04:22
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.3.9)  10 MAR 2026 20:03
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -828,66 +828,64 @@ Underfull \hbox (badness 10000) in alignment at lines 131--131
  []
 
 ) (./simulation.tex
-Underfull \hbox (badness 6842) in paragraph at lines 6--6
-[]\OT1/cmr/bx/n/14.4 Lap Time Sim-u-la-tion:
- []
+
+LaTeX Warning: Citation `monza_circuit_data' on page 37 undefined on input line
+ 4.
 
 
 LaTeX Warning: Citation `laptimesim_theory' on page 37 undefined on input line 
 8.
 
-[37] [38]
+[37]
 
-LaTeX Warning: Citation `pacejka_tire_lit' on page 39 undefined on input line 4
-9.
+LaTeX Warning: Citation `pacejka_tire_lit' on page 38 undefined on input line 3
+7.
 
-
-Overfull \hbox (28.50505pt too wide) detected at line 53
-[][][]\OML/cmm/m/it/12 F[] \OT1/cmr/m/n/12 = \OML/cmm/m/it/12 D \OMS/cmsy/m/n/1
-2 ^^A []\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 C \OMS/cmsy/m/n/12 ^^A []\OT1/cmr/m/n
-/12 (\OML/cmm/m/it/12 B \OMS/cmsy/m/n/12 ^^@ \OML/cmm/m/it/12 E\OT1/cmr/m/n/12
- (\OML/cmm/m/it/12 B \OMS/cmsy/m/n/12 ^^@ []\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 
-B\OT1/cmr/m/n/12 ))))
+[38]
+Underfull \hbox (badness 10000) in paragraph at lines 71--72
+[]\OT1/cmr/m/n/12 Contextually, the cur-rent ab-so-lute
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 61--62
-\OT1/cmr/m/n/12 Simulating the 2026 elec-tri-cal reg-
+Underfull \hbox (badness 6910) in paragraph at lines 79--80
+\OT1/cmr/m/n/12 rived from Reynolds-Averaged Navier-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 61--62
-\OT1/cmr/m/n/12 u-la-tions dic-tates run-ning the Har-
+Underfull \hbox (badness 10000) in paragraph at lines 89--90
+[]\OT1/cmr/m/n/12 Engineers metic-u-lously tar-geted a
  []
 
 
-LaTeX Warning: Citation `FIA_2026_PU_Regulations' on page 39 undefined on input
- line 72.
+Overfull \vbox (5.7515pt too high) has occurred while \output is active []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 74--75
-[]\OT1/cmr/m/n/12 Through high-speed, aerodynamic-
- []
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-LaTeX Warning: Citation `cfd_methodology_lit' on page 39 undefined on input lin
-e 88.
 
 [39]
-Overfull \hbox (122.01596pt too wide) in alignment at lines 126--126
-[][][] 
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+) (./manufacturing.tex
+
+LaTeX Warning: Citation `cfrp_manufacturing_lit' on page 40 undefined on input 
+line 8.
+
+[40]
+
+LaTeX Warning: Citation `battery_pack_assembly' on page 41 undefined on input l
+ine 16.
+
+[41]
+Underfull \hbox (badness 5260) in paragraph at lines 26--27
+[]\OT1/cmr/m/n/12 The stressed 590 mm lon-gi-tu-di-nal
  []
 
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-) [40] [41] (./main.aux)
+[42]) [43] (./main.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
@@ -896,14 +894,23 @@ L3 programming layer <2026-01-19>
 
 LaTeX Warning: There were undefined references.
 
-Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: A2C1433CED840BAA6E850CA0688432C6;13571.
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+
+Package rerunfilecheck Warning: File `main.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `main.out':
+(rerunfilecheck)             Before: 77C0DA00EC19369B826B9183E27AE2E0;13523
+(rerunfilecheck)             After:  087626F1085809414B9D3C0D4D73672B;14472.
  ) 
 Here is how much of TeX's memory you used:
- 9749 strings out of 467525
- 149751 string characters out of 5418983
- 591569 words of memory out of 5000000
- 38329 multiletter control sequences out of 15000+600000
+ 9768 strings out of 467525
+ 150066 string characters out of 5418983
+ 594620 words of memory out of 5000000
+ 38337 multiletter control sequences out of 15000+600000
  634361 words of font info for 63 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  75i,20n,79p,1248b,627s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -921,10 +928,10 @@ ve/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texliv
 e/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/
 2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/20
 26/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on main.pdf (41 pages, 318906 bytes).
+Output written on main.pdf (43 pages, 319548 bytes).
 PDF statistics:
- 709 PDF objects out of 1000 (max. 8388607)
- 631 compressed objects within 7 object streams
- 219 named destinations out of 1000 (max. 500000)
+ 723 PDF objects out of 1000 (max. 8388607)
+ 643 compressed objects within 7 object streams
+ 227 named destinations out of 1000 (max. 500000)
  585 words of extra memory for PDF output out of 10000 (max. 10000000)
 
