@@ -1,0 +1,39 @@
+\section{Conclusion}
+
+\begin{multicols}{2}
+The impending 2026 Formula 1 regulations explicitly force a paradigm shift transcending incremental aerodynamic evolution. This paper has comprehensively drafted, derived, and mathematically validated a complete macroscopic vehicle architecture capable of simultaneously satisfying the aggressive mechanical, thermal, and electrical constraints of the new era.
+
+\subsection{Design Summary}
+
+Synthesizing the derived specifications establishes a cohesive vehicle platform. The architecture mandates a 3580 mm wheelbase and a strictly constrained 5125 mm overall length, bounded within the 800 kg minimum mass target. The global 270 mm Center of Gravity (CoG) is rigidly anchored by the 45/55 front-to-rear static weight distribution.
+
+Every engineering parameter throughout this architecture is inextricably interconnected. The necessity to package the 180S2P, 648 V Nickel Manganese Cobalt (NMC) battery low in the chassis dictates the geometric CoG. The extreme 180 C peak transient discharge currents generate profound $I^2R$ thermal loads, directly driving the multi-loop, liquid cold-plate thermal packaging. This immense cooling requirement dictates the internal capacity of the minimalist undercut sidepod philosophy, which ultimately defines the external aerodynamic boundary layer feeding the rear diffuser. The powertrain relies seamlessly on Field Oriented Control (FOC) governed by Space Vector Pulse Width Modulation (SVPWM) firing SiC inverters, completely reliant on an active Extended Kalman Filter for real-time State of Charge (SOC) estimation.
+
+\subsection{Simulation Validation}
+
+The mathematical validity of this cohesive architecture was decisively proven via the custom MATLAB point-mass simulation. Navigating the 5.793 km Autodromo Nazionale di Monza, the integrated aerodynamic, mechanical, and electrical parameters computed a blistering theoretical lap time of 1:16.79. 
+
+This establishes a profound $\sim$2.3-second improvement over the existing 1:19.119 circuit lap record. This dramatic acceleration is completely consistent with the aggressive 350 kW Motor Generator Unit-Kinetic (MGU-K) violently overpowering the previous 120 kW electrical output on corner exits. The simulation verified a maximum speed of 348.2 km/h, while strictly adhering to the hard 3.0 MJ operational energy budget. The dynamic SOC trace bottomed out at a perfectly healthy 25.3\%, conclusively validating that the tiered deployment logic successfully prevents catastrophic battery degradation without artificially castrating terminal straight-line speed.
+
+\subsection{2026 as an Inflection Point}
+
+Historically, hybrid technology in Formula 1 served strictly as an ancillary support mechanism to the dominant internal combustion engine \cite{f1_hybrid_history}. The 2026 regulations represent the definitive historical inflection point: the formula has transitioned into a genuinely hybrid-electric paradigm. 
+
+The MGU-K now contributes a staggering 46\% of total peak vehicle power. Paired with the mandatory 100\% sustainable drop-in fuel, the carbon loop is physically closed. Furthermore, the complete regulatory eradication of the MGU-H (Motor Generator Unit-Heat) forces the entire geometric burden of turbo-lag mitigation directly onto complex ICE tuning matrices and instantaneous MGU-K low-RPM torque filling. Consequently, the high-voltage electrical architecture—encompassing the SiC inverter topologies, battery cell chemistry selections, and deterministic motor control algorithms—has utterly usurped aerodynamics as the primary engineering battleground for grid supremacy.
+
+\subsection{Model Limitations}
+
+While the synthesized simulation fundamentally validates the architectural philosophy, academic rigor demands an explicit acknowledgment of localized modeling limitations. The quasi-steady-state point mass model inherently ignores the nonlinear realities of transient tire degradation and thermal blistering. It assumes constant mechanical grip, failing to account for suspension kinematic compliance under 5G cornering loads or the mass reduction as the 70 kg fuel load is burned throughout the lap.
+
+Furthermore, the aerodynamic mapping utilized steady-state lift and drag coefficients ($C_l$ and $C_d$) derived from literature references \cite{cfd_methodology_lit}, bypassing original dynamic Computational Fluid Dynamics (CFD) mapping that would accurately capture severe downforce variations induced by transient yaw and pitch angles. Finally, the energy deployment logic assumes a constant thermodynamic efficiency chain, ignoring how electrical resistances fiercely spike alongside die junction temperatures.
+
+\subsection{Future Work}
+
+To graduate this theoretical model into a viable, race-engineering tool, future computational expansions must violently scale in three primary directions:
+
+1. \textbf{Multi-Lap Simulation:} The point-mass optimization solver must be expanded iteratively across a full 77-lap race distance. This will mandate modeling transient fuel burn mass-loss, compounding tire degradation, and strategic, long-term SOC state-machine management across multi-stint race strategies.
+2. \textbf{Multi-Track Validation:} The fundamental architecture must be validated across the extreme aerodynamic spectrum. Simulating the ultra-high downforce confines of Monaco versus the low-drag efficiency demands of Spa-Francorchamps will definitively quantify the localized aerodynamic setup deltas required between X-mode and Z-mode configurations.
+3. \textbf{Higher Fidelity Dynamics:} The rudimentary point-mass model must be wholly superseded by an integrated 14 Degree-of-Freedom (DOF) multi-body vehicle dynamics solver. Coupling genuine RANS CFD aero-maps with a transient Pacejka Magic Formula tire model will allow the implementation of advanced Model Predictive Control (MPC) algorithms to autonomously govern the MGU-K energy deployment in real-time.
+
+Ultimately, the 2026 Formula 1 regulations irrevocably declare that mechanical and aerodynamic engineering alone are no longer sufficient to secure a World Championship. Total mastery of complex power electronics, advanced battery electrochemistry, and deterministic digital motor control now sits as the absolute cornerstone of modern motorsport dominance.
+\end{multicols}

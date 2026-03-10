@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.3.9)  10 MAR 2026 20:03
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.3.9)  10 MAR 2026 20:07
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -885,7 +885,25 @@ Underfull \hbox (badness 5260) in paragraph at lines 26--27
 []\OT1/cmr/m/n/12 The stressed 590 mm lon-gi-tu-di-nal
  []
 
-[42]) [43] (./main.aux)
+[42]) (./conclusion.tex
+Underfull \hbox (badness 5189) in paragraph at lines 18--18
+[]\OT1/cmr/bx/n/14.4 2026 as an In-flec-tion
+ []
+
+
+LaTeX Warning: Citation `f1_hybrid_history' on page 43 undefined on input line 
+20.
+
+[43]
+
+LaTeX Warning: Citation `cfd_methodology_lit' on page 44 undefined on input lin
+e 28.
+
+
+Overfull \vbox (2.2515pt too high) has occurred while \output is active []
+
+
+[44]) (./main.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
@@ -895,22 +913,19 @@ L3 programming layer <2026-01-19>
 LaTeX Warning: There were undefined references.
 
 
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
-
 Package rerunfilecheck Warning: File `main.out' has changed.
 (rerunfilecheck)                Rerun to get outlines right
 (rerunfilecheck)                or use package `bookmark'.
 
 Package rerunfilecheck Info: Checksums for `main.out':
-(rerunfilecheck)             Before: 77C0DA00EC19369B826B9183E27AE2E0;13523
-(rerunfilecheck)             After:  087626F1085809414B9D3C0D4D73672B;14472.
+(rerunfilecheck)             Before: 087626F1085809414B9D3C0D4D73672B;14472
+(rerunfilecheck)             After:  DC730404438D94EFD0E23864D01B4858;15341.
  ) 
 Here is how much of TeX's memory you used:
- 9768 strings out of 467525
- 150066 string characters out of 5418983
- 594620 words of memory out of 5000000
- 38337 multiletter control sequences out of 15000+600000
+ 9790 strings out of 467525
+ 150430 string characters out of 5418983
+ 594623 words of memory out of 5000000
+ 38349 multiletter control sequences out of 15000+600000
  634361 words of font info for 63 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  75i,20n,79p,1248b,627s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -928,10 +943,10 @@ ve/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texliv
 e/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/
 2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/20
 26/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on main.pdf (43 pages, 319548 bytes).
+Output written on main.pdf (44 pages, 326373 bytes).
 PDF statistics:
- 723 PDF objects out of 1000 (max. 8388607)
- 643 compressed objects within 7 object streams
- 227 named destinations out of 1000 (max. 500000)
- 585 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 749 PDF objects out of 1000 (max. 8388607)
+ 668 compressed objects within 7 object streams
+ 234 named destinations out of 1000 (max. 500000)
+ 625 words of extra memory for PDF output out of 10000 (max. 10000000)
 
