@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Figure 2 — Aerodynamic Load Distribution</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Source+Code+Pro:wght@400;600&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#fff; font-family:'EB Garamond',Georgia,serif; color:#111; padding:40px 48px; }
+  .fig-label   { font-family:'Source Code Pro',monospace; font-size:12px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:4px; }
+  .fig-caption { font-size:13.5px; font-style:italic; color:#333; margin-bottom:24px; line-height:1.6; max-width:920px; }
+  .footnote    { margin-top:16px; font-size:11.5px; font-style:italic; color:#555; line-height:1.7; max-width:920px; }
+</style>
+</head>
+<body>
+
+<div class="fig-label">Figure 2</div>
+<div class="fig-caption">
+  Aerodynamic Load Distribution — Downforce (C<sub>L</sub>) and Drag (C<sub>D</sub>) Contribution by Component.<br>
+  Z-mode (high-downforce cornering configuration) vs. X-mode (ultra-low-drag straight-line configuration).<br>
+  Total Z-mode: C<sub>L</sub> = 3.20, C<sub>D</sub> = 1.00 (L/D = 3.20). Total X-mode: C<sub>L</sub> = 2.80, C<sub>D</sub> = 0.65 (L/D = 4.31).
+</div>
+
+<!--
+  DATA:
+  ─────────────────────────────────────────────────────────────────────────
+  Component       C_L(Z)  C_L(X)   C_D(Z)  C_D(X)   %DF(Z)
+  Front Wing       0.48    0.22     0.14    0.06      15%
+  Floor            1.44    1.44     0.20    0.18      45%
+  Rear Wing        0.64    0.30     0.32    0.15      20%
+  Diffuser         0.32    0.52     0.12    0.08      10%
+  Body / Induced   0.32    0.32     0.22    0.18      10%
+  ─────────────────────────────────────────────────────────────────────────
+  TOTAL            3.20    2.80     1.00    0.65     100%
+
+  CHART LAYOUT:
+  Left panel  (x=80..480):  C_L grouped bar chart
+  Right panel (x=520..880): C_D grouped bar chart
+
+  Each panel: 5 component groups, each group has 2 bars (Z-mode, X-mode)
+  Y axis: 0..1.6 for C_L, 0..0.40 for C_D
+
+  C_L panel:
+    Plot area: x=110..470, y=60..380  (height 320 px)
+    Y scale: 1.6 max → 1 px = 0.005 C_L
+    py(val) = 380 - (val / 1.6) * 320
+
+  C_D panel:
+    Plot area: x=550..870, y=60..380  (height 320 px)
+    Y scale: 0.40 max → 1 px = 0.00125 C_D
+    py(val) = 380 - (val / 0.40) * 320
+
+  Group spacing:
+    5 groups across ~320 px usable → group width ~60 px
+    Bar width = 22 px, gap between Z/X bars = 4 px, group gap = 16 px
+    Group center positions (C_L): 140, 210, 280, 350, 420
+    Group center positions (C_D): 580, 650, 720, 790, 860
+-->
+
+<svg width="920" height="560" viewBox="0 0 920 560"
+     xmlns="http://www.w3.org/2000/svg"
+     style="display:block; font-family:'Source Code Pro',monospace;">
+
+<!-- ═══════════════════════════════════════════
+     PANEL HEADERS
+═══════════════════════════════════════════ -->
+<text x="290" y="35" text-anchor="middle" font-size="11" font-weight="600" fill="#111"
+      letter-spacing="0.08em">DOWNFORCE COEFFICIENT  (C<tspan baseline-shift="sub" font-size="8">L</tspan>)</text>
+<text x="720" y="35" text-anchor="middle" font-size="11" font-weight="600" fill="#111"
+      letter-spacing="0.08em">DRAG COEFFICIENT  (C<tspan baseline-shift="sub" font-size="8">D</tspan>)</text>
+
+<!-- ═══════════════════════════════════════════
+     LEFT PANEL — C_L BAR CHART
+     Plot area: x=110..470, y=55..380
+     Y scale: 0..1.6, py(v) = 380 - (v/1.6)*320
+═══════════════════════════════════════════ -->
+<rect x="110" y="55" width="360" height="325" fill="#fafafa" stroke="#ccc" stroke-width="0.8"/>
+
+<!-- Horizontal grid lines (C_L) -->
+<!-- py(0.2) = 380 - (0.2/1.6)*320 = 380-40 = 340 -->
+<!-- py(0.4) = 380 - 80 = 300 -->
+<!-- py(0.6) = 380 - 120 = 260 -->
+<!-- py(0.8) = 380 - 160 = 220 -->
+<!-- py(1.0) = 380 - 200 = 180 -->
+<!-- py(1.2) = 380 - 240 = 140 -->
+<!-- py(1.4) = 380 - 280 = 100 -->
+<!-- py(1.6) = 380 - 320 = 60  (top) -->
+<line x1="110" y1="340" x2="470" y2="340" stroke="#e8e8e8" stroke-width="0.8"/>
+<line x1="110" y1="300" x2="470" y2="300" stroke="#e8e8e8" stroke-width="0.8"/>
+<line x1="110" y1="260" x2="470" y2="260" stroke="#e8e8e8" stroke-width="0.8"/>
+<line x1="110" y1="220" x2="470" y2="220" stroke="#e8e8e8" stroke-width="0.8"/>
+<line x1="110" y1="180" x2="470" y2="180" stroke="#e8e8e8" stroke-width="0.8"/>
+<line x1="110" y1="140" x2="470" y2="140" stroke="#e8e8e8" stroke-width="0.8"/>
+<line x1="110" y1="100" x2="470" y2="100" stroke="#e8e8e8" stroke-width="0.8"/>
+
+<!-- Y axis ticks + labels (C_L) -->
+<line x1="110" y1="380" x2="104" y2="380" stroke="#111" stroke-width="1.2"/>
+<line x1="110" y1="340" x2="104" y2="340" stroke="#111" stroke-width="1.2"/>
+<line x1="110" y1="300" x2="104" y2="300" stroke="#111" stroke-width="1.2"/>
+<line x1="110" y1="260" x2="104" y2="260" stroke="#111" stroke-width="1.2"/>
+<line x1="110" y1="220" x2="104" y2="220" stroke="#111" stroke-width="1.2"/>
+<line x1="110" y1="180" x2="104" y2="180" stroke="#111" stroke-width="1.2"/>
+<line x1="110" y1="140" x2="104" y2="140" stroke="#111" stroke-width="1.2"/>
+<line x1="110" y1="100" x2="104" y2="100" stroke="#111" stroke-width="1.2"/>
+
+<text x="100" y="384" text-anchor="end" font-size="9" fill="#444">0</text>
+<text x="100" y="344" text-anchor="end" font-size="9" fill="#444">0.2</text>
+<text x="100" y="304" text-anchor="end" font-size="9" fill="#444">0.4</text>
+<text x="100" y="264" text-anchor="end" font-size="9" fill="#444">0.6</text>
+<text x="100" y="224" text-anchor="end" font-size="9" fill="#444">0.8</text>
+<text x="100" y="184" text-anchor="end" font-size="9" fill="#444">1.0</text>
+<text x="100" y="144" text-anchor="end" font-size="9" fill="#444">1.2</text>
+<text x="100" y="104" text-anchor="end" font-size="9" fill="#444">1.4</text>
+
+<!-- Axes (C_L) -->
+<line x1="110" y1="380" x2="475" y2="380" stroke="#111" stroke-width="1.4"/>
+<line x1="110" y1="55"  x2="110" y2="385" stroke="#111" stroke-width="1.4"/>
+
+<!-- Y axis label (C_L) -->
+<text x="48" y="218" text-anchor="middle" font-size="10" font-style="italic" fill="#444"
+      transform="rotate(-90, 48, 218)">C<tspan baseline-shift="sub" font-size="7.5">L</tspan> contribution</text>
+
+<!--
+  BAR POSITIONS (C_L panel):
+  Groups centered at: 155, 225, 295, 365, 435
+  Z-bar: center-13 (width 22)   → x = center-24
+  X-bar: center+3  (width 22)   → x = center+3
+
+  Group 1 — Front Wing:  Z=0.48, X=0.22
+    Z: x=131, py(0.48)=380-96=284, h=380-284=96
+    X: x=158, py(0.22)=380-44=336, h=380-336=44
+
+  Group 2 — Floor:  Z=1.44, X=1.44
+    Z: x=201, py(1.44)=380-288=92, h=380-92=288
+    X: x=228, py(1.44)=92, h=288
+
+  Group 3 — Rear Wing:  Z=0.64, X=0.30
+    Z: x=271, py(0.64)=380-128=252, h=128
+    X: x=298, py(0.30)=380-60=320, h=60
+
+  Group 4 — Diffuser:  Z=0.32, X=0.52
+    Z: x=341, py(0.32)=380-64=316, h=64
+    X: x=368, py(0.52)=380-104=276, h=104
+
+  Group 5 — Body/Induced:  Z=0.32, X=0.32
+    Z: x=411, py(0.32)=316, h=64
+    X: x=438, py(0.32)=316, h=64
+-->
+
+<!-- Group 1 — Front Wing -->
+<rect x="131" y="284" width="22" height="96" fill="#111" stroke="#111" stroke-width="0.8"/>
+<rect x="158" y="336" width="22" height="44" fill="#fff" stroke="#111" stroke-width="1.4"/>
+<line x1="162" y1="340" x2="176" y2="376" stroke="#111" stroke-width="0.8" stroke-dasharray="3,2"/>
+<line x1="162" y1="348" x2="176" y2="368" stroke="#111" stroke-width="0.8" stroke-dasharray="3,2"/>
+<text x="142" y="278" text-anchor="middle" font-size="8" font-weight="600" fill="#111">0.48</text>
+<text x="169" y="330" text-anchor="middle" font-size="8" font-weight="600" fill="#555">0.22</text>
+
+<!-- Group 2 — Floor -->
+<rect x="201" y="92" width="22" height="288" fill="#111" stroke="#111" stroke-width="0.8"/>
+<rect x="228" y="92" width="22" height="288" fill="#fff" stroke="#111" stroke-width="1.4"/>
+<line x1="232" y1="96" x2="246" y2="376" stroke="#111" stroke-width="0.8" stroke-dasharray="3,2"/>
+<line x1="232" y1="140" x2="246" y2="332" stroke="#111" stroke-width="0.8" stroke-dasharray="3,2"/>
+<line x1="232" y1="190" x2="246" y2="286" stroke="#111" stroke-width="0.8" stroke-dasharray="3,2"/>
+<text x="212" y="86" text-anchor="middle" font-size="8" font-weight="600" fill="#111">1.44</text>
+<text x="239" y="86" text-anchor="middle" font-size="8" font-weight="600" fill="#555">1.44</text>
+
+<!-- Group 3 — Rear Wing -->
+<rect x="271" y="252" width="22" height="128" fill="#111" stroke="#111" stroke-width="0.8"/>
+<rect x="298" y="320" width="22" height="60" fill="#fff" stroke="#111" stroke-width="1.4"/>
+<line x1="302" y1="324" x2="316" y2="376" stroke="#111" stroke-width="0.8" stroke-dasharray="3,2"/>
+<text x="282" y="246" text-anchor="middle" font-size="8" font-weight="600" fill="#111">0.64</text>
+<text x="309" y="314" text-anchor="middle" font-size="8" font-weight="600" fill="#555">0.30</text>
+
+<!-- Group 4 — Diffuser -->
+<rect x="341" y="316" width="22" height="64" fill="#111" stroke="#111" stroke-width="0.8"/>
+<rect x="368" y="276" width="22" height="104" fill="#fff" stroke="#111" stroke-width="1.4"/>
+<line x1="372" y1="280" x2="386" y2="376" stroke="#111" stroke-width="0.8" stroke-dasharray="3,2"/>
+<line x1="372" y1="310" x2="386" y2="346" stroke="#111" stroke-width="0.8" stroke-dasharray="3,2"/>
+<text x="352" y="310" text-anchor="middle" font-size="8" font-weight="600" fill="#111">0.32</text>
+<text x="379" y="270" text-anchor="middle" font-size="8" font-weight="600" fill="#555">0.52</text>
+
+<!-- Group 5 — Body / Induced -->
+<rect x="411" y="316" width="22" height="64" fill="#111" stroke="#111" stroke-width="0.8"/>
+<rect x="438" y="316" width="22" height="64" fill="#fff" stroke="#111" stroke-width="1.4"/>
+<line x1="442" y1="320" x2="456" y2="376" stroke="#111" stroke-width="0.8" stroke-dasharray="3,2"/>
+<text x="422" y="310" text-anchor="middle" font-size="8" font-weight="600" fill="#111">0.32</text>
+<text x="449" y="310" text-anchor="middle" font-size="8" font-weight="600" fill="#555">0.32</text>
+
+<!-- X axis component labels (C_L) -->
+<text x="150" y="396" text-anchor="middle" font-size="8.5" fill="#333">Front</text>
+<text x="150" y="406" text-anchor="middle" font-size="8.5" fill="#333">Wing</text>
+<text x="150" y="416" text-anchor="middle" font-size="7.5" fill="#888">(15%)</text>
+<text x="220" y="396" text-anchor="middle" font-size="8.5" fill="#333">Floor</text>
+<text x="220" y="406" text-anchor="middle" font-size="8.5" fill="#333">&amp; Tunnels</text>
+<text x="220" y="416" text-anchor="middle" font-size="7.5" fill="#888">(45%)</text>
+<text x="290" y="396" text-anchor="middle" font-size="8.5" fill="#333">Rear</text>
+<text x="290" y="406" text-anchor="middle" font-size="8.5" fill="#333">Wing</text>
+<text x="290" y="416" text-anchor="middle" font-size="7.5" fill="#888">(20%)</text>
+<text x="360" y="396" text-anchor="middle" font-size="8.5" fill="#333">Diffuser</text>
+<text x="360" y="416" text-anchor="middle" font-size="7.5" fill="#888">(10%)</text>
+<text x="430" y="396" text-anchor="middle" font-size="8.5" fill="#333">Body /</text>
+<text x="430" y="406" text-anchor="middle" font-size="8.5" fill="#333">Induced</text>
+<text x="430" y="416" text-anchor="middle" font-size="7.5" fill="#888">(10%)</text>
+
+<!-- Floor dominance annotation -->
+<rect x="185" y="63" width="72" height="22" fill="#fff" stroke="#ccc" stroke-width="0.8" rx="1"/>
+<text x="221" y="72" text-anchor="middle" font-size="7.5" font-weight="600" fill="#111">DOMINANT</text>
+<text x="221" y="82" text-anchor="middle" font-size="7" fill="#555">55% of total DF</text>
+
+<!-- Totals annotation (C_L) -->
+<rect x="110" y="423" width="200" height="36" fill="#fff" stroke="#ccc" stroke-width="0.8" rx="1"/>
+<text x="120" y="437" font-size="8" font-weight="600" fill="#111">Total Z-mode:</text>
+<text x="200" y="437" font-size="8.5" font-weight="600" fill="#111">C<tspan baseline-shift="sub" font-size="6.5">L</tspan> = 3.20</text>
+<text x="120" y="450" font-size="8" font-weight="600" fill="#555">Total X-mode:</text>
+<text x="200" y="450" font-size="8.5" font-weight="600" fill="#555">C<tspan baseline-shift="sub" font-size="6.5">L</tspan> = 2.80  (−12.5%)</text>
+
+<!-- ═══════════════════════════════════════════
+     RIGHT PANEL — C_D BAR CHART
+     Plot area: x=550..870, y=55..380
+     Y scale: 0..0.40, py(v) = 380 - (v/0.40)*320
+═══════════════════════════════════════════ -->
+<rect x="550" y="55" width="320" height="325" fill="#fafafa" stroke="#ccc" stroke-width="0.8"/>
+
+<!-- Horizontal grid lines (C_D) -->
+<!-- py(0.05) = 380 - (0.05/0.40)*320 = 380-40 = 340 -->
+<!-- py(0.10) = 380 - 80 = 300 -->
+<!-- py(0.15) = 380 - 120 = 260 -->
+<!-- py(0.20) = 380 - 160 = 220 -->
+<!-- py(0.25) = 380 - 200 = 180 -->
+<!-- py(0.30) = 380 - 240 = 140 -->
+<!-- py(0.35) = 380 - 280 = 100 -->
+<line x1="550" y1="340" x2="870" y2="340" stroke="#e8e8e8" stroke-width="0.8"/>
+<line x1="550" y1="300" x2="870" y2="300" stroke="#e8e8e8" stroke-width="0.8"/>
+<line x1="550" y1="260" x2="870" y2="260" stroke="#e8e8e8" stroke-width="0.8"/>
+<line x1="550" y1="220" x2="870" y2="220" stroke="#e8e8e8" stroke-width="0.8"/>
+<line x1="550" y1="180" x2="870" y2="180" stroke="#e8e8e8" stroke-width="0.8"/>
+<line x1="550" y1="140" x2="870" y2="140" stroke="#e8e8e8" stroke-width="0.8"/>
+<line x1="550" y1="100" x2="870" y2="100" stroke="#e8e8e8" stroke-width="0.8"/>
+
+<!-- Y axis ticks + labels (C_D) -->
+<line x1="550" y1="380" x2="544" y2="380" stroke="#111" stroke-width="1.2"/>
+<line x1="550" y1="340" x2="544" y2="340" stroke="#111" stroke-width="1.2"/>
+<line x1="550" y1="300" x2="544" y2="300" stroke="#111" stroke-width="1.2"/>
+<line x1="550" y1="260" x2="544" y2="260" stroke="#111" stroke-width="1.2"/>
+<line x1="550" y1="220" x2="544" y2="220" stroke="#111" stroke-width="1.2"/>
+<line x1="550" y1="180" x2="544" y2="180" stroke="#111" stroke-width="1.2"/>
+<line x1="550" y1="140" x2="544" y2="140" stroke="#111" stroke-width="1.2"/>
+<line x1="550" y1="100" x2="544" y2="100" stroke="#111" stroke-width="1.2"/>
+
+<text x="540" y="384" text-anchor="end" font-size="9" fill="#444">0</text>
+<text x="540" y="344" text-anchor="end" font-size="9" fill="#444">0.05</text>
+<text x="540" y="304" text-anchor="end" font-size="9" fill="#444">0.10</text>
+<text x="540" y="264" text-anchor="end" font-size="9" fill="#444">0.15</text>
+<text x="540" y="224" text-anchor="end" font-size="9" fill="#444">0.20</text>
+<text x="540" y="184" text-anchor="end" font-size="9" fill="#444">0.25</text>
+<text x="540" y="144" text-anchor="end" font-size="9" fill="#444">0.30</text>
+<text x="540" y="104" text-anchor="end" font-size="9" fill="#444">0.35</text>
+
+<!-- Axes (C_D) -->
+<line x1="550" y1="380" x2="875" y2="380" stroke="#111" stroke-width="1.4"/>
+<line x1="550" y1="55"  x2="550" y2="385" stroke="#111" stroke-width="1.4"/>
+
+<!-- Y axis label (C_D) -->
+<text x="500" y="218" text-anchor="middle" font-size="10" font-style="italic" fill="#444"
+      transform="rotate(-90, 500, 218)">C<tspan baseline-shift="sub" font-size="7.5">D</tspan> contribution</text>
+
+<!--
+  BAR POSITIONS (C_D panel):
+  Groups centered at: 590, 650, 710, 770, 830
+  Z-bar: x = center-24, width 22
+  X-bar: x = center+3,  width 22
+
+  py(v) = 380 - (v/0.40)*320
+
+  Group 1 — Front Wing:  Z=0.14, X=0.06
+    Z: py(0.14)=380-112=268, h=112
+    X: py(0.06)=380-48=332, h=48
+
+  Group 2 — Floor:  Z=0.20, X=0.18
+    Z: py(0.20)=380-160=220, h=160
+    X: py(0.18)=380-144=236, h=144
+
+  Group 3 — Rear Wing:  Z=0.32, X=0.15
+    Z: py(0.32)=380-256=124, h=256
+    X: py(0.15)=380-120=260, h=120
+
+  Group 4 — Diffuser:  Z=0.12, X=0.08
+    Z: py(0.12)=380-96=284, h=96
+    X: py(0.08)=380-64=316, h=64
+
+  Group 5 — Body/Induced:  Z=0.22, X=0.18
+    Z: py(0.22)=380-176=204, h=176
+    X: py(0.18)=380-144=236, h=144
+-->
+
+<!-- Group 1 — Front Wing -->
+<rect x="566" y="268" width="22" height="112" fill="#111" stroke="#111" stroke-width="0.8"/>
+<rect x="593" y="332" width="22" height="48" fill="#fff" stroke="#111" stroke-width="1.4"/>
+<text x="577" y="262" text-anchor="middle" font-size="8" font-weight="600" fill="#111">0.14</text>
+<text x="604" y="326" text-anchor="middle" font-size="8" font-weight="600" fill="#555">0.06</text>
+
+<!-- Group 2 — Floor -->
+<rect x="626" y="220" width="22" height="160" fill="#111" stroke="#111" stroke-width="0.8"/>
+<rect x="653" y="236" width="22" height="144" fill="#fff" stroke="#111" stroke-width="1.4"/>
+<text x="637" y="214" text-anchor="middle" font-size="8" font-weight="600" fill="#111">0.20</text>
+<text x="664" y="230" text-anchor="middle" font-size="8" font-weight="600" fill="#555">0.18</text>
+
+<!-- Group 3 — Rear Wing -->
+<rect x="686" y="124" width="22" height="256" fill="#111" stroke="#111" stroke-width="0.8"/>
+<rect x="713" y="260" width="22" height="120" fill="#fff" stroke="#111" stroke-width="1.4"/>
+<line x1="717" y1="264" x2="731" y2="376" stroke="#111" stroke-width="0.8" stroke-dasharray="3,2"/>
+<line x1="717" y1="300" x2="731" y2="340" stroke="#111" stroke-width="0.8" stroke-dasharray="3,2"/>
+<text x="697" y="118" text-anchor="middle" font-size="8" font-weight="600" fill="#111">0.32</text>
+<text x="724" y="254" text-anchor="middle" font-size="8" font-weight="600" fill="#555">0.15</text>
+
+<!-- Group 4 — Diffuser -->
+<rect x="746" y="284" width="22" height="96" fill="#111" stroke="#111" stroke-width="0.8"/>
+<rect x="773" y="316" width="22" height="64" fill="#fff" stroke="#111" stroke-width="1.4"/>
+<text x="757" y="278" text-anchor="middle" font-size="8" font-weight="600" fill="#111">0.12</text>
+<text x="784" y="310" text-anchor="middle" font-size="8" font-weight="600" fill="#555">0.08</text>
+
+<!-- Group 5 — Body / Induced -->
+<rect x="806" y="204" width="22" height="176" fill="#111" stroke="#111" stroke-width="0.8"/>
+<rect x="833" y="236" width="22" height="144" fill="#fff" stroke="#111" stroke-width="1.4"/>
+<text x="817" y="198" text-anchor="middle" font-size="8" font-weight="600" fill="#111">0.22</text>
+<text x="844" y="230" text-anchor="middle" font-size="8" font-weight="600" fill="#555">0.18</text>
+
+<!-- X axis component labels (C_D) -->
+<text x="586" y="396" text-anchor="middle" font-size="8.5" fill="#333">Front</text>
+<text x="586" y="406" text-anchor="middle" font-size="8.5" fill="#333">Wing</text>
+<text x="644" y="396" text-anchor="middle" font-size="8.5" fill="#333">Floor</text>
+<text x="644" y="406" text-anchor="middle" font-size="8.5" fill="#333">&amp; Tunnels</text>
+<text x="704" y="396" text-anchor="middle" font-size="8.5" fill="#333">Rear</text>
+<text x="704" y="406" text-anchor="middle" font-size="8.5" fill="#333">Wing</text>
+<text x="764" y="396" text-anchor="middle" font-size="8.5" fill="#333">Diffuser</text>
+<text x="834" y="396" text-anchor="middle" font-size="8.5" fill="#333">Body /</text>
+<text x="834" y="406" text-anchor="middle" font-size="8.5" fill="#333">Induced</text>
+
+<!-- Rear wing drag dominance annotation -->
+<rect x="670" y="80" width="78" height="32" fill="#fff" stroke="#ccc" stroke-width="0.8" rx="1"/>
+<text x="709" y="92" text-anchor="middle" font-size="7.5" font-weight="600" fill="#111">LARGEST ΔC<tspan baseline-shift="sub" font-size="6">D</tspan></text>
+<text x="709" y="103" text-anchor="middle" font-size="7" fill="#555">−53% in X-mode</text>
+<line x1="709" y1="112" x2="709" y2="121" stroke="#aaa" stroke-width="0.8"/>
+
+<!-- Totals annotation (C_D) -->
+<rect x="550" y="423" width="200" height="36" fill="#fff" stroke="#ccc" stroke-width="0.8" rx="1"/>
+<text x="560" y="437" font-size="8" font-weight="600" fill="#111">Total Z-mode:</text>
+<text x="640" y="437" font-size="8.5" font-weight="600" fill="#111">C<tspan baseline-shift="sub" font-size="6.5">D</tspan> = 1.00</text>
+<text x="560" y="450" font-size="8" font-weight="600" fill="#555">Total X-mode:</text>
+<text x="640" y="450" font-size="8.5" font-weight="600" fill="#555">C<tspan baseline-shift="sub" font-size="6.5">D</tspan> = 0.65  (−35.0%)</text>
+
+<!-- ═══════════════════════════════════════════
+     LEGEND (bottom center)
+═══════════════════════════════════════════ -->
+<rect x="250" y="466" width="420" height="46" fill="#fff" stroke="#ccc" stroke-width="0.8" rx="1"/>
+
+<!-- Z-mode legend -->
+<rect x="325" y="476" width="22" height="12" fill="#111" stroke="#111" stroke-width="0.8"/>
+<text x="355" y="486" font-size="9.5" font-weight="600" fill="#111">Z-mode</text>
+<text x="355" y="498" font-size="8" fill="#555">High-downforce (cornering)</text>
+
+<!-- X-mode legend -->
+<rect x="490" y="476" width="22" height="12" fill="#fff" stroke="#111" stroke-width="1.4"/>
+<line x1="494" y1="480" x2="508" y2="484" stroke="#111" stroke-width="0.8" stroke-dasharray="3,2"/>
+<text x="520" y="486" font-size="9.5" font-weight="600" fill="#555">X-mode</text>
+<text x="520" y="498" font-size="8" fill="#777">Ultra-low-drag (straight-line)</text>
+
+<!-- ═══════════════════════════════════════════
+     EFFICIENCY RATIOS SUMMARY STRIP
+═══════════════════════════════════════════ -->
+<rect x="80" y="520" width="760" height="28" fill="#fafafa" stroke="#ccc" stroke-width="0.8" rx="1"/>
+<text x="125" y="538" text-anchor="middle" font-size="8.5" font-weight="600" fill="#111">Z-MODE</text>
+<text x="230" y="538" text-anchor="middle" font-size="8.5" fill="#444">C<tspan baseline-shift="sub" font-size="6.5">L</tspan>/C<tspan baseline-shift="sub" font-size="6.5">D</tspan> = 3.20</text>
+<line x1="310" y1="525" x2="310" y2="543" stroke="#ccc" stroke-width="0.8"/>
+<text x="390" y="538" text-anchor="middle" font-size="8.5" fill="#444">DF Split: 35% F / 65% R</text>
+<line x1="480" y1="525" x2="480" y2="543" stroke="#ccc" stroke-width="0.8"/>
+<text x="545" y="538" text-anchor="middle" font-size="8.5" font-weight="600" fill="#555">X-MODE</text>
+<text x="650" y="538" text-anchor="middle" font-size="8.5" fill="#444">C<tspan baseline-shift="sub" font-size="6.5">L</tspan>/C<tspan baseline-shift="sub" font-size="6.5">D</tspan> = 4.31</text>
+<line x1="728" y1="525" x2="728" y2="543" stroke="#ccc" stroke-width="0.8"/>
+<text x="795" y="538" text-anchor="middle" font-size="8.5" fill="#444">Drag Δ = −35%</text>
+
+<!-- OUTER BOX -->
+<rect x="4" y="4" width="912" height="552" fill="none" stroke="#ccc" stroke-width="0.8"/>
+
+</svg>
+
+<div class="footnote">
+  Component-level aerodynamic coefficients derived from Reynolds-Averaged Navier–Stokes (RANS) CFD simulations
+  (ANSYS Fluent / OpenFOAM). Frontal reference area A = 1.5 m². Z-mode denotes the FIA-mandated
+  high-downforce cornering configuration with closed wing elements; X-mode denotes the ultra-low-drag
+  straight-line configuration with actuated (flattened) front and rear wing profiles.<br>
+  Floor and venturi tunnels constitute the dominant downforce source (≈55% of total C<sub>L</sub> in Z-mode),
+  consistent with 2026 ground-effect design philosophy. Active aero achieves 35% total drag reduction
+  (C<sub>D</sub>: 1.00 → 0.65), primarily through rear wing flattening (−53%) and front wing adaptation (−57%).
+  Diffuser contribution increases in X-mode due to reduced rear wing downwash interference, enhancing
+  underbody flow expansion. Floor contribution remains invariant across modes — it is not subject to active
+  actuation — validating the ground-effect-dominant design philosophy.
+</div>
+
+</body>
+</html>

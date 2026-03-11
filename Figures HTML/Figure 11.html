@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Figure 11 — Monocoque Cross-Section</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Source+Code+Pro:wght@400;600&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#fff; font-family:'EB Garamond',Georgia,serif; color:#111; padding:40px 48px; }
+  .fig-label   { font-family:'Source Code Pro',monospace; font-size:12px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:4px; }
+  .fig-caption { font-size:13.5px; font-style:italic; color:#333; margin-bottom:24px; line-height:1.6; max-width:920px; }
+  .footnote    { margin-top:16px; font-size:11.5px; font-style:italic; color:#555; line-height:1.7; max-width:920px; }
+</style>
+</head>
+<body>
+
+<div class="fig-label">Figure 11</div>
+<div class="fig-caption">
+  Monocoque Cross-Section — CFRP Ply Orientation Zones, Battery Tub Integration,
+  648 V HV Cable Routing Limits, and Ti-6Al-4V Halo Attachment Points.
+  Section cut at Station 2 (mid-cockpit). Dimensions indicative; not to scale.
+</div>
+
+<!--
+  CANVAS: 920 × 560
+
+  GEOMETRY (all px):
+  Centre-line: x=460
+  Cross-section outer shell: trapezoidal with rounded corners
+    Bottom: y=390, x=170..750  (580 wide)
+    Top:    y=110, x=295..625  (330 wide)
+  Shell thickness: ~18px (drawn as two concentric shapes)
+
+  Zones:
+    Zone A — Outer skin (0°/90° biaxial):     outer 6px of shell
+    Zone B — Structural core (±45°):           middle of shell
+    Zone C — Inner skin (0° unidirectional):   inner 6px of shell
+    Battery tub: rect(195,316,530,74)
+    Driver cell: ellipse rx=160 ry=80 centred at (460,230)
+    HV routes: dashed red lines, bottom corners
+    Halo mounts: Ti-6Al-4V, top sides
+-->
+
+<svg width="920" height="560" viewBox="0 0 920 560"
+     xmlns="http://www.w3.org/2000/svg"
+     style="display:block; font-family:'Source Code Pro',monospace;">
+
+<defs>
+  <!-- Hatch pattern for CFRP zones -->
+  <pattern id="hatch45" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+    <line x1="0" y1="0" x2="0" y2="8" stroke="#bbb" stroke-width="1"/>
+  </pattern>
+  <pattern id="hatch0" width="8" height="8" patternUnits="userSpaceOnUse">
+    <line x1="0" y1="0" x2="8" y2="0" stroke="#999" stroke-width="1"/>
+    <line x1="0" y1="4" x2="8" y2="4" stroke="#999" stroke-width="0.5"/>
+  </pattern>
+  <pattern id="hatchcross" width="8" height="8" patternUnits="userSpaceOnUse">
+    <line x1="0" y1="0" x2="8" y2="8" stroke="#aaa" stroke-width="0.8"/>
+    <line x1="8" y1="0" x2="0" y2="8" stroke="#aaa" stroke-width="0.8"/>
+  </pattern>
+  <pattern id="hatchbatt" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(30)">
+    <line x1="0" y1="0" x2="0" y2="6" stroke="#c0b080" stroke-width="1.2"/>
+  </pattern>
+
+  <marker id="dim" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
+    <line x1="0" y1="0" x2="6" y2="6" stroke="#555" stroke-width="1"/>
+  </marker>
+  <marker id="endarr" markerWidth="7" markerHeight="6" refX="0" refY="3" orient="auto">
+    <polygon points="7 0,0 3,7 6" fill="#555"/>
+  </marker>
+  <marker id="startarr" markerWidth="7" markerHeight="6" refX="7" refY="3" orient="auto">
+    <polygon points="0 0,7 3,0 6" fill="#555"/>
+  </marker>
+  <marker id="hvend" markerWidth="7" markerHeight="6" refX="7" refY="3" orient="auto">
+    <polygon points="0 0,7 3,0 6" fill="#8b0000"/>
+  </marker>
+  <marker id="hvstart" markerWidth="7" markerHeight="6" refX="0" refY="3" orient="auto">
+    <polygon points="7 0,0 3,7 6" fill="#8b0000"/>
+  </marker>
+</defs>
+
+<!-- ═════════════════════════════════════
+     OUTER MONOCOQUE SHELL — ZONE A
+     Biaxial 0°/90° outer skin
+     Trapezoidal with soft corners
+     Outer path, then inner path
+═════════════════════════════════════ -->
+
+<!-- ZONE A: outer CFRP biaxial skin (light grey fill + hatch) -->
+<path d="M 200,390
+         L 720,390
+         Q 750,390 750,360
+         L 640,112
+         Q 635,100 620,100
+         L 300,100
+         Q 285,100 280,112
+         L 170,360
+         Q 170,390 200,390 Z"
+      fill="url(#hatch0)" stroke="#111" stroke-width="2.5"/>
+
+<!-- ZONE B: structural ±45° core — slightly inset -->
+<path d="M 215,383
+         L 712,383
+         Q 736,383 736,358
+         L 631,116
+         Q 627,108 615,108
+         L 305,108
+         Q 293,108 289,116
+         L 184,358
+         Q 184,383 215,383 Z"
+      fill="url(#hatchcross)" stroke="none"/>
+
+<!-- ZONE C: inner skin 0° UD — further inset -->
+<path d="M 232,374
+         L 702,374
+         Q 720,374 720,354
+         L 622,124
+         Q 618,116 608,116
+         L 312,116
+         Q 302,116 298,124
+         L 200,354
+         Q 200,374 232,374 Z"
+      fill="#f5f5f5" stroke="#999" stroke-width="1"/>
+
+<!-- ═════════════════════════════════════
+     DRIVER CELL (open ellipse)
+     centre (460, 226)  rx=162 ry=84
+═════════════════════════════════════ -->
+<ellipse cx="460" cy="226" rx="162" ry="88"
+         fill="#ffffff" stroke="#111" stroke-width="2"/>
+<!-- Cockpit opening label -->
+<text x="460" y="222" text-anchor="middle" font-size="9.5" font-weight="600" fill="#555">DRIVER CELL</text>
+<text x="460" y="236" text-anchor="middle" font-size="8.5" fill="#777">Open cockpit section</text>
+
+<!-- ═════════════════════════════════════
+     BATTERY TUB
+     rect inset at bottom of monocoque
+     x=215, y=310  w=490, h=64
+═════════════════════════════════════ -->
+<rect x="220" y="310" width="480" height="64"
+      fill="url(#hatchbatt)" stroke="#b8860b" stroke-width="1.8" stroke-dasharray="6,3" rx="2"/>
+<text x="460" y="334" text-anchor="middle" font-size="10" font-weight="600" fill="#7a5800">BATTERY TUB</text>
+<text x="460" y="349" text-anchor="middle" font-size="8.5" fill="#7a5800">180S2P · 360 NMC cells · 4 MJ · 648 V</text>
+<text x="460" y="362" text-anchor="middle" font-size="8"   fill="#9a7020">Integrated CFRP tub · liquid cold-plate floor</text>
+
+<!-- ═════════════════════════════════════
+     FLOOR / UNDERTRAY indication
+═════════════════════════════════════ -->
+<rect x="170" y="390" width="580" height="10" fill="#ddd" stroke="#999" stroke-width="1"/>
+<text x="460" y="400" text-anchor="middle" font-size="7.5" fill="#888">FLOOR / REFERENCE PLANE</text>
+
+<!-- ═════════════════════════════════════
+     HALO ATTACHMENT POINTS
+     Two top-side attach flanges (Ti-6Al-4V)
+     Plus top-centre virtual apex point
+═════════════════════════════════════ -->
+<!-- Left halo attach  ~(320, 112) -->
+<rect x="300" y="98" width="44" height="26" fill="#e8e8e8" stroke="#111" stroke-width="2" rx="2"/>
+<text x="322" y="108" text-anchor="middle" font-size="7.5" font-weight="600" fill="#111">Ti-6Al-4V</text>
+<text x="322" y="119" text-anchor="middle" font-size="7"   fill="#555">HALO L</text>
+<!-- Bolt circles -->
+<circle cx="307" cy="111" r="3" fill="none" stroke="#111" stroke-width="1"/>
+<circle cx="335" cy="111" r="3" fill="none" stroke="#111" stroke-width="1"/>
+
+<!-- Right halo attach ~(598, 112) -->
+<rect x="576" y="98" width="44" height="26" fill="#e8e8e8" stroke="#111" stroke-width="2" rx="2"/>
+<text x="598" y="108" text-anchor="middle" font-size="7.5" font-weight="600" fill="#111">Ti-6Al-4V</text>
+<text x="598" y="119" text-anchor="middle" font-size="7"   fill="#555">HALO R</text>
+<circle cx="585" cy="111" r="3" fill="none" stroke="#111" stroke-width="1"/>
+<circle cx="613" cy="111" r="3" fill="none" stroke="#111" stroke-width="1"/>
+
+<!-- Top keel attachment (halo apex, virtual) at (460,100) -->
+<polygon points="460,88 454,100 466,100" fill="#111"/>
+<text x="460" y="84" text-anchor="middle" font-size="8" font-weight="600" fill="#111">HALO APEX</text>
+
+<!-- ═════════════════════════════════════
+     HV CABLE ROUTING (648V)
+     Runs along inner bottom corners
+     Left channel: x~235, y 316→374
+     Right channel: x~685, y 316→374
+═════════════════════════════════════ -->
+<!-- Left HV channel -->
+<line x1="245" y1="310" x2="245" y2="374" stroke="#8b0000" stroke-width="2.5" stroke-dasharray="6,3" marker-end="url(#hvend)" marker-start="url(#hvstart)"/>
+<rect x="230" y="295" width="62" height="16" fill="#fff" stroke="#8b0000" stroke-width="0.8" rx="1"/>
+<text x="261" y="306" text-anchor="middle" font-size="7.5" font-weight="600" fill="#8b0000">648 V HV</text>
+
+<!-- Right HV channel -->
+<line x1="675" y1="310" x2="675" y2="374" stroke="#8b0000" stroke-width="2.5" stroke-dasharray="6,3" marker-end="url(#hvend)" marker-start="url(#hvstart)"/>
+<rect x="628" y="295" width="62" height="16" fill="#fff" stroke="#8b0000" stroke-width="0.8" rx="1"/>
+<text x="659" y="306" text-anchor="middle" font-size="7.5" font-weight="600" fill="#8b0000">648 V HV</text>
+
+<!-- HV separation note (horizontal arrow between channels) -->
+<line x1="256" y1="345" x2="664" y2="345" stroke="#8b0000" stroke-width="0.8" stroke-dasharray="3,3" marker-end="url(#hvend)" marker-start="url(#hvstart)"/>
+<rect x="372" y="336" width="176" height="14" fill="#fff"/>
+<text x="460" y="346" text-anchor="middle" font-size="7.5" fill="#8b0000">min. separation: 200 mm (FIA §8.14)</text>
+
+<!-- ═════════════════════════════════════
+     PLY ZONE CALLOUT LINES
+     Each zone annotated with leader lines
+     to margins
+═════════════════════════════════════ -->
+
+<!-- ZONE A callout — left outer skin, pointing right -->
+<line x1="220" y1="216" x2="68" y2="238" stroke="#111" stroke-width="1" marker-end="url(#hvend)" marker-start="none"/>
+<circle cx="220" cy="216" r="2.5" fill="#111"/>
+<rect x="10" y="216" width="60" height="44" fill="#fff" stroke="#111" stroke-width="1" rx="1"/>
+<text x="40" y="231" text-anchor="middle" font-size="8"   font-weight="600" fill="#111">ZONE A</text>
+<text x="40" y="243" text-anchor="middle" font-size="7.5" fill="#333">Outer skin</text>
+<text x="40" y="254" text-anchor="middle" font-size="7.5" fill="#555">0° / 90°</text>
+
+<!-- ZONE B callout — left mid shell -->
+<line x1="230" y1="260" x2="68" y2="290" stroke="#111" stroke-width="1" marker-end="url(#hvend)" marker-start="none"/>
+<circle cx="230" cy="260" r="2.5" fill="#111"/>
+<rect x="10" y="276" width="60" height="44" fill="#fff" stroke="#111" stroke-width="1" rx="1"/>
+<text x="40" y="291" text-anchor="middle" font-size="8"   font-weight="600" fill="#111">ZONE B</text>
+<text x="40" y="303" text-anchor="middle" font-size="7.5" fill="#333">Structural</text>
+<text x="40" y="314" text-anchor="middle" font-size="7.5" fill="#555">±45°</text>
+
+<!-- ZONE C callout — inner skin -->
+<line x1="242" y1="300" x2="68" y2="347" stroke="#111" stroke-width="1" marker-end="url(#hvend)" marker-start="none"/>
+<circle cx="242" cy="300" r="2.5" fill="#111"/>
+<rect x="10" y="336" width="60" height="44" fill="#fff" stroke="#111" stroke-width="1" rx="1"/>
+<text x="40" y="351" text-anchor="middle" font-size="8"   font-weight="600" fill="#111">ZONE C</text>
+<text x="40" y="363" text-anchor="middle" font-size="7.5" fill="#333">Inner skin</text>
+<text x="40" y="374" text-anchor="middle" font-size="7.5" fill="#555">0° UD</text>
+
+<!-- Right side annotations: structural details -->
+<!-- Wall thickness callout -->
+<line x1="740" y1="250" x2="820" y2="240" stroke="#555" stroke-width="1"/>
+<text x="824" y="237" font-size="8" fill="#333">Wall t = 18 mm</text>
+<text x="824" y="249" font-size="8" fill="#555">6 mm A + 6 mm B + 6 mm C</text>
+
+<!-- Crash structure callout -->
+<line x1="740" y1="355" x2="820" y2="355" stroke="#555" stroke-width="1"/>
+<text x="824" y="352" font-size="8" fill="#333">Side impact</text>
+<text x="824" y="364" font-size="8" fill="#555">CFRP crush zone</text>
+
+<!-- Battery isolation callout -->
+<line x1="700" y1="342" x2="820" y2="310" stroke="#b8860b" stroke-width="0.8"/>
+<text x="824" y="307" font-size="8" fill="#7a5800">2 mm CFRP isolation</text>
+<text x="824" y="319" font-size="8" fill="#7a5800">floor (dielectric)</text>
+
+<!-- Halo left callout -->
+<line x1="322" y1="98" x2="322" y2="68" stroke="#555" stroke-width="0.8"/>
+<text x="322" y="62" text-anchor="middle" font-size="7.5" fill="#333">4× M8 Ti bolt</text>
+
+<!-- Halo right callout -->
+<line x1="598" y1="98" x2="598" y2="68" stroke="#555" stroke-width="0.8"/>
+<text x="598" y="62" text-anchor="middle" font-size="7.5" fill="#333">4× M8 Ti bolt</text>
+
+<!-- ═════════════════════════════════════
+     CENTRELINE
+═════════════════════════════════════ -->
+<line x1="460" y1="50" x2="460" y2="415" stroke="#111" stroke-width="0.8" stroke-dasharray="8,4"/>
+<text x="462" y="46" font-size="8" fill="#555">C/L</text>
+
+<!-- ═════════════════════════════════════
+     WIDTH DIMENSION
+═════════════════════════════════════ -->
+<line x1="170" y1="418" x2="750" y2="418" stroke="#555" stroke-width="0.8"/>
+<line x1="170" y1="412" x2="170" y2="424" stroke="#555" stroke-width="0.8"/>
+<line x1="750" y1="412" x2="750" y2="424" stroke="#555" stroke-width="0.8"/>
+<text x="460" y="430" text-anchor="middle" font-size="8.5" fill="#333">580 mm (max. outer width at floor)</text>
+
+<!-- Height dimension -->
+<line x1="156" y1="100" x2="156" y2="390" stroke="#555" stroke-width="0.8"/>
+<line x1="150" y1="100" x2="162" y2="100" stroke="#555" stroke-width="0.8"/>
+<line x1="150" y1="390" x2="162" y2="390" stroke="#555" stroke-width="0.8"/>
+<text x="148" y="248" text-anchor="middle" font-size="8.5" fill="#333" transform="rotate(-90,148,248)">290 mm height</text>
+
+<!-- ═════════════════════════════════════
+     LEGEND
+═════════════════════════════════════ -->
+<rect x="20" y="462" width="880" height="80" fill="#fafafa" stroke="#ccc" stroke-width="0.8" rx="2"/>
+<text x="460" y="478" text-anchor="middle" font-size="9" font-weight="600" fill="#555" letter-spacing="0.5">MATERIAL AND FEATURE KEY</text>
+
+<!-- Row 1 -->
+<!-- Zone A swatch -->
+<rect x="40"  y="488" width="20" height="13" fill="url(#hatch0)"    stroke="#111" stroke-width="1"/>
+<text x="70"  y="498" font-size="8.5" fill="#333">Zone A — CFRP 0°/90° biaxial (outer skin, t=6mm)</text>
+<!-- Battery swatch -->
+<rect x="460" y="488" width="20" height="13" fill="url(#hatchbatt)"  stroke="#b8860b" stroke-width="1" stroke-dasharray="4,2"/>
+<text x="490" y="498" font-size="8.5" fill="#7a5800">Battery tub — integrated CFRP / cold-plate assembly</text>
+
+<!-- Row 2 -->
+<!-- Zone B swatch -->
+<rect x="40"  y="508" width="20" height="13" fill="url(#hatchcross)" stroke="#999" stroke-width="1"/>
+<text x="70"  y="518" font-size="8.5" fill="#333">Zone B — CFRP ±45° woven (structural core, t=6mm)</text>
+<!-- HV line -->
+<line x1="460" y1="514" x2="480" y2="514" stroke="#8b0000" stroke-width="2.5" stroke-dasharray="5,3"/>
+<text x="490" y="518" font-size="8.5" fill="#8b0000">648 V HV cable route (min. 200 mm separation)</text>
+
+<!-- Row 3 -->
+<!-- Zone C swatch -->
+<rect x="40"  y="528" width="20" height="13" fill="#f5f5f5"          stroke="#999" stroke-width="1"/>
+<text x="70"  y="538" font-size="8.5" fill="#333">Zone C — CFRP 0° UD (inner skin, t=6mm)</text>
+<!-- Halo swatch -->
+<rect x="460" y="528" width="20" height="13" fill="#e8e8e8" stroke="#111" stroke-width="1.5"/>
+<text x="490" y="538" font-size="8.5" fill="#333">Ti-6Al-4V halo attachment flange (4× M8 bolts)</text>
+
+<!-- OUTER BOX -->
+<rect x="4" y="4" width="912" height="540" fill="none" stroke="#ccc" stroke-width="0.8"/>
+
+</svg>
+
+<div class="footnote">
+  Section cut at Station 2 (mid-cockpit). CFRP layup: T700S/M21 prepreg, autoclave-cured at 180°C.
+  Zone A (outer): [0/90]₄ biaxial, t = 6 mm. Zone B (core): [±45]₆ woven, t = 6 mm. Zone C (inner): [0]₈ unidirectional, t = 6 mm. Total wall t = 18 mm.
+  Battery tub isolated by 2 mm CFRP dielectric floor panel. HV cables routed in opposite corners; FIA §8.14 mandates ≥ 200 mm separation between HV+ and HV− conductors.
+  Halo mounts machined from Ti-6Al-4V billet; 4× M8 Grade-12.9 titanium bolts per side, preloaded to 85 Nm.
+</div>
+
+</body>
+</html>

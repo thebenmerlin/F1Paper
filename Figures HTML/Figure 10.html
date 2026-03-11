@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Figure 10 — Electronics Architecture Block Diagram</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Source+Code+Pro:wght@400;600&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#fff; font-family:'EB Garamond',Georgia,serif; color:#111; padding:40px 48px; }
+  .fig-label   { font-family:'Source Code Pro',monospace; font-size:12px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:4px; }
+  .fig-caption { font-size:13.5px; font-style:italic; color:#333; margin-bottom:24px; line-height:1.6; max-width:940px; }
+  .footnote    { margin-top:16px; font-size:11.5px; font-style:italic; color:#555; line-height:1.7; max-width:940px; }
+</style>
+</head>
+<body>
+
+<div class="fig-label">Figure 10</div>
+<div class="fig-caption">
+  Electronics Architecture Block Diagram — Network Domains, ECU, BMS, SiC Inverter,
+  Sensors, Telemetry, and Power Distribution Paths. CAN FD backbone at 5 Mbit/s.
+  HV bus: 648 V / 540 A. LV bus: 12 V auxiliary.
+</div>
+
+<svg width="940" height="620" viewBox="0 0 940 620"
+     xmlns="http://www.w3.org/2000/svg"
+     style="display:block; font-family:'Source Code Pro',monospace;">
+<defs>
+  <marker id="a"  markerWidth="7" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0,7 3,0 6" fill="#111"/></marker>
+  <marker id="ahv" markerWidth="7" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0,7 3,0 6" fill="#8b0000"/></marker>
+  <marker id="alv" markerWidth="7" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0,7 3,0 6" fill="#555"/></marker>
+  <marker id="acan" markerWidth="7" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0,7 3,0 6" fill="#1a4fa3"/></marker>
+  <marker id="ag" markerWidth="7" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0,7 3,0 6" fill="#888"/></marker>
+</defs>
+
+<!-- OUTER BOX -->
+<rect x="4" y="4" width="932" height="586" fill="none" stroke="#ccc" stroke-width="0.8"/>
+
+<!-- ══════════════════════════════════════
+     DOMAIN BACKGROUND BANDS
+══════════════════════════════════════ -->
+<rect x="36" y="24"  width="884" height="150" fill="#f7f7f7" stroke="#ddd" stroke-width="0.8" rx="2"/>
+<rect x="36" y="200" width="884" height="160" fill="#ffffff" stroke="#ddd" stroke-width="0.8" rx="2"/>
+<rect x="36" y="386" width="884" height="136" fill="#f7f7f7" stroke="#ddd" stroke-width="0.8" rx="2"/>
+
+<!-- Domain labels (left margin) -->
+<text x="24" y="99" text-anchor="middle" font-size="8.5" font-weight="600" fill="#999" letter-spacing="0.5"
+      transform="rotate(-90,24,99)">POWER DOMAIN</text>
+<text x="24" y="280" text-anchor="middle" font-size="8.5" font-weight="600" fill="#999" letter-spacing="0.5"
+      transform="rotate(-90,24,280)">CONTROL DOMAIN</text>
+<text x="24" y="454" text-anchor="middle" font-size="8.5" font-weight="600" fill="#999" letter-spacing="0.5"
+      transform="rotate(-90,24,454)">DATA / TELEMETRY</text>
+
+<!-- ══════════════════════════════════════
+     POWER DOMAIN (row cy=112)
+══════════════════════════════════════ -->
+
+<!-- HV BUS RAIL -->
+<line x1="60" y1="64" x2="890" y2="64" stroke="#8b0000" stroke-width="3"/>
+<text x="74" y="56" font-size="9" font-weight="600" fill="#8b0000">HV BUS  648 V / 540 A</text>
+
+<!-- BATTERY PACK  cx=140 -->
+<rect x="62" y="86" width="156" height="54" fill="#fff" stroke="#111" stroke-width="1.6" rx="2"/>
+<text x="140" y="107" text-anchor="middle" font-size="9.5" font-weight="600" fill="#111">BATTERY PACK</text>
+<text x="140" y="122" text-anchor="middle" font-size="8.5" fill="#444">180S2P · 648 V · 4 MJ</text>
+<text x="140" y="134" text-anchor="middle" font-size="8"   fill="#777">NMC · 360 cells</text>
+<line x1="140" y1="86" x2="140" y2="64" stroke="#8b0000" stroke-width="2"/>
+<circle cx="140" cy="64" r="3.5" fill="#8b0000"/>
+
+<!-- PDU  cx=360 -->
+<rect x="282" y="86" width="156" height="54" fill="#ececec" stroke="#111" stroke-width="1.6" rx="2"/>
+<text x="360" y="107" text-anchor="middle" font-size="9.5" font-weight="600" fill="#111">PDU / FUSE BOX</text>
+<text x="360" y="122" text-anchor="middle" font-size="8.5" fill="#444">Power Distribution Unit</text>
+<text x="360" y="134" text-anchor="middle" font-size="8"   fill="#777">HV fusing · LV regulation</text>
+<line x1="360" y1="86" x2="360" y2="64" stroke="#8b0000" stroke-width="2"/>
+<circle cx="360" cy="64" r="3.5" fill="#8b0000"/>
+
+<!-- SiC INVERTER  cx=580 -->
+<rect x="502" y="86" width="156" height="54" fill="#111" stroke="#111" stroke-width="1.6" rx="2"/>
+<text x="580" y="107" text-anchor="middle" font-size="9.5" font-weight="600" fill="#fff">SiC INVERTER</text>
+<text x="580" y="122" text-anchor="middle" font-size="8.5" fill="#bbb">3-Ph Full Bridge</text>
+<text x="580" y="134" text-anchor="middle" font-size="8"   fill="#999">20 kHz · 312 A RMS</text>
+<line x1="580" y1="86" x2="580" y2="64" stroke="#8b0000" stroke-width="2"/>
+<circle cx="580" cy="64" r="3.5" fill="#8b0000"/>
+
+<!-- MGU-K  cx=800 -->
+<rect x="722" y="86" width="156" height="54" fill="#fff" stroke="#111" stroke-width="1.6" rx="2"/>
+<text x="800" y="107" text-anchor="middle" font-size="9.5" font-weight="600" fill="#111">MGU-K MOTOR</text>
+<text x="800" y="122" text-anchor="middle" font-size="8.5" fill="#444">PMSM · 350 kW peak</text>
+<text x="800" y="134" text-anchor="middle" font-size="8"   fill="#777">~15 000 RPM</text>
+
+<!-- Inverter → MGU-K -->
+<line x1="658" y1="113" x2="722" y2="113" stroke="#8b0000" stroke-width="1.8" marker-end="url(#ahv)"/>
+<text x="690" y="106" text-anchor="middle" font-size="8.5" font-weight="600" fill="#8b0000">V<tspan dy="2" font-size="6">abc</tspan></text>
+
+<!-- LV BUS (Well spaced between domains) -->
+<line x1="360" y1="140" x2="360" y2="186" stroke="#555" stroke-width="1.6"/>
+<line x1="360" y1="186" x2="890" y2="186" stroke="#555" stroke-width="1.4" stroke-dasharray="6,4"/>
+<text x="375" y="181" text-anchor="start" font-size="8.5" font-weight="600" fill="#555">12 V LV auxiliary bus</text>
+
+<!-- ══════════════════════════════════════
+     CONTROL DOMAIN (row cy=260)
+══════════════════════════════════════ -->
+
+<!-- BMS  cx=140 -->
+<rect x="62" y="240" width="156" height="74" fill="#fff" stroke="#111" stroke-width="1.6" rx="2"/>
+<text x="140" y="264" text-anchor="middle" font-size="10.5" font-weight="600" fill="#111">BMS</text>
+<text x="140" y="279" text-anchor="middle" font-size="8.5" fill="#444">Battery Mgmt. System</text>
+<text x="140" y="293" text-anchor="middle" font-size="8"   fill="#555">SOC · SOH · SOP</text>
+<text x="140" y="306" text-anchor="middle" font-size="8"   fill="#777">Coulomb + Kalman</text>
+
+<!-- MAIN ECU  cx=360 -->
+<rect x="270" y="234" width="180" height="86" fill="#111" stroke="#111" stroke-width="2" rx="2"/>
+<text x="360" y="258" text-anchor="middle" font-size="11.5" font-weight="600" fill="#fff">MAIN ECU</text>
+<text x="360" y="274" text-anchor="middle" font-size="8.5" fill="#ccc">Central Control Unit</text>
+<text x="360" y="287" text-anchor="middle" font-size="8"   fill="#aaa">FOC · Energy mgmt.</text>
+<text x="360" y="300" text-anchor="middle" font-size="8"   fill="#aaa">State machine</text>
+<text x="360" y="312" text-anchor="middle" font-size="7.5" fill="#888">FPGA + ARM Cortex</text>
+
+<!-- ICE ECU  cx=580 -->
+<rect x="502" y="240" width="156" height="74" fill="#ececec" stroke="#111" stroke-width="1.6" rx="2"/>
+<text x="580" y="264" text-anchor="middle" font-size="10.5" font-weight="600" fill="#111">ICE ECU</text>
+<text x="580" y="279" text-anchor="middle" font-size="8.5" fill="#444">Engine Control Unit</text>
+<text x="580" y="293" text-anchor="middle" font-size="8"   fill="#555">Fuel · Spark · Boost</text>
+<text x="580" y="306" text-anchor="middle" font-size="8"   fill="#777">CAN FD node</text>
+
+<!-- GEARBOX ECU  cx=800 -->
+<rect x="722" y="240" width="156" height="74" fill="#ececec" stroke="#111" stroke-width="1.6" rx="2"/>
+<text x="800" y="264" text-anchor="middle" font-size="10.5" font-weight="600" fill="#111">GEARBOX ECU</text>
+<text x="800" y="279" text-anchor="middle" font-size="8.5" fill="#444">8-speed semi-auto</text>
+<text x="800" y="293" text-anchor="middle" font-size="8"   fill="#555">Shift control · DRS</text>
+<text x="800" y="306" text-anchor="middle" font-size="8"   fill="#777">CAN FD node</text>
+
+<!-- Vertical connections (Control to Power Domain) -->
+<!-- BMS to Battery -->
+<line x1="140" y1="240" x2="140" y2="140" stroke="#111" stroke-width="1.4" marker-end="url(#a)"/>
+<text x="128" y="200" text-anchor="end" font-size="8.5" fill="#444">cell data</text>
+
+<!-- ECU to Inverter (Gate signals) -->
+<line x1="360" y1="234" x2="360" y2="216" stroke="#111" stroke-width="1.6"/>
+<line x1="360" y1="216" x2="580" y2="216" stroke="#111" stroke-width="1.6"/>
+<line x1="580" y1="216" x2="580" y2="140" stroke="#111" stroke-width="1.6" marker-end="url(#a)"/>
+<text x="470" y="210" text-anchor="middle" font-size="8.5" fill="#111" font-weight="600">gate signals / FOC commands</text>
+<circle cx="360" cy="216" r="3.5" fill="#111"/>
+
+<!-- Main ECU tapping LV Bus -->
+<line x1="360" y1="186" x2="360" y2="234" stroke="#555" stroke-width="1.4" stroke-dasharray="5,3" marker-end="url(#alv)"/>
+<circle cx="360" cy="186" r="4" fill="#555"/>
+
+<!-- ══════════════════════════════════════
+     CAN FD BUS BACKBONE
+══════════════════════════════════════ -->
+<line x1="60" y1="368" x2="890" y2="368" stroke="#1a4fa3" stroke-width="2.5"/>
+<text x="850" y="360" text-anchor="middle" font-size="9" font-weight="600" fill="#1a4fa3">CAN FD  5 Mbit/s</text>
+
+<!-- Control Domain Drops to CAN Bus -->
+<line x1="140" y1="314" x2="140" y2="368" stroke="#1a4fa3" stroke-width="1.6" marker-end="url(#acan)"/>
+<circle cx="140" cy="368" r="4.5" fill="#1a4fa3"/>
+
+<line x1="360" y1="320" x2="360" y2="368" stroke="#1a4fa3" stroke-width="1.6" marker-end="url(#acan)"/>
+<circle cx="360" cy="368" r="4.5" fill="#1a4fa3"/>
+
+<line x1="580" y1="314" x2="580" y2="368" stroke="#1a4fa3" stroke-width="1.6" marker-end="url(#acan)"/>
+<circle cx="580" cy="368" r="4.5" fill="#1a4fa3"/>
+
+<line x1="800" y1="314" x2="800" y2="368" stroke="#1a4fa3" stroke-width="1.6" marker-end="url(#acan)"/>
+<circle cx="800" cy="368" r="4.5" fill="#1a4fa3"/>
+
+<!-- ══════════════════════════════════════
+     DATA / TELEMETRY DOMAIN (row cy=454)
+══════════════════════════════════════ -->
+
+<!-- IMU/GPS  cx=120 -->
+<rect x="56" y="416" width="128" height="58" fill="#fff" stroke="#111" stroke-width="1.4" rx="2"/>
+<text x="120" y="438" text-anchor="middle" font-size="10" font-weight="600" fill="#111">IMU / GPS</text>
+<text x="120" y="453" text-anchor="middle" font-size="8.5" fill="#444">6-DOF · 1 kHz</text>
+<text x="120" y="466" text-anchor="middle" font-size="8"   fill="#777">Accel · Gyro · Pos.</text>
+
+<!-- WHEEL SPEED  cx=290 -->
+<rect x="226" y="416" width="128" height="58" fill="#fff" stroke="#111" stroke-width="1.4" rx="2"/>
+<text x="290" y="438" text-anchor="middle" font-size="10" font-weight="600" fill="#111">WHEEL SPEED</text>
+<text x="290" y="453" text-anchor="middle" font-size="8.5" fill="#444">4× Hall effect</text>
+<text x="290" y="466" text-anchor="middle" font-size="8"   fill="#777">ABS / traction ref.</text>
+
+<!-- TEMP/PRESS  cx=460 -->
+<rect x="396" y="416" width="128" height="58" fill="#fff" stroke="#111" stroke-width="1.4" rx="2"/>
+<text x="460" y="438" text-anchor="middle" font-size="10" font-weight="600" fill="#111">TEMP / PRESS.</text>
+<text x="460" y="453" text-anchor="middle" font-size="8.5" fill="#444">Coolant · Oil · Tyre</text>
+<text x="460" y="466" text-anchor="middle" font-size="8"   fill="#777">K-type · Piezo</text>
+
+<!-- RESOLVER  cx=630 -->
+<rect x="566" y="416" width="128" height="58" fill="#fff" stroke="#111" stroke-width="1.4" rx="2"/>
+<text x="630" y="438" text-anchor="middle" font-size="10" font-weight="600" fill="#111">RESOLVER</text>
+<text x="630" y="453" text-anchor="middle" font-size="8.5" fill="#444">MGU-K θ<tspan dy="2" font-size="6.5">r</tspan><tspan dy="-2">, ω<tspan dy="2" font-size="6.5">r</tspan></tspan></text>
+<text x="630" y="466" text-anchor="middle" font-size="8"   fill="#777">10 000 count/rev</text>
+
+<!-- TELEMETRY  cx=800 -->
+<rect x="736" y="416" width="128" height="58" fill="#111" stroke="#111" stroke-width="1.6" rx="2"/>
+<text x="800" y="438" text-anchor="middle" font-size="10" font-weight="600" fill="#fff">TELEMETRY</text>
+<text x="800" y="453" text-anchor="middle" font-size="8.5" fill="#ccc">2.4 GHz RF · 100 Hz</text>
+<text x="800" y="466" text-anchor="middle" font-size="8"   fill="#999">Live to pit wall</text>
+
+<!-- Data Domain Drops to CAN Bus -->
+<line x1="120" y1="416" x2="120" y2="368" stroke="#1a4fa3" stroke-width="1.5" marker-end="url(#acan)"/>
+<circle cx="120" cy="368" r="4.5" fill="#1a4fa3"/>
+
+<line x1="290" y1="416" x2="290" y2="368" stroke="#1a4fa3" stroke-width="1.5" marker-end="url(#acan)"/>
+<circle cx="290" cy="368" r="4.5" fill="#1a4fa3"/>
+
+<line x1="460" y1="416" x2="460" y2="368" stroke="#1a4fa3" stroke-width="1.5" marker-end="url(#acan)"/>
+<circle cx="460" cy="368" r="4.5" fill="#1a4fa3"/>
+
+<line x1="630" y1="416" x2="630" y2="368" stroke="#1a4fa3" stroke-width="1.5" marker-end="url(#acan)"/>
+<circle cx="630" cy="368" r="4.5" fill="#1a4fa3"/>
+
+<line x1="800" y1="416" x2="800" y2="368" stroke="#1a4fa3" stroke-width="1.5" marker-end="url(#acan)"/>
+<circle cx="800" cy="368" r="4.5" fill="#1a4fa3"/>
+
+<!-- ══════════════════════════════════════
+     LEGEND
+══════════════════════════════════════ -->
+<rect x="36" y="540" width="884" height="42" fill="#fafafa" stroke="#ddd" stroke-width="0.8" rx="2"/>
+
+<!-- HV Bus -->
+<line x1="56" y1="561" x2="94" y2="561" stroke="#8b0000" stroke-width="3"/>
+<text x="100" y="565" font-size="9" fill="#8b0000" font-weight="600">HV Power (648 V)</text>
+
+<!-- LV Bus -->
+<line x1="220" y1="561" x2="258" y2="561" stroke="#555" stroke-width="1.4" stroke-dasharray="5,3"/>
+<text x="264" y="565" font-size="9" fill="#555" font-weight="600">LV auxiliary (12 V)</text>
+
+<!-- CAN FD -->
+<line x1="395" y1="561" x2="433" y2="561" stroke="#1a4fa3" stroke-width="2.5"/>
+<circle cx="405" cy="561" r="3.5" fill="#1a4fa3"/>
+<circle cx="423" cy="561" r="3.5" fill="#1a4fa3"/>
+<text x="439" y="565" font-size="9" fill="#1a4fa3" font-weight="600">CAN FD bus (5 Mbit/s)</text>
+
+<!-- Gate signals -->
+<line x1="586" y1="561" x2="624" y2="561" stroke="#111" stroke-width="1.6" marker-end="url(#a)"/>
+<text x="630" y="565" font-size="9" fill="#333" font-weight="600">Gate / control signal</text>
+
+<!-- Feedback -->
+<line x1="770" y1="561" x2="808" y2="561" stroke="#888" stroke-width="1.2" stroke-dasharray="4,3" marker-end="url(#ag)"/>
+<text x="814" y="565" font-size="9" fill="#888">Measurement feedback</text>
+
+</svg>
+
+<div class="footnote">
+  CAN FD backbone at 5 Mbit/s connects all control and sensor nodes with deterministic latency.
+  Main ECU (FPGA + ARM Cortex-A) hosts FOC algorithm, SOC-tiered state machine, and energy management.
+  BMS monitors all 360 cells individually: voltage, temperature, SOC (Coulomb counting + Kalman filter), SOH.
+  HV interlock and fusing managed by PDU; LV auxiliary bus powers ECU, sensors, and telemetry.
+  Resolver provides θ<sub>r</sub>, ω<sub>r</sub> at 10 000 counts/rev for FOC feedback.
+  Telemetry transmits 100+ channels at 100 Hz to pit wall in real time.
+</div>
+
+</body>
+</html>

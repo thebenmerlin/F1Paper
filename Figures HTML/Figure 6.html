@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Figure 6 — FOC Block Diagram</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Source+Code+Pro:wght@400;600&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#fff; font-family:'EB Garamond',Georgia,serif; color:#111; padding:40px 48px 40px 48px; }
+  .fig-label  { font-family:'Source Code Pro',monospace; font-size:12px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:4px; }
+  .fig-caption{ font-size:13.5px; font-style:italic; color:#333; margin-bottom:28px; line-height:1.6; max-width:920px; }
+  svg { display:block; width:100%; max-width:920px; }
+  .footnote   { margin-top:16px; font-size:11.5px; font-style:italic; color:#555; line-height:1.7; max-width:920px; }
+</style>
+</head>
+<body>
+
+<div class="fig-label">Figure 6</div>
+<div class="fig-caption">Field Oriented Control (FOC) Block Diagram — MGU-K PMSM Drive System (2026 F1 Hybrid). Clarke and Park coordinate transforms, PI current regulators (d/q axes), SVPWM synthesis, SiC inverter switching, and rotor resolver feedback. DC bus: 648 V; peak power: 350 kW.</div>
+
+<svg viewBox="0 0 920 500" xmlns="http://www.w3.org/2000/svg">
+<defs>
+  <marker id="arr" markerWidth="7" markerHeight="6" refX="7" refY="3" orient="auto">
+    <polygon points="0 0,7 3,0 6" fill="#111"/>
+  </marker>
+  <marker id="arr-g" markerWidth="7" markerHeight="6" refX="7" refY="3" orient="auto">
+    <polygon points="0 0,7 3,0 6" fill="#777"/>
+  </marker>
+  <marker id="arr-up" markerWidth="6" markerHeight="7" refX="3" refY="0" orient="auto">
+    <polygon points="0 7,3 0,6 7" fill="#111"/>
+  </marker>
+</defs>
+
+<!-- ============================================================
+     SECTION HEADER LABELS  (y=36)
+============================================================ -->
+<text x="80"  y="36" text-anchor="middle" font-family="Source Code Pro,monospace" font-size="8" font-weight="600" letter-spacing="1" fill="#888" text-transform="uppercase">REF. GENERATION</text>
+<text x="248" y="36" text-anchor="middle" font-family="Source Code Pro,monospace" font-size="8" font-weight="600" letter-spacing="1" fill="#888">CURRENT CONTROL</text>
+<text x="460" y="36" text-anchor="middle" font-family="Source Code Pro,monospace" font-size="8" font-weight="600" letter-spacing="1" fill="#888">MODULATION</text>
+<text x="688" y="36" text-anchor="middle" font-family="Source Code Pro,monospace" font-size="8" font-weight="600" letter-spacing="1" fill="#888">POWER STAGE</text>
+
+<!-- Section divider lines -->
+<line x1="8"   y1="43" x2="170" y2="43" stroke="#ccc" stroke-width="0.8"/>
+<line x1="178" y1="43" x2="320" y2="43" stroke="#ccc" stroke-width="0.8"/>
+<line x1="330" y1="43" x2="590" y2="43" stroke="#ccc" stroke-width="0.8"/>
+<line x1="598" y1="43" x2="768" y2="43" stroke="#ccc" stroke-width="0.8"/>
+
+<!-- ============================================================
+     BLOCKS — FORWARD PATH
+     d-axis centerline: y=115    q-axis centerline: y=195
+     midpoint: y=155
+============================================================ -->
+
+<!-- 1. TORQUE DEMAND  rect(8,93,76,44) cx=46 cy=115 -->
+<rect x="8"   y="93"  width="76" height="44" fill="#fff"  stroke="#111" stroke-width="1.4"/>
+<text x="46"  y="111" text-anchor="middle" font-family="Source Code Pro,monospace" font-size="8.5" font-weight="600" fill="#111">TORQUE</text>
+<text x="46"  y="123" text-anchor="middle" font-family="Source Code Pro,monospace" font-size="8.5" font-weight="600" fill="#111">DEMAND</text>
+
+<!-- 2. MTPA  rect(112,93,76,44) cx=150 cy=115 -->
+<rect x="112" y="93"  width="76" height="44" fill="#ececec" stroke="#111" stroke-width="1.4"/>
+<text x="150" y="111" text-anchor="middle" font-family="Source Code Pro,monospace" font-size="8.5" font-weight="600" fill="#111">MTPA</text>
+<text x="150" y="123" text-anchor="middle" font-family="Source Code Pro,monospace" font-size="8"   fill="#444">i<tspan dy="2.5" font-size="6">d</tspan><tspan dy="-2.5">* = 0</tspan></text>
+
+<!-- 3a. SUMMING JUNCTION d-axis  cx=236 cy=115 r=13 -->
+<circle cx="236" cy="115" r="13" fill="#fff" stroke="#111" stroke-width="1.4"/>
+<text x="227" y="119" font-family="Source Code Pro,monospace" font-size="11" fill="#111">+</text>
+<text x="234" y="130" font-family="Source Code Pro,monospace" font-size="9"  fill="#111">−</text>
+
+<!-- 3b. SUMMING JUNCTION q-axis  cx=236 cy=195 r=13 -->
+<circle cx="236" cy="195" r="13" fill="#fff" stroke="#111" stroke-width="1.4"/>
+<text x="227" y="199" font-family="Source Code Pro,monospace" font-size="11" fill="#111">+</text>
+<text x="234" y="210" font-family="Source Code Pro,monospace" font-size="9"  fill="#111">−</text>
+
+<!-- 4a. PI REGULATOR d-axis  rect(268,93,76,44) cx=306 cy=115 -->
+<rect x="268" y="93"  width="76" height="44" fill="#fff"  stroke="#111" stroke-width="1.4"/>
+<text x="306" y="111" text-anchor="middle" font-family="Source Code Pro,monospace" font-size="8.5" font-weight="600" fill="#111">PI CTRL</text>
+<text x="306" y="123" text-anchor="middle" font-family="Source Code Pro,monospace" font-size="8"   fill="#444">d-axis</text>
+
+<!-- 4b. PI REGULATOR q-axis  rect(268,173,76,44) cx=306 cy=195 -->
+<rect x="268" y="173" width="76" height="44" fill="#fff"  stroke="#111" stroke-width="1.4"/>
+<text x="306" y="191" text-anchor="middle" font-family="Source Code Pro,monospace" font-size="8.5" font-weight="600" fill="#111">PI CTRL</text>
+<text x="306" y="203" text-anchor="middle" font-family="Source Code Pro,monospace" font-size="8"   fill="#444">q-axis</text>
+
+<!-- 5. INVERSE PARK  rect(372,89,76,122) cx=410 cy=150  spans d+q -->
+<rect x="372" y="89"  width="76" height="122" fill="#ececec" stroke="#111" stroke-width="1.4"/>
+<text x="410" y="145" text-anchor="middle" font-family="Source Code Pro,monospace" font-size="8.5" font-weight="600" fill="#111">PARK⁻¹</text>
+<text x="410" y="157" text-anchor="middle" font-family="Source Code Pro,monospace" font-size="8"   fill="#444">(dq → αβ)</text>
+<text x="410" y="169" text-anchor="middle" font-family="Source Code Pro,monospace" font-size="7.5" fill="#777">θ<tspan dy="2.5" font-size="6">r</tspan><tspan dy="-2.5"> ↑</tspan></text>
+
+<!-- 6. SVPWM  rect(472,133,76,44) cx=510 cy=155 -->
+<rect x="472" y="133" width="76" height="44" fill="#111"  stroke="#111" stroke-width="1.4"/>
+<text x="510" y="151" text-anchor="middle" font-family="Source Code Pro,monospace" font-size="8.5" font-weight="600" fill="#fff">SVPWM</text>
+<text x="510" y="163" text-anchor="middle" font-family="Source Code Pro,monospace" font-size="8"   fill="#bbb">Synthesis</text>
+
+<!-- 7. SiC INVERTER  rect(572,133,76,44) cx=610 cy=155 -->
+<rect x="572" y="133" width="76" height="44" fill="#111"  stroke="#111" stroke-width="1.4"/>
+<text x="610" y="150" text-anchor="middle" font-family="Source Code Pro,monospace" font-size="8.5" font-weight="600" fill="#fff">SiC INV</text>
+<text x="610" y="162" text-anchor="middle" font-family="Source Code Pro,monospace" font-size="8"   fill="#bbb">3-Ph Bridge</text>
+<text x="610" y="173" text-anchor="middle" font-family="Source Code Pro,monospace" font-size="7.5" fill="#999">648 V DC</text>
+
+<!-- 8. MGU-K MOTOR  rect(672,109,76,92) cx=710 cy=155 -->
+<rect x="672" y="109" width="76" height="92" fill="#fff"  stroke="#111" stroke-width="1.8"/>
+<text x="710" y="143" text-anchor="middle" font-family="Source Code Pro,monospace" font-size="8.5" font-weight="600" fill="#111">MGU-K</text>
+<text x="710" y="156" text-anchor="middle" font-family="Source Code Pro,monospace" font-size="8"   fill="#444">PMSM</text>
+<text x="710" y="168" text-anchor="middle" font-family="Source Code Pro,monospace" font-size="8"   fill="#444">350 kW</text>
+<text x="710" y="180" text-anchor="middle" font-family="Source Code Pro,monospace" font-size="7.5" fill="#777">~15k RPM</text>
+
+<!-- 9. DC BUS  rect(572,38,76,36) cx=610 cy=56 -->
+<rect x="572" y="38"  width="76" height="36" fill="#f5f5f5" stroke="#111" stroke-width="1" stroke-dasharray="4,2"/>
+<text x="610" y="53"  text-anchor="middle" font-family="Source Code Pro,monospace" font-size="8.5" font-weight="600" fill="#111">DC BUS</text>
+<text x="610" y="65"  text-anchor="middle" font-family="Source Code Pro,monospace" font-size="8"   fill="#555">648 V / 540 A</text>
+
+<!-- ============================================================
+     FEEDBACK BLOCKS  (y~334)
+============================================================ -->
+
+<!-- 10. RESOLVER  rect(672,324,76,44) cx=710 cy=346 -->
+<rect x="672" y="324" width="76" height="44" fill="#ececec" stroke="#111" stroke-width="1.4"/>
+<text x="710" y="340" text-anchor="middle" font-family="Source Code Pro,monospace" font-size="8.5" font-weight="600" fill="#111">RESOLVER</text>
+<text x="710" y="352" text-anchor="middle" font-family="Source Code Pro,monospace" font-size="8"   fill="#444">Encoder</text>
+<text x="710" y="364" text-anchor="middle" font-family="Source Code Pro,monospace" font-size="8"   fill="#777">θ_r, ω_r</text>
+
+<!-- 11. CLARKE  rect(524,324,76,44) cx=562 cy=346 -->
+<rect x="524" y="324" width="76" height="44" fill="#ececec" stroke="#111" stroke-width="1.4"/>
+<text x="562" y="342" text-anchor="middle" font-family="Source Code Pro,monospace" font-size="8.5" font-weight="600" fill="#111">CLARKE</text>
+<text x="562" y="354" text-anchor="middle" font-family="Source Code Pro,monospace" font-size="8"   fill="#444">(abc → αβ)</text>
+
+<!-- 12. PARK  rect(376,324,76,44) cx=414 cy=346 -->
+<rect x="376" y="324" width="76" height="44" fill="#ececec" stroke="#111" stroke-width="1.4"/>
+<text x="414" y="342" text-anchor="middle" font-family="Source Code Pro,monospace" font-size="8.5" font-weight="600" fill="#111">PARK</text>
+<text x="414" y="354" text-anchor="middle" font-family="Source Code Pro,monospace" font-size="8"   fill="#444">(αβ → dq)</text>
+
+<!-- ============================================================
+     ARROWS — FORWARD PATH
+============================================================ -->
+
+<!-- Torque → MTPA -->
+<line x1="84"  y1="115" x2="110" y2="115" stroke="#111" stroke-width="1.4" marker-end="url(#arr)"/>
+
+<!-- MTPA → Sum_d (right) -->
+<line x1="188" y1="115" x2="221" y2="115" stroke="#111" stroke-width="1.4" marker-end="url(#arr)"/>
+<!-- label i_d* -->
+<text x="202" y="108" text-anchor="middle" font-family="Source Code Pro,monospace" font-size="8" font-style="italic" fill="#555">i<tspan dy="2.5" font-size="6">d</tspan><tspan dy="-2.5">*</tspan></text>
+
+<!-- MTPA → Sum_q (down then right) -->
+<line x1="150" y1="137" x2="150" y2="195" stroke="#111" stroke-width="1.4"/>
+<line x1="150" y1="195" x2="221" y2="195" stroke="#111" stroke-width="1.4" marker-end="url(#arr)"/>
+<!-- label i_q* -->
+<text x="163" y="172" font-family="Source Code Pro,monospace" font-size="8" font-style="italic" fill="#555">i<tspan dy="2.5" font-size="6">q</tspan><tspan dy="-2.5">*</tspan></text>
+
+<!-- Sum_d → PI_d -->
+<line x1="249" y1="115" x2="266" y2="115" stroke="#111" stroke-width="1.4" marker-end="url(#arr)"/>
+
+<!-- Sum_q → PI_q -->
+<line x1="249" y1="195" x2="266" y2="195" stroke="#111" stroke-width="1.4" marker-end="url(#arr)"/>
+
+<!-- PI_d → InvPark -->
+<line x1="344" y1="115" x2="370" y2="115" stroke="#111" stroke-width="1.4" marker-end="url(#arr)"/>
+<text x="355" y="107" text-anchor="middle" font-family="Source Code Pro,monospace" font-size="7.5" font-style="italic" fill="#555">V<tspan dy="2.5" font-size="5.5">d</tspan><tspan dy="-2.5">*</tspan></text>
+
+<!-- PI_q → InvPark -->
+<line x1="344" y1="195" x2="370" y2="195" stroke="#111" stroke-width="1.4" marker-end="url(#arr)"/>
+<text x="355" y="187" text-anchor="middle" font-family="Source Code Pro,monospace" font-size="7.5" font-style="italic" fill="#555">V<tspan dy="2.5" font-size="5.5">q</tspan><tspan dy="-2.5">*</tspan></text>
+
+<!-- InvPark → SVPWM -->
+<line x1="448" y1="150" x2="470" y2="153" stroke="#111" stroke-width="1.4" marker-end="url(#arr)"/>
+<text x="458" y="143" text-anchor="middle" font-family="Source Code Pro,monospace" font-size="7.5" font-style="italic" fill="#555">V<tspan dy="2.5" font-size="5.5">α</tspan><tspan dy="-2.5">, V</tspan><tspan dy="2.5" font-size="5.5">β</tspan><tspan dy="-2.5"></tspan></text>
+
+<!-- SVPWM → Inverter -->
+<line x1="548" y1="155" x2="570" y2="155" stroke="#111" stroke-width="1.4" marker-end="url(#arr)"/>
+<text x="558" y="147" text-anchor="middle" font-family="Source Code Pro,monospace" font-size="7.5" font-style="italic" fill="#555">S<tspan dy="2.5" font-size="5.5">abc</tspan><tspan dy="-2.5"></tspan></text>
+
+<!-- Inverter → Motor -->
+<line x1="648" y1="155" x2="670" y2="155" stroke="#111" stroke-width="1.4" marker-end="url(#arr)"/>
+<text x="658" y="147" text-anchor="middle" font-family="Source Code Pro,monospace" font-size="7.5" font-style="italic" fill="#555">V<tspan dy="2.5" font-size="5.5">abc</tspan><tspan dy="-2.5"></tspan></text>
+
+<!-- Motor output (torque) -->
+<line x1="748" y1="155" x2="778" y2="155" stroke="#111" stroke-width="1.4" marker-end="url(#arr)"/>
+<text x="790" y="148" font-family="Source Code Pro,monospace" font-size="8" font-style="italic" fill="#111">τ<tspan dy="2.5" font-size="6">e</tspan><tspan dy="-2.5"></tspan></text>
+<text x="790" y="164" font-family="Source Code Pro,monospace" font-size="7.5" fill="#777">Output</text>
+
+<!-- DC Bus → Inverter (dashed) -->
+<line x1="610" y1="74" x2="610" y2="131" stroke="#777" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#arr-g)"/>
+<text x="616" y="104" font-family="Source Code Pro,monospace" font-size="7.5" fill="#888">V<tspan dy="2.5" font-size="5.5">dc</tspan><tspan dy="-2.5"></tspan></text>
+
+<!-- ============================================================
+     ARROWS — FEEDBACK PATH
+============================================================ -->
+
+<!-- Motor → Clarke  (dashed, i_abc) -->
+<!-- Down from motor bottom, left to Clarke top -->
+<line x1="710" y1="201" x2="710" y2="300" stroke="#777" stroke-width="1" stroke-dasharray="4,3"/>
+<line x1="710" y1="300" x2="562" y2="300" stroke="#777" stroke-width="1" stroke-dasharray="4,3"/>
+<line x1="562" y1="300" x2="562" y2="312" stroke="#777" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#arr-g)"/>
+<text x="655" y="291" text-anchor="middle" font-family="Source Code Pro,monospace" font-size="8" font-style="italic" fill="#777">i<tspan dy="2.5" font-size="6">a</tspan><tspan dy="-2.5">, i</tspan><tspan dy="2.5" font-size="6">b</tspan><tspan dy="-2.5">, i</tspan><tspan dy="2.5" font-size="6">c</tspan><tspan dy="-2.5"></tspan></text>
+
+<!-- Clarke → Park (leftward arrow) -->
+<line x1="524" y1="346" x2="454" y2="346" stroke="#111" stroke-width="1.4" marker-end="url(#arr)"/>
+<text x="488" y="336" text-anchor="middle" font-family="Source Code Pro,monospace" font-size="7.5" font-style="italic" fill="#555">i<tspan dy="2.5" font-size="5.5">α</tspan><tspan dy="-2.5">, i</tspan><tspan dy="2.5" font-size="5.5">β</tspan><tspan dy="-2.5"></tspan></text>
+
+<!-- Park → summing junctions (feedback bus, upward) -->
+<!-- Horizontal left from Park -->
+<line x1="376" y1="346" x2="236" y2="346" stroke="#111" stroke-width="1.4"/>
+<!-- Vertical up — enters sum_d from below -->
+<line x1="236" y1="346" x2="236" y2="128" stroke="#111" stroke-width="1.4" marker-end="url(#arr)"/>
+<!-- Junction dot at sum_q bottom (236,208) -->
+<circle cx="236" cy="208" r="3.5" fill="#111"/>
+<!-- Short arrow from junction into sum_q bottom -->
+<line x1="236" y1="208" x2="236" y2="209" stroke="#111" stroke-width="0.1"/>
+<!-- label i_d, i_q on feedback bus -->
+<text x="318" y="336" text-anchor="middle" font-family="Source Code Pro,monospace" font-size="7.5" font-style="italic" fill="#555">i<tspan dy="2.5" font-size="5.5">d</tspan><tspan dy="-2.5">, i</tspan><tspan dy="2.5" font-size="5.5">q</tspan><tspan dy="-2.5"></tspan></text>
+<text x="242" y="272" font-family="Source Code Pro,monospace" font-size="7.5" font-style="italic" fill="#555">i<tspan dy="2.5" font-size="5.5">d</tspan><tspan dy="-2.5">,i</tspan><tspan dy="2.5" font-size="5.5">q</tspan><tspan dy="-2.5"></tspan></text>
+
+<!-- Resolver → Park and InvPark (θ_r dashed) -->
+<!-- Up from resolver top -->
+<line x1="710" y1="324" x2="710" y2="275" stroke="#777" stroke-width="1" stroke-dasharray="4,3"/>
+<!-- Left across -->
+<line x1="710" y1="275" x2="410" y2="275" stroke="#777" stroke-width="1" stroke-dasharray="4,3"/>
+<!-- Down into InvPark bottom -->
+<line x1="410" y1="275" x2="410" y2="211" stroke="#777" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#arr-g)"/>
+<!-- Branch down to Park top -->
+<line x1="414" y1="275" x2="414" y2="324" stroke="#777" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#arr-g)"/>
+<!-- Junction dot on θ_r line -->
+<circle cx="414" cy="275" r="3" fill="#777"/>
+<!-- Label θ_r -->
+<text x="580" y="267" text-anchor="middle" font-family="Source Code Pro,monospace" font-size="8" font-style="italic" fill="#777">θ<tspan dy="2.5" font-size="6">r</tspan><tspan dy="-2.5"></tspan></text>
+
+<!-- ============================================================
+     FEEDBACK LABEL BAR (bottom)
+============================================================ -->
+<line x1="8" y1="395" x2="768" y2="395" stroke="#ddd" stroke-width="0.8"/>
+<text x="390" y="408" text-anchor="middle" font-family="Source Code Pro,monospace" font-size="8" font-weight="600" letter-spacing="1" fill="#aaa">FEEDBACK PATH — CURRENT SENSING AND ROTOR POSITION</text>
+
+<!-- ============================================================
+     LEGEND
+=========================================================== -->
+<rect x="80" y="426" width="760" height="52" fill="#fff" stroke="#ccc" stroke-width="0.8" rx="1"/>
+
+<!-- Row 1 -->
+<rect x="120" y="438" width="16" height="12" fill="#111" stroke="#111" stroke-width="0.8"/>
+<text x="144" y="448" font-family="Source Code Pro,monospace" font-size="8.5" fill="#333">Switching / computation block</text>
+
+<rect x="365" y="438" width="16" height="12" fill="#ececec" stroke="#111" stroke-width="0.8"/>
+<text x="389" y="448" font-family="Source Code Pro,monospace" font-size="8.5" fill="#333">Transform / measurement block</text>
+
+<rect x="610" y="438" width="16" height="12" fill="#fff" stroke="#111" stroke-width="1.2"/>
+<text x="634" y="448" font-family="Source Code Pro,monospace" font-size="8.5" fill="#333">Summing junction / reference</text>
+
+<!-- Row 2 -->
+<line x1="275" y1="462" x2="299" y2="462" stroke="#111" stroke-width="1.4" marker-end="url(#arr)"/>
+<text x="311" y="465" font-family="Source Code Pro,monospace" font-size="8.5" fill="#333">Command signal</text>
+
+<line x1="465" y1="462" x2="489" y2="462" stroke="#777" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#arr-g)"/>
+<text x="501" y="465" font-family="Source Code Pro,monospace" font-size="8.5" fill="#333">Feedback / measurement</text>
+
+</svg>
+
+<div class="footnote">
+  FOC implementation for MGU-K PMSM drive. MTPA sets i<sub>d</sub>* = 0 (non-salient rotor). Clarke: (abc) → (αβ) stationary frame. Park: (αβ) → (dq) synchronous frame aligned to θ<sub>r</sub>. Inverse Park: (dq) → (αβ) voltage references. SVPWM synthesises switching signals S<sub>a</sub>, S<sub>b</sub>, S<sub>c</sub> (f<sub>sw</sub> = 20 kHz). Resolver supplies θ<sub>r</sub> and ω<sub>r</sub> to both Park and Park⁻¹ blocks.
+</div>
+
+</body>
+</html>

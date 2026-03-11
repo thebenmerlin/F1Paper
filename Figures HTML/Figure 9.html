@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Figure 9 — Thermal Architecture Diagram</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Source+Code+Pro:wght@400;600&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#fff; font-family:'EB Garamond',Georgia,serif; color:#111; padding:40px 48px; }
+  .fig-label   { font-family:'Source Code Pro',monospace; font-size:12px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:4px; }
+  .fig-caption { font-size:13.5px; font-style:italic; color:#333; margin-bottom:24px; line-height:1.6; max-width:920px; }
+  .footnote    { margin-top:16px; font-size:11.5px; font-style:italic; color:#555; line-height:1.7; max-width:920px; }
+</style>
+</head>
+<body>
+
+<div class="fig-label">Figure 9</div>
+<div class="fig-caption">
+  Integrated Thermal Management Architecture — Four Independent Cooling Loops and Sidepod Packaging.
+  Total peak rejection: 454 kW. All loops isolated; no cross-contamination. Sidepod core houses Loops 1 and 3.
+</div>
+
+<!--
+  LAYOUT
+  Canvas: 920 × 600
+
+  Four loop rows, each 110px tall, separated by 16px gaps
+  Row tops: L1=60, L2=186, L3=312, L4=438
+
+  Each loop:
+    LEFT COLUMN  (x=20..259):  Heat source block(s)
+    CENTRE       (x=300..419): Pump / controller
+    RIGHT COLUMN (x=460..699): Radiator / heat exchanger (sidepod)
+    Return path runs below each row
+
+  Heat source blocks: w=160 h=64
+  Pump block:         w=100 h=64
+  Radiator block:     w=160 h=64
+
+  Strict: every arrow is H or V only. Labels sit in whitespace above/below lines.
+-->
+
+<svg width="920" height="620" viewBox="0 0 920 620"
+     xmlns="http://www.w3.org/2000/svg"
+     style="display:block; font-family:'Source Code Pro',monospace;">
+<defs>
+  <marker id="a"  markerWidth="7" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0,7 3,0 6" fill="#111"/></marker>
+  <marker id="aw" markerWidth="7" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0,7 3,0 6" fill="#fff"/></marker>
+  <!-- Loop colour markers -->
+  <marker id="a1" markerWidth="7" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0,7 3,0 6" fill="#1a4fa3"/></marker>
+  <marker id="a2" markerWidth="7" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0,7 3,0 6" fill="#a33a1a"/></marker>
+  <marker id="a3" markerWidth="7" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0,7 3,0 6" fill="#1a7a3a"/></marker>
+  <marker id="a4" markerWidth="7" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0,7 3,0 6" fill="#7a1a9a"/></marker>
+</defs>
+
+<!-- ══════════════════════════════════════════════════════
+     COLUMN HEADERS
+══════════════════════════════════════════════════════ -->
+<text x="150"  y="30" text-anchor="middle" font-size="8.5" font-weight="600" fill="#888" letter-spacing="0.5">HEAT SOURCE(S)</text>
+<text x="460"  y="30" text-anchor="middle" font-size="8.5" font-weight="600" fill="#888" letter-spacing="0.5">COOLANT PUMP</text>
+<text x="720"  y="30" text-anchor="middle" font-size="8.5" font-weight="600" fill="#888" letter-spacing="0.5">RADIATOR / EXCHANGER</text>
+<text x="876"  y="30" text-anchor="middle" font-size="8.5" font-weight="600" fill="#888" letter-spacing="0.5">SIDEPOD</text>
+
+<line x1="20"  y1="36" x2="275" y2="36" stroke="#ddd" stroke-width="0.8"/>
+<line x1="355" y1="36" x2="565" y2="36" stroke="#ddd" stroke-width="0.8"/>
+<line x1="600" y1="36" x2="840" y2="36" stroke="#ddd" stroke-width="0.8"/>
+<line x1="855" y1="36" x2="910" y2="36" stroke="#ddd" stroke-width="0.8"/>
+
+<!-- ══════════════════════════════════════════════════════
+     LOOP 1 — ICE COOLANT  (blue)  row top=60
+     Colour: #1a4fa3
+══════════════════════════════════════════════════════ -->
+<!-- Loop label -->
+<text x="14" y="78" font-size="9" font-weight="600" fill="#1a4fa3" transform="rotate(-90,14,78)" text-anchor="middle">LOOP 1</text>
+
+<!-- Heat source: ICE  x=30 y=60 w=220 h=64 -->
+<rect x="30"  y="60" width="220" height="64" fill="#fff" stroke="#1a4fa3" stroke-width="1.6" rx="2"/>
+<text x="140" y="83"  text-anchor="middle" font-size="10.5" font-weight="600" fill="#111">TURBOCHARGED V6 ICE</text>
+<text x="140" y="97"  text-anchor="middle" font-size="9"    fill="#444">Q̇ = 150 kW (coolant)</text>
+<text x="140" y="110" text-anchor="middle" font-size="8.5"  fill="#777">T<tspan dy="2" font-size="6.5">coolant,out</tspan><tspan dy="-2"> ≈ 110°C</tspan></text>
+
+<!-- Pump: x=360 y=68 w=120 h=48 -->
+<rect x="360" y="68" width="120" height="48" fill="#1a4fa3" stroke="#1a4fa3" stroke-width="1.4" rx="2"/>
+<text x="420" y="89"  text-anchor="middle" font-size="9.5" font-weight="600" fill="#fff">COOLANT PUMP</text>
+<text x="420" y="104" text-anchor="middle" font-size="8.5" fill="#acd">Water-Glycol</text>
+
+<!-- Radiator: x=605 y=60 w=220 h=64 -->
+<rect x="605" y="60" width="220" height="64" fill="#fff" stroke="#1a4fa3" stroke-width="1.6" rx="2"/>
+<text x="715" y="83"  text-anchor="middle" font-size="10.5" font-weight="600" fill="#111">SIDEPOD RADIATOR</text>
+<text x="715" y="97"  text-anchor="middle" font-size="9"    fill="#444">Q̇<tspan dy="2" font-size="6.5">rej</tspan><tspan dy="-2"> = 150 kW</tspan></text>
+<text x="715" y="110" text-anchor="middle" font-size="8.5"  fill="#777">Air-cooled · Primary core</text>
+
+<!-- Sidepod indicator -->
+<rect x="848" y="64" width="56" height="56" fill="#e8f0fa" stroke="#1a4fa3" stroke-width="1" rx="2"/>
+<text x="876" y="87"  text-anchor="middle" font-size="8"   fill="#1a4fa3" font-weight="600">SIDE-</text>
+<text x="876" y="99"  text-anchor="middle" font-size="8"   fill="#1a4fa3" font-weight="600">POD</text>
+<text x="876" y="111" text-anchor="middle" font-size="7.5" fill="#1a4fa3">PRIMARY</text>
+
+<!-- Forward flow: ICE → Pump → Radiator -->
+<line x1="250" y1="92" x2="360" y2="92" stroke="#1a4fa3" stroke-width="1.6" marker-end="url(#a1)"/>
+<text x="305" y="86"  text-anchor="middle" font-size="8" fill="#1a4fa3">hot coolant</text>
+<line x1="480" y1="92" x2="605" y2="92" stroke="#1a4fa3" stroke-width="1.6" marker-end="url(#a1)"/>
+<text x="543" y="86"  text-anchor="middle" font-size="8" fill="#1a4fa3">to radiator</text>
+<line x1="825" y1="92" x2="848" y2="92" stroke="#1a4fa3" stroke-width="1.6" marker-end="url(#a1)"/>
+
+<!-- Return path below loop 1: y=140 -->
+<line x1="876" y1="120" x2="876" y2="143" stroke="#1a4fa3" stroke-width="1.3" stroke-dasharray="5,3"/>
+<line x1="876" y1="143" x2="30"  y2="143" stroke="#1a4fa3" stroke-width="1.3" stroke-dasharray="5,3"/>
+<line x1="30"  y1="143" x2="30"  y2="124" stroke="#1a4fa3" stroke-width="1.3" stroke-dasharray="5,3" marker-end="url(#a1)"/>
+<text x="453" y="138" text-anchor="middle" font-size="7.5" fill="#1a4fa3">cooled coolant return</text>
+
+<!-- Row divider -->
+<line x1="20" y1="158" x2="910" y2="158" stroke="#eee" stroke-width="1"/>
+
+<!-- ══════════════════════════════════════════════════════
+     LOOP 2 — BATTERY  (red/brown)  row top=168
+     Colour: #a33a1a
+══════════════════════════════════════════════════════ -->
+<text x="14" y="205" font-size="9" font-weight="600" fill="#a33a1a" transform="rotate(-90,14,205)" text-anchor="middle">LOOP 2</text>
+
+<!-- Heat source: Battery  x=30 y=168 -->
+<rect x="30"  y="168" width="220" height="64" fill="#fff" stroke="#a33a1a" stroke-width="1.6" rx="2"/>
+<text x="140" y="191" text-anchor="middle" font-size="10.5" font-weight="600" fill="#111">NMC BATTERY PACK</text>
+<text x="140" y="205" text-anchor="middle" font-size="9"    fill="#444">Q̇<tspan dy="2" font-size="6.5">peak</tspan><tspan dy="-2"> = 131 kW · Q̇<tspan dy="2" font-size="6.5">avg</tspan><tspan dy="-2"> = 61 kW</tspan></tspan></text>
+<text x="140" y="218" text-anchor="middle" font-size="8.5"  fill="#777">180S2P · 360 cells</text>
+
+<!-- Pump -->
+<rect x="360" y="176" width="120" height="48" fill="#a33a1a" stroke="#a33a1a" stroke-width="1.4" rx="2"/>
+<text x="420" y="197" text-anchor="middle" font-size="9.5" font-weight="600" fill="#fff">COOLANT PUMP</text>
+<text x="420" y="212" text-anchor="middle" font-size="8.5" fill="#fcc">Liquid Cold Plates</text>
+
+<!-- Radiator -->
+<rect x="605" y="168" width="220" height="64" fill="#fff" stroke="#a33a1a" stroke-width="1.6" rx="2"/>
+<text x="715" y="191" text-anchor="middle" font-size="10.5" font-weight="600" fill="#111">BATTERY HEAT EXCHANGER</text>
+<text x="715" y="205" text-anchor="middle" font-size="9"    fill="#444">Q̇<tspan dy="2" font-size="6.5">rej</tspan><tspan dy="-2"> = 131 kW peak</tspan></text>
+<text x="715" y="218" text-anchor="middle" font-size="8.5"  fill="#777">Dedicated low-temp circuit</text>
+
+<!-- Sidepod indicator -->
+<rect x="848" y="172" width="56" height="56" fill="#faeae8" stroke="#a33a1a" stroke-width="1" rx="2"/>
+<text x="876" y="195" text-anchor="middle" font-size="8"   fill="#a33a1a" font-weight="600">SIDE-</text>
+<text x="876" y="207" text-anchor="middle" font-size="8"   fill="#a33a1a" font-weight="600">POD</text>
+<text x="876" y="219" text-anchor="middle" font-size="7.5" fill="#a33a1a">SECONDARY</text>
+
+<!-- Forward flow -->
+<line x1="250" y1="200" x2="360" y2="200" stroke="#a33a1a" stroke-width="1.6" marker-end="url(#a2)"/>
+<text x="305" y="194" text-anchor="middle" font-size="8" fill="#a33a1a">hot coolant</text>
+<line x1="480" y1="200" x2="605" y2="200" stroke="#a33a1a" stroke-width="1.6" marker-end="url(#a2)"/>
+<text x="543" y="194" text-anchor="middle" font-size="8" fill="#a33a1a">to exchanger</text>
+<line x1="825" y1="200" x2="848" y2="200" stroke="#a33a1a" stroke-width="1.6" marker-end="url(#a2)"/>
+
+<!-- Return path y=248 -->
+<line x1="876" y1="228" x2="876" y2="251" stroke="#a33a1a" stroke-width="1.3" stroke-dasharray="5,3"/>
+<line x1="876" y1="251" x2="30"  y2="251" stroke="#a33a1a" stroke-width="1.3" stroke-dasharray="5,3"/>
+<line x1="30"  y1="251" x2="30"  y2="232" stroke="#a33a1a" stroke-width="1.3" stroke-dasharray="5,3" marker-end="url(#a2)"/>
+<text x="453" y="246" text-anchor="middle" font-size="7.5" fill="#a33a1a">cooled coolant return</text>
+
+<line x1="20" y1="266" x2="910" y2="266" stroke="#eee" stroke-width="1"/>
+
+<!-- ══════════════════════════════════════════════════════
+     LOOP 3 — INTERCOOLER  (green)  row top=276
+     Colour: #1a7a3a
+══════════════════════════════════════════════════════ -->
+<text x="14" y="313" font-size="9" font-weight="600" fill="#1a7a3a" transform="rotate(-90,14,313)" text-anchor="middle">LOOP 3</text>
+
+<!-- Heat source: Intercooler  x=30 y=276 -->
+<rect x="30"  y="276" width="220" height="64" fill="#fff" stroke="#1a7a3a" stroke-width="1.6" rx="2"/>
+<text x="140" y="299" text-anchor="middle" font-size="10.5" font-weight="600" fill="#111">TURBO INTERCOOLER</text>
+<text x="140" y="313" text-anchor="middle" font-size="9"    fill="#444">Q̇ = 139 kW</text>
+<text x="140" y="326" text-anchor="middle" font-size="8.5"  fill="#777">T<tspan dy="2" font-size="6.5">2,actual</tspan><tspan dy="-2"> = 491 K · ṁ = 0.8 kg/s</tspan></text>
+
+<!-- Pump -->
+<rect x="360" y="284" width="120" height="48" fill="#1a7a3a" stroke="#1a7a3a" stroke-width="1.4" rx="2"/>
+<text x="420" y="305" text-anchor="middle" font-size="9.5" font-weight="600" fill="#fff">COOLANT PUMP</text>
+<text x="420" y="320" text-anchor="middle" font-size="8.5" fill="#adc">Water-Air Circuit</text>
+
+<!-- Radiator -->
+<rect x="605" y="276" width="220" height="64" fill="#fff" stroke="#1a7a3a" stroke-width="1.6" rx="2"/>
+<text x="715" y="299" text-anchor="middle" font-size="10.5" font-weight="600" fill="#111">CHARGE AIR RADIATOR</text>
+<text x="715" y="313" text-anchor="middle" font-size="9"    fill="#444">Q̇<tspan dy="2" font-size="6.5">rej</tspan><tspan dy="-2"> = 139 kW</tspan></text>
+<text x="715" y="326" text-anchor="middle" font-size="8.5"  fill="#777">Sidepod core · secondary</text>
+
+<!-- Sidepod indicator -->
+<rect x="848" y="280" width="56" height="56" fill="#e8faec" stroke="#1a7a3a" stroke-width="1" rx="2"/>
+<text x="876" y="303" text-anchor="middle" font-size="8"   fill="#1a7a3a" font-weight="600">SIDE-</text>
+<text x="876" y="315" text-anchor="middle" font-size="8"   fill="#1a7a3a" font-weight="600">POD</text>
+<text x="876" y="327" text-anchor="middle" font-size="7.5" fill="#1a7a3a">SECONDARY</text>
+
+<!-- Forward flow -->
+<line x1="250" y1="308" x2="360" y2="308" stroke="#1a7a3a" stroke-width="1.6" marker-end="url(#a3)"/>
+<text x="305" y="302" text-anchor="middle" font-size="8" fill="#1a7a3a">hot charge air</text>
+<line x1="480" y1="308" x2="605" y2="308" stroke="#1a7a3a" stroke-width="1.6" marker-end="url(#a3)"/>
+<text x="543" y="302" text-anchor="middle" font-size="8" fill="#1a7a3a">to radiator</text>
+<line x1="825" y1="308" x2="848" y2="308" stroke="#1a7a3a" stroke-width="1.6" marker-end="url(#a3)"/>
+
+<!-- Return path y=356 -->
+<line x1="876" y1="336" x2="876" y2="359" stroke="#1a7a3a" stroke-width="1.3" stroke-dasharray="5,3"/>
+<line x1="876" y1="359" x2="30"  y2="359" stroke="#1a7a3a" stroke-width="1.3" stroke-dasharray="5,3"/>
+<line x1="30"  y1="359" x2="30"  y2="340" stroke="#1a7a3a" stroke-width="1.3" stroke-dasharray="5,3" marker-end="url(#a3)"/>
+<text x="453" y="354" text-anchor="middle" font-size="7.5" fill="#1a7a3a">cooled fluid return</text>
+
+<line x1="20" y1="374" x2="910" y2="374" stroke="#eee" stroke-width="1"/>
+
+<!-- ══════════════════════════════════════════════════════
+     LOOP 4 — MGU-K / INVERTER / TURBO  (purple)  row top=384
+     Colour: #7a1a9a
+══════════════════════════════════════════════════════ -->
+<text x="14" y="421" font-size="9" font-weight="600" fill="#7a1a9a" transform="rotate(-90,14,421)" text-anchor="middle">LOOP 4</text>
+
+<!-- Two sub-sources side by side: MGU-K and Inverter -->
+<!-- MGU-K: x=30 y=384 w=100 h=64 -->
+<rect x="30"  y="384" width="108" height="64" fill="#fff" stroke="#7a1a9a" stroke-width="1.6" rx="2"/>
+<text x="84"  y="406" text-anchor="middle" font-size="9.5" font-weight="600" fill="#111">MGU-K</text>
+<text x="84"  y="419" text-anchor="middle" font-size="8.5" fill="#444">17.5 kW</text>
+<text x="84"  y="432" text-anchor="middle" font-size="8"   fill="#777">Oil-spray</text>
+
+<!-- SiC Inverter: x=148 y=384 w=100 h=64 -->
+<rect x="148" y="384" width="102" height="64" fill="#fff" stroke="#7a1a9a" stroke-width="1.6" rx="2"/>
+<text x="199" y="406" text-anchor="middle" font-size="9.5" font-weight="600" fill="#111">SiC INV.</text>
+<text x="199" y="419" text-anchor="middle" font-size="8.5" fill="#444">10.5 kW</text>
+<text x="199" y="432" text-anchor="middle" font-size="8"   fill="#777">Direct liquid</text>
+
+<!-- Turbo bearing: implied in same loop, no extra box needed — note below pump -->
+
+<!-- Pump -->
+<rect x="360" y="392" width="120" height="48" fill="#7a1a9a" stroke="#7a1a9a" stroke-width="1.4" rx="2"/>
+<text x="420" y="412" text-anchor="middle" font-size="9.5" font-weight="600" fill="#fff">OIL / COOLANT</text>
+<text x="420" y="427" text-anchor="middle" font-size="8.5" fill="#dac">PUMP</text>
+
+<!-- Radiator / Oil cooler -->
+<rect x="605" y="384" width="220" height="64" fill="#fff" stroke="#7a1a9a" stroke-width="1.6" rx="2"/>
+<text x="715" y="406" text-anchor="middle" font-size="10.5" font-weight="600" fill="#111">OIL / LIQUID COOLER</text>
+<text x="715" y="420" text-anchor="middle" font-size="9"    fill="#444">Q̇<tspan dy="2" font-size="6.5">total</tspan><tspan dy="-2"> = 33 kW</tspan></text>
+<text x="715" y="433" text-anchor="middle" font-size="8.5"  fill="#777">MGU-K + Inverter + Turbo brg.</text>
+
+<!-- Sidepod indicator -->
+<rect x="848" y="388" width="56" height="56" fill="#f5e8fa" stroke="#7a1a9a" stroke-width="1" rx="2"/>
+<text x="876" y="411" text-anchor="middle" font-size="8"   fill="#7a1a9a" font-weight="600">SILL /</text>
+<text x="876" y="423" text-anchor="middle" font-size="8"   fill="#7a1a9a" font-weight="600">FLOOR</text>
+<text x="876" y="435" text-anchor="middle" font-size="7.5" fill="#7a1a9a">DUCT</text>
+
+<!-- Combine sources: both sources feed into junction at x=305 y=416 -->
+<line x1="138" y1="416" x2="305" y2="416" stroke="#7a1a9a" stroke-width="1.4"/>
+<line x1="250" y1="416" x2="305" y2="416" stroke="#7a1a9a" stroke-width="0.1"/><!-- overlap join -->
+<circle cx="305" cy="416" r="3.5" fill="#7a1a9a"/>
+<line x1="305" y1="416" x2="360" y2="416" stroke="#7a1a9a" stroke-width="1.4" marker-end="url(#a4)"/>
+<text x="230" y="410" text-anchor="middle" font-size="8" fill="#7a1a9a">combined heat</text>
+
+<line x1="480" y1="416" x2="605" y2="416" stroke="#7a1a9a" stroke-width="1.6" marker-end="url(#a4)"/>
+<text x="543" y="410" text-anchor="middle" font-size="8" fill="#7a1a9a">to cooler</text>
+<line x1="825" y1="416" x2="848" y2="416" stroke="#7a1a9a" stroke-width="1.6" marker-end="url(#a4)"/>
+
+<!-- Second source junction line -->
+<line x1="199" y1="448" x2="199" y2="465" stroke="#7a1a9a" stroke-width="1.4"/>
+<line x1="199" y1="465" x2="305" y2="465" stroke="#7a1a9a" stroke-width="1.4"/>
+<line x1="305" y1="465" x2="305" y2="416" stroke="#7a1a9a" stroke-width="1.4"/>
+
+<!-- Return path y=468 -->
+<line x1="876" y1="444" x2="876" y2="467" stroke="#7a1a9a" stroke-width="1.3" stroke-dasharray="5,3"/>
+<line x1="876" y1="467" x2="30"  y2="467" stroke="#7a1a9a" stroke-width="1.3" stroke-dasharray="5,3"/>
+<line x1="30"  y1="467" x2="30"  y2="448" stroke="#7a1a9a" stroke-width="1.3" stroke-dasharray="5,3" marker-end="url(#a4)"/>
+<text x="453" y="462" text-anchor="middle" font-size="7.5" fill="#7a1a9a">cooled fluid return</text>
+
+<!-- ══════════════════════════════════════════════════════
+     HEAT LOAD SUMMARY TABLE (bottom)
+══════════════════════════════════════════════════════ -->
+<rect x="20" y="490" width="880" height="94" fill="#fafafa" stroke="#ccc" stroke-width="0.8" rx="2"/>
+
+<!-- Table header -->
+<text x="460" y="507" text-anchor="middle" font-size="9" font-weight="600" fill="#555" letter-spacing="0.5">THERMAL LOAD SUMMARY</text>
+<line x1="30" y1="512" x2="890" y2="512" stroke="#ccc" stroke-width="0.8"/>
+
+<!-- Column headers -->
+<text x="100" y="524" text-anchor="middle" font-size="8.5" font-weight="600" fill="#555">LOOP</text>
+<text x="310" y="524" text-anchor="middle" font-size="8.5" font-weight="600" fill="#555">SOURCE</text>
+<text x="510" y="524" text-anchor="middle" font-size="8.5" font-weight="600" fill="#555">COOLANT TYPE</text>
+<text x="680" y="524" text-anchor="middle" font-size="8.5" font-weight="600" fill="#555">Q̇ PEAK (kW)</text>
+<text x="820" y="524" text-anchor="middle" font-size="8.5" font-weight="600" fill="#555">Q̇ AVG (kW)</text>
+<line x1="30" y1="528" x2="890" y2="528" stroke="#eee" stroke-width="0.8"/>
+
+<!-- Data rows -->
+<text x="100" y="541" text-anchor="middle" font-size="8.5" fill="#1a4fa3" font-weight="600">1 — ICE COOLANT</text>
+<text x="310" y="541" text-anchor="middle" font-size="8.5" fill="#333">Turbocharged V6</text>
+<text x="510" y="541" text-anchor="middle" font-size="8.5" fill="#333">Water-glycol</text>
+<text x="680" y="541" text-anchor="middle" font-size="8.5" fill="#333">150</text>
+<text x="820" y="541" text-anchor="middle" font-size="8.5" fill="#333">150</text>
+
+<text x="100" y="554" text-anchor="middle" font-size="8.5" fill="#a33a1a" font-weight="600">2 — BATTERY</text>
+<text x="310" y="554" text-anchor="middle" font-size="8.5" fill="#333">NMC 180S2P pack</text>
+<text x="510" y="554" text-anchor="middle" font-size="8.5" fill="#333">Liquid cold plates</text>
+<text x="680" y="554" text-anchor="middle" font-size="8.5" fill="#333">131</text>
+<text x="820" y="554" text-anchor="middle" font-size="8.5" fill="#333">61</text>
+
+<text x="100" y="567" text-anchor="middle" font-size="8.5" fill="#1a7a3a" font-weight="600">3 — INTERCOOLER</text>
+<text x="310" y="567" text-anchor="middle" font-size="8.5" fill="#333">Turbo charge air</text>
+<text x="510" y="567" text-anchor="middle" font-size="8.5" fill="#333">Water-air</text>
+<text x="680" y="567" text-anchor="middle" font-size="8.5" fill="#333">139</text>
+<text x="820" y="567" text-anchor="middle" font-size="8.5" fill="#333">139</text>
+
+<text x="100" y="580" text-anchor="middle" font-size="8.5" fill="#7a1a9a" font-weight="600">4 — ELECTRIC</text>
+<text x="310" y="580" text-anchor="middle" font-size="8.5" fill="#333">MGU-K + Inverter + Turbo brg.</text>
+<text x="510" y="580" text-anchor="middle" font-size="8.5" fill="#333">Oil-spray / direct liquid</text>
+<text x="680" y="580" text-anchor="middle" font-size="8.5" fill="#333">33</text>
+<text x="820" y="580" text-anchor="middle" font-size="8.5" fill="#333">33</text>
+
+<!-- Total line -->
+<line x1="600" y1="582" x2="890" y2="582" stroke="#ccc" stroke-width="0.8"/>
+<text x="680" y="592" text-anchor="middle" font-size="8.5" font-weight="600" fill="#111">454 kW</text>
+<text x="820" y="592" text-anchor="middle" font-size="8.5" font-weight="600" fill="#111">383 kW</text>
+<text x="620" y="592" text-anchor="end"   font-size="8.5" font-weight="600" fill="#555">TOTAL →</text>
+
+<!-- OUTER BOX -->
+<rect x="4" y="4" width="912" height="484" fill="none" stroke="#ccc" stroke-width="0.8"/>
+
+<!-- LEGEND STRIP (inside outer box, top-right corner) -->
+<line x1="30"  y1="20" x2="62"  y2="20" stroke="#111" stroke-width="1.6" marker-end="url(#a)"/>
+<text x="67"  y="24" font-size="8.5" fill="#333">Flow (forward)</text>
+<line x1="175" y1="20" x2="207" y2="20" stroke="#888" stroke-width="1.3" stroke-dasharray="5,3" marker-end="url(#ag)"/>
+<text x="212" y="24" font-size="8.5" fill="#888">Coolant return</text>
+
+</svg>
+
+<div class="footnote">
+  All four loops are hydraulically isolated; no cross-contamination between circuits.
+  Loops 1 and 3 share the primary and secondary sidepod cores respectively.
+  Loop 2 operates at lower temperature to maintain NMC cell temperature below 45°C.
+  Loop 4 oil-spray cools MGU-K stator and rotor; direct liquid plate cools SiC MOSFET baseplate (T<sub>j,max</sub> = 175°C).
+  Peak total rejection 454 kW; average 383 kW. ICE exhaust accounts for remaining ~150 kW not captured in coolant loops.
+</div>
+
+</body>
+</html>

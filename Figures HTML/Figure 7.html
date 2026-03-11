@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Figure 7 — SVPWM Voltage Vector Hexagon</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Source+Code+Pro:wght@400;600&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#fff; font-family:'EB Garamond',Georgia,serif; color:#111; padding:40px 48px; }
+  .fig-label   { font-family:'Source Code Pro',monospace; font-size:12px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:4px; }
+  .fig-caption { font-size:13.5px; font-style:italic; color:#333; margin-bottom:28px; line-height:1.6; max-width:820px; }
+  .footnote    { margin-top:18px; font-size:11.5px; font-style:italic; color:#555; line-height:1.7; max-width:820px; }
+  svg { display:block; }
+</style>
+</head>
+<body>
+
+<div class="fig-label">Figure 7</div>
+<div class="fig-caption">
+  Space Vector PWM (SVPWM) Voltage Vector Hexagon with Sector Identification — 3-Phase SiC Inverter,
+  648 V DC Bus. Six active vectors V<tspan>&#x2081;</tspan>–V<tspan>&#x2086;</tspan> and two zero vectors V<tspan>&#x2080;</tspan>(000), V<tspan>&#x2087;</tspan>(111).
+  Reference vector V<sub>ref</sub> synthesised by time-weighted combination of adjacent sector vectors.
+</div>
+
+<!--
+  Geometry:
+    Centre:  cx=400, cy=280
+    Radius (active vectors): R=190
+    Hexagon vertices at 0°,60°,120°,180°,240°,300° from +α axis
+    V1(100)=0°  V2(110)=60°  V3(010)=120°  V4(011)=180°  V5(001)=240°  V6(101)=300°
+    cos/sin values (R=190):
+      0°:   (190,   0)
+      60°:  ( 95, 164.5)
+      120°: (-95, 164.5)
+      180°: (-190,  0)
+      240°: (-95,-164.5)
+      300°: ( 95,-164.5)
+-->
+
+<svg width="820" height="580" viewBox="0 0 820 580" xmlns="http://www.w3.org/2000/svg">
+<defs>
+  <!-- Solid arrowhead -->
+  <marker id="arr" markerWidth="7" markerHeight="6" refX="7" refY="3" orient="auto">
+    <polygon points="0 0,7 3,0 6" fill="#111"/>
+  </marker>
+  <!-- Axis arrowhead -->
+  <marker id="axarr" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+    <polygon points="0 0,8 3,0 6" fill="#111"/>
+  </marker>
+  <!-- Grey arrowhead for Vref -->
+  <marker id="refarr" markerWidth="7" markerHeight="6" refX="7" refY="3" orient="auto">
+    <polygon points="0 0,7 3,0 6" fill="#444"/>
+  </marker>
+  <!-- Sector fill patterns — alternating light greys -->
+  <style>
+    .sector-odd  { fill:#f7f7f7; stroke:#bbb; stroke-width:0.8; }
+    .sector-even { fill:#efefef; stroke:#bbb; stroke-width:0.8; }
+    .hex-border  { fill:none; stroke:#111; stroke-width:1.6; }
+    .vec-line    { stroke:#111; stroke-width:2; }
+    .axis-line   { stroke:#111; stroke-width:1.2; }
+    .vec-label   { font-family:'Source Code Pro',monospace; font-size:13px; font-weight:600; fill:#111; }
+    .sw-label    { font-family:'Source Code Pro',monospace; font-size:10px; fill:#444; }
+    .sector-num  { font-family:'EB Garamond',Georgia,serif; font-size:15px; font-style:italic; fill:#888; font-weight:600; }
+    .axis-label  { font-family:'Source Code Pro',monospace; font-size:12px; font-style:italic; fill:#111; font-weight:600; }
+    .origin-label{ font-family:'Source Code Pro',monospace; font-size:10px; fill:#666; }
+  </style>
+</defs>
+
+<!-- cx=400 cy=280 R=190 -->
+
+<!-- ═══ SECTOR FILLS ═══ -->
+<!-- Sector I:   V1(0°)  → V2(60°)   polygon: center + V1 + V2 -->
+<polygon class="sector-odd"  points="400,280  590,280  495,115.5"/>
+<!-- Sector II:  V2(60°) → V3(120°)  polygon: center + V2 + V3 -->
+<polygon class="sector-even" points="400,280  495,115.5  305,115.5"/>
+<!-- Sector III: V3(120°)→ V4(180°) -->
+<polygon class="sector-odd"  points="400,280  305,115.5  210,280"/>
+<!-- Sector IV:  V4(180°)→ V5(240°) -->
+<polygon class="sector-even" points="400,280  210,280  305,444.5"/>
+<!-- Sector V:   V5(240°)→ V6(300°) -->
+<polygon class="sector-odd"  points="400,280  305,444.5  495,444.5"/>
+<!-- Sector VI:  V6(300°)→ V1(0°)  -->
+<polygon class="sector-even" points="400,280  495,444.5  590,280"/>
+
+<!-- ═══ HEXAGON BORDER ═══ -->
+<polygon class="hex-border" points="590,280  495,115.5  305,115.5  210,280  305,444.5  495,444.5"/>
+
+<!-- ═══ SECTOR DIVIDER LINES (dashed, centre to vertices) ═══ -->
+<line x1="400" y1="280" x2="590" y2="280"   stroke="#ccc" stroke-width="0.8" stroke-dasharray="5,4"/>
+<line x1="400" y1="280" x2="495" y2="115.5" stroke="#ccc" stroke-width="0.8" stroke-dasharray="5,4"/>
+<line x1="400" y1="280" x2="305" y2="115.5" stroke="#ccc" stroke-width="0.8" stroke-dasharray="5,4"/>
+<line x1="400" y1="280" x2="210" y2="280"   stroke="#ccc" stroke-width="0.8" stroke-dasharray="5,4"/>
+<line x1="400" y1="280" x2="305" y2="444.5" stroke="#ccc" stroke-width="0.8" stroke-dasharray="5,4"/>
+<line x1="400" y1="280" x2="495" y2="444.5" stroke="#ccc" stroke-width="0.8" stroke-dasharray="5,4"/>
+
+<!-- ═══ COORDINATE AXES ═══ -->
+<!-- α-axis (horizontal, extends beyond hexagon) -->
+<line x1="155" y1="280" x2="640" y2="280" class="axis-line" marker-end="url(#axarr)"/>
+<!-- β-axis (vertical) -->
+<line x1="400" y1="510" x2="400" y2="60"  class="axis-line" marker-end="url(#axarr)"/>
+
+<!-- Axis labels -->
+<text x="650" y="285" class="axis-label">α</text>
+<text x="405" y="55"  class="axis-label">β</text>
+
+<!-- Origin dot -->
+<circle cx="400" cy="280" r="3.5" fill="#111"/>
+<text x="378" y="298" class="origin-label">O</text>
+
+<!-- ═══ ACTIVE VOLTAGE VECTORS ═══ -->
+<!-- V1 (100)  →  (590, 280)  angle=0° -->
+<line x1="400" y1="280" x2="583" y2="280" class="vec-line" marker-end="url(#arr)"/>
+
+<!-- V2 (110)  →  (495, 115.5)  angle=60° -->
+<line x1="400" y1="280" x2="489" y2="120.5" class="vec-line" marker-end="url(#arr)"/>
+
+<!-- V3 (010)  →  (305, 115.5)  angle=120° -->
+<line x1="400" y1="280" x2="311" y2="120.5" class="vec-line" marker-end="url(#arr)"/>
+
+<!-- V4 (011)  →  (210, 280)  angle=180° -->
+<line x1="400" y1="280" x2="217" y2="280" class="vec-line" marker-end="url(#arr)"/>
+
+<!-- V5 (001)  →  (305, 444.5)  angle=240° -->
+<line x1="400" y1="280" x2="311" y2="439.5" class="vec-line" marker-end="url(#arr)"/>
+
+<!-- V6 (101)  →  (495, 444.5)  angle=300° -->
+<line x1="400" y1="280" x2="489" y2="439.5" class="vec-line" marker-end="url(#arr)"/>
+
+<!-- ═══ VECTOR LABELS & SWITCHING STATES ═══ -->
+<!-- V1 (100) — right of tip -->
+<text x="597" y="272" class="vec-label">V<tspan dy="3" font-size="9">1</tspan></text>
+<text x="597" y="288" class="sw-label">(100)</text>
+
+<!-- V2 (110) — upper right -->
+<text x="499" y="105" class="vec-label">V<tspan dy="3" font-size="9">2</tspan></text>
+<text x="499" y="120" class="sw-label">(110)</text>
+
+<!-- V3 (010) — upper left -->
+<text x="262" y="105" class="vec-label">V<tspan dy="3" font-size="9">3</tspan></text>
+<text x="256" y="120" class="sw-label">(010)</text>
+
+<!-- V4 (011) — left of tip -->
+<text x="168" y="272" class="vec-label">V<tspan dy="3" font-size="9">4</tspan></text>
+<text x="162" y="288" class="sw-label">(011)</text>
+
+<!-- V5 (001) — lower left -->
+<text x="256" y="462" class="vec-label">V<tspan dy="3" font-size="9">5</tspan></text>
+<text x="256" y="477" class="sw-label">(001)</text>
+
+<!-- V6 (101) — lower right -->
+<text x="499" y="462" class="vec-label">V<tspan dy="3" font-size="9">6</tspan></text>
+<text x="499" y="477" class="sw-label">(101)</text>
+
+<!-- ═══ ZERO VECTORS at centre ═══ -->
+<circle cx="400" cy="280" r="6" fill="#fff" stroke="#111" stroke-width="1.4"/>
+<text x="354" y="275" class="sw-label" font-size="10px" font-family="Source Code Pro,monospace" fill="#555">V<tspan dy="2" font-size="8">0</tspan><tspan dy="-2">(000)</tspan></text>
+<text x="354" y="289" class="sw-label" font-size="10px" font-family="Source Code Pro,monospace" fill="#555">V<tspan dy="2" font-size="8">7</tspan><tspan dy="-2">(111)</tspan></text>
+
+<!-- ═══ SECTOR NUMBERS ═══ -->
+<text x="524" y="222" class="sector-num">I</text>
+<text x="390" y="160" class="sector-num">II</text>
+<text x="256" y="222" class="sector-num">III</text>
+<text x="256" y="356" class="sector-num">IV</text>
+<text x="390" y="406" class="sector-num">V</text>
+<text x="524" y="356" class="sector-num">VI</text>
+
+<!-- ═══ SAMPLE REFERENCE VECTOR Vref in Sector I ═══ -->
+<!-- Vref at angle ~25°, magnitude ~0.75R = 142.5 -->
+<!-- tip: cx + 142.5*cos(25°) = 400+129.2=529.2, cy - 142.5*sin(25°) = 280-60.2=219.8 -->
+<line x1="400" y1="280" x2="525" y2="222" stroke="#444" stroke-width="1.8"
+      stroke-dasharray="6,3" marker-end="url(#refarr)"/>
+<text x="540" y="210" font-family="Source Code Pro,monospace" font-size="11" font-weight="600" font-style="italic" fill="#333">V<tspan dy="3" font-size="8">ref</tspan></text>
+
+<!-- Angle arc for Vref -->
+<path d="M 440,280 A 40,40 0 0,0 422.5,244.3" fill="none" stroke="#666" stroke-width="0.9" stroke-dasharray="3,3"/>
+<text x="447" y="264" font-family="Source Code Pro,monospace" font-size="9" font-style="italic" fill="#666">θ</text>
+
+<!-- T1/T2 projection lines (dashed, showing decomposition) -->
+<!-- Project Vref onto V1 direction (horizontal): from tip down to α-axis -->
+<line x1="525" y1="222" x2="525" y2="280" stroke="#999" stroke-width="0.9" stroke-dasharray="4,3"/>
+<!-- Project Vref onto V2 direction: from tip to V2 axis direction -->
+<line x1="525" y1="222" x2="495" y2="115.5" stroke="#999" stroke-width="0.9" stroke-dasharray="4,3"/>
+
+<!-- T1, T2 timing labels -->
+<text x="532" y="254" font-family="Source Code Pro,monospace" font-size="9" font-style="italic" fill="#888">T<tspan dy="2" font-size="7">2</tspan></text>
+<text x="517" y="178" font-family="Source Code Pro,monospace" font-size="9" font-style="italic" fill="#888">T<tspan dy="2" font-size="7">1</tspan></text>
+
+<!-- ═══ MAGNITUDE SCALE ARC ═══ -->
+<!-- Arc at R=190 showing |V_dc * 2/3| -->
+<path d="M 590,280 A 190,190 0 0,0 495,115.5" fill="none" stroke="#bbb" stroke-width="0.8" stroke-dasharray="3,3"/>
+<text x="608" y="205" font-family="Source Code Pro,monospace" font-size="9" fill="#999">|V| = ²⁄₃·V<tspan dy="2" font-size="7">dc</tspan></text>
+
+<!-- ═══ OUTER BOUNDING BOX ═══ -->
+<rect x="4" y="4" width="812" height="572" fill="none" stroke="#ddd" stroke-width="0.8"/>
+
+<!-- ═══ LEGEND BOX (bottom right) ═══ -->
+<rect x="590" y="480" width="218" height="88" fill="#fafafa" stroke="#ccc" stroke-width="1"/>
+<text x="700" y="496" text-anchor="middle" font-family="Source Code Pro,monospace" font-size="9" font-weight="600" letter-spacing="0.5" fill="#555">LEGEND</text>
+<!-- Active vector -->
+<line x1="605" y1="511" x2="638" y2="511" stroke="#111" stroke-width="2" marker-end="url(#arr)"/>
+<text x="645" y="515" font-family="Source Code Pro,monospace" font-size="9" fill="#333">Active vector V<tspan dy="2" font-size="7">n</tspan></text>
+<!-- Vref -->
+<line x1="605" y1="529" x2="638" y2="529" stroke="#444" stroke-width="1.8" stroke-dasharray="6,3" marker-end="url(#refarr)"/>
+<text x="645" y="533" font-family="Source Code Pro,monospace" font-size="9" fill="#333">Reference V<tspan dy="2" font-size="7">ref</tspan></text>
+<!-- Projection -->
+<line x1="605" y1="547" x2="638" y2="547" stroke="#999" stroke-width="0.9" stroke-dasharray="4,3"/>
+<text x="645" y="551" font-family="Source Code Pro,monospace" font-size="9" fill="#333">Vector projection</text>
+<!-- Zero vectors -->
+<circle cx="621" cy="563" r="5" fill="#fff" stroke="#111" stroke-width="1.4"/>
+<text x="645" y="567" font-family="Source Code Pro,monospace" font-size="9" fill="#333">Zero vectors V<tspan dy="2" font-size="7">0</tspan><tspan dy="-2">, V</tspan><tspan dy="2" font-size="7">7</tspan></text>
+
+</svg>
+
+<div class="footnote">
+  SVPWM hexagon for 3-phase SiC inverter (648 V DC bus, f<sub>sw</sub> = 20 kHz).
+  Active vectors V<sub>1</sub>–V<sub>6</sub> have magnitude ⅔·V<sub>dc</sub> and are separated by 60° in the αβ stationary frame.
+  Zero vectors V<sub>0</sub>(000) and V<sub>7</sub>(111) lie at the origin.
+  Reference vector V<sub>ref</sub> in Sector I is synthesised by time-weighting adjacent vectors:
+  V<sub>ref</sub>·T<sub>s</sub> = T<sub>1</sub>·V<sub>1</sub> + T<sub>2</sub>·V<sub>2</sub> + T<sub>0</sub>·V<sub>0,7</sub>,
+  where T<sub>1</sub> + T<sub>2</sub> + T<sub>0</sub> = T<sub>s</sub> (switching period).
+  Switching states shown as (S<sub>a</sub>S<sub>b</sub>S<sub>c</sub>) per phase leg.
+</div>
+
+</body>
+</html>

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.3.9)  10 MAR 2026 20:07
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.3.9)  12 MAR 2026 02:28
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -234,6 +234,26 @@ LaTeX Info: Redefining \Relbar on input line 970.
 LaTeX Info: Redefining \[ on input line 2950.
 LaTeX Info: Redefining \] on input line 2951.
 )
+(/usr/local/texlive/2026/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 2024/12/31 v1.2e Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/usr/local/texlive/2026/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2024/08/06 v1.4g Standard LaTeX Graphics (DPC,SPQR)
+
+(/usr/local/texlive/2026/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 2023/12/02 v1.11 sin cos tan (DPC)
+)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: pdftex.def on input line 106.
+
+(/usr/local/texlive/2026/texmf-dist/tex/latex/graphics-def/pdftex.def
+File: pdftex.def 2025/09/29 v1.2d Graphics/color driver for pdftex
+))
+\Gin@req@height=\dimen195
+\Gin@req@width=\dimen196
+)
 (/usr/local/texlive/2026/texmf-dist/tex/latex/hyperref/hyperref.sty
 Package: hyperref 2026-01-29 v7.01p Hypertext links for LaTeX
 
@@ -285,7 +305,7 @@ Package: etoolbox 2025/10/02 v2.5m e-TeX tools for LaTeX (JAW)
 Package: stringenc 2019/11/29 v1.12 Convert strings between diff. encodings (HO
 )
 )
-\@linkdim=\dimen195
+\@linkdim=\dimen197
 \Hy@linkcounter=\count316
 \Hy@pagecounter=\count317
 
@@ -318,7 +338,7 @@ Package hyperref Info: Bookmarks ON on input line 4468.
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
 LaTeX Info: Redefining \url on input line 4807.
-\XeTeXLinkMargin=\dimen196
+\XeTeXLinkMargin=\dimen198
 
 (/usr/local/texlive/2026/texmf-dist/tex/generic/bitset/bitset.sty
 Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
@@ -328,8 +348,8 @@ Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
 )
 ))
 \Fld@menulength=\count320
-\Field@Width=\dimen197
-\Fld@charsize=\dimen198
+\Field@Width=\dimen199
+\Fld@charsize=\dimen256
 Package hyperref Info: Hyper figures OFF on input line 6084.
 Package hyperref Info: Link nesting OFF on input line 6089.
 Package hyperref Info: Hyper index ON on input line 6092.
@@ -370,24 +390,24 @@ File: l3backend-pdftex.def 2025-10-09 L3 backend support: PDF output (pdfTeX)
 (./main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 17.
-LaTeX Font Info:    ... okay on input line 17.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 17.
-LaTeX Font Info:    ... okay on input line 17.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 17.
-LaTeX Font Info:    ... okay on input line 17.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 17.
-LaTeX Font Info:    ... okay on input line 17.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 17.
-LaTeX Font Info:    ... okay on input line 17.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 17.
-LaTeX Font Info:    ... okay on input line 17.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 17.
-LaTeX Font Info:    ... okay on input line 17.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 17.
-LaTeX Font Info:    ... okay on input line 17.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 17.
-LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -423,7 +443,30 @@ LaTeX Font Info:    ... okay on input line 17.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-Package hyperref Info: Link coloring OFF on input line 17.
+(/usr/local/texlive/2026/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count327
+\scratchdimen=\dimen257
+\scratchbox=\box103
+\nofMPsegments=\count328
+\nofMParguments=\count329
+\everyMPshowfont=\toks28
+\MPscratchCnt=\count330
+\MPscratchDim=\dimen258
+\MPnumerator=\count331
+\makeMPintoPDFobject=\count332
+\everyMPtoPDFconversion=\toks29
+) (/usr/local/texlive/2026/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
+85.
+
+(/usr/local/texlive/2026/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
+e
+))
+Package hyperref Info: Link coloring OFF on input line 18.
+
 (./main.out) (./main.out)
 \@outlinefile=\write3
 \openout3 = `main.out'.
@@ -474,17 +517,27 @@ LaTeX Warning: Citation `FIA_2026_Technical_Regulations' on page 3 undefined on
 Overfull \vbox (33.24313pt too high) has occurred while \output is active []
 
 
-[3]) (./architecture.tex [4]
-Underfull \hbox (badness 5519) in paragraph at lines 42--42
+[3]) (./architecture.tex
+<Figures Images/Figure 1.png, id=357, 1122.1925pt x 628.3475pt>
+File: Figures Images/Figure 1.png Graphic file (type png)
+<use Figures Images/Figure 1.png>
+Package pdftex.def Info: Figures Images/Figure 1.png  used on input line 35.
+(pdftex.def)             Requested size: 452.9679pt x 253.62602pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+Underfull \hbox (badness 5519) in paragraph at lines 41--41
 []\OT1/cmr/bx/n/14.4 Dimensional Con-straints
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 54--54
+[4]
+Underfull \hbox (badness 10000) in paragraph at lines 53--53
 []\OT1/cmr/bx/n/14.4 Aerodynamic Ar-chi-tec-
  []
 
-[5]) (./aerodynamics.tex
+[5 <./Figures Images/Figure 1.png>]) (./aerodynamics.tex
 
 LaTeX Warning: Citation `FIA_2026_Chassis_Regulations' on page 6 undefined on i
 nput line 4.
@@ -497,88 +550,103 @@ LaTeX Warning: Citation `FIA_2026_Technical_Regulations' on page 6 undefined on
 LaTeX Warning: Citation `FIA_2026_Chassis_Regulations' on page 6 undefined on i
 nput line 9.
 
-
-LaTeX Warning: Citation `FIA_2026_Chassis_Regulations' on page 6 undefined on i
-nput line 12.
-
 [6]
 
 LaTeX Warning: Citation `FIA_2026_Chassis_Regulations' on page 7 undefined on i
-nput line 47.
+nput line 12.
+
+<Figures Images/Figure 2.png, id=378, 906.38625pt x 549.05125pt>
+File: Figures Images/Figure 2.png Graphic file (type png)
+<use Figures Images/Figure 2.png>
+Package pdftex.def Info: Figures Images/Figure 2.png  used on input line 19.
+(pdftex.def)             Requested size: 452.9679pt x 274.3909pt.
+
+LaTeX Warning: `h' float specifier changed to `ht'.
 
 
-LaTeX Warning: Citation `FIA_2026_Technical_Regulations' on page 7 undefined on
- input line 52.
+LaTeX Warning: Citation `FIA_2026_Chassis_Regulations' on page 7 undefined on i
+nput line 46.
 
 [7]
 
-LaTeX Warning: Citation `FIA_2026_Chassis_Regulations' on page 8 undefined on i
-nput line 57.
-
-
 LaTeX Warning: Citation `FIA_2026_Technical_Regulations' on page 8 undefined on
- input line 59.
-
-) (./powerunit.tex [8]
-
-LaTeX Warning: Citation `FIA_2026_PU_Regulations' on page 9 undefined on input 
-line 4.
+ input line 51.
 
 
-LaTeX Warning: Citation `FIA_2026_PU_Regulations' on page 9 undefined on input 
-line 8.
+LaTeX Warning: Citation `FIA_2026_Chassis_Regulations' on page 8 undefined on i
+nput line 56.
+
+[8 <./Figures Images/Figure 2.png>]
+
+LaTeX Warning: Citation `FIA_2026_Technical_Regulations' on page 9 undefined on
+ input line 58.
+
+) (./powerunit.tex [9]
+
+LaTeX Warning: Citation `FIA_2026_PU_Regulations' on page 10 undefined on input
+ line 4.
 
 
-LaTeX Warning: Citation `FIA_2026_PU_Regulations' on page 9 undefined on input 
-line 10.
+LaTeX Warning: Citation `FIA_2026_PU_Regulations' on page 10 undefined on input
+ line 8.
 
 
-LaTeX Warning: Citation `FIA_2026_PU_Regulations' on page 9 undefined on input 
-line 34.
+LaTeX Warning: Citation `FIA_2026_PU_Regulations' on page 10 undefined on input
+ line 10.
+
+
+LaTeX Warning: Citation `FIA_2026_PU_Regulations' on page 10 undefined on input
+ line 34.
 
 
 Underfull \hbox (badness 5288) in paragraph at lines 34--35
 []\OT1/cmr/m/n/12 Because the fuel is par-tially pre-
  []
 
-[9]
-
-LaTeX Warning: Citation `FIA_2026_PU_Regulations' on page 10 undefined on input
- line 48.
-
-
-LaTeX Warning: Citation `FIA_2026_PU_Regulations' on page 10 undefined on input
- line 56.
-
-
-LaTeX Warning: Citation `pmsm_control_lit' on page 10 undefined on input line 5
-6.
-
 [10]
 
 LaTeX Warning: Citation `FIA_2026_PU_Regulations' on page 11 undefined on input
- line 83.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
+ line 48.
 
 
 LaTeX Warning: Citation `FIA_2026_PU_Regulations' on page 11 undefined on input
- line 128.
+ line 56.
+
+
+LaTeX Warning: Citation `pmsm_control_lit' on page 11 undefined on input line 5
+6.
 
 [11]
-Underfull \hbox (badness 6016) in paragraph at lines 132--133
+
+LaTeX Warning: Citation `FIA_2026_PU_Regulations' on page 12 undefined on input
+ line 83.
+
+<Figures Images/Figure 3.png, id=410, 821.0675pt x 527.9725pt>
+File: Figures Images/Figure 3.png Graphic file (type png)
+<use Figures Images/Figure 3.png>
+Package pdftex.def Info: Figures Images/Figure 3.png  used on input line 98.
+(pdftex.def)             Requested size: 452.9679pt x 291.27194pt.
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[12 <./Figures Images/Figure 3.png>]
+
+LaTeX Warning: Citation `FIA_2026_PU_Regulations' on page 13 undefined on input
+ line 127.
+
+
+Underfull \hbox (badness 6016) in paragraph at lines 131--132
 []\OT1/cmr/m/n/12 The over-all ef-fi-ciency of the tur-
  []
 
 ) (./energy.tex
 
-LaTeX Warning: Citation `FIA_2026_PU_Regulations' on page 12 undefined on input
+LaTeX Warning: Citation `FIA_2026_PU_Regulations' on page 13 undefined on input
  line 4.
 
-[12]
+[13]
 
-LaTeX Warning: Citation `nmc_chemistry_lit' on page 13 undefined on input line 
+LaTeX Warning: Citation `nmc_chemistry_lit' on page 14 undefined on input line 
 12.
 
 
@@ -587,179 +655,237 @@ Overfull \hbox (5.37411pt too wide) in paragraph at lines 14--14
  []
 
 
-LaTeX Warning: Citation `FIA_2026_PU_Regulations' on page 13 undefined on input
+LaTeX Warning: Citation `FIA_2026_PU_Regulations' on page 14 undefined on input
  line 16.
-
-[13]
-
-LaTeX Warning: Citation `battery_thermal_lit' on page 14 undefined on input lin
-e 119.
 
 [14]
 
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 149.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `superscript' on input line 149.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 149.
+LaTeX Warning: Citation `battery_thermal_lit' on page 15 undefined on input lin
+e 119.
 
 [15]
+<Figures Images/Figure 4.png, id=446, 896.34875pt x 520.94624pt>
+File: Figures Images/Figure 4.png Graphic file (type png)
+<use Figures Images/Figure 4.png>
+Package pdftex.def Info: Figures Images/Figure 4.png  used on input line 142.
+(pdftex.def)             Requested size: 452.9679pt x 263.25462pt.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 148.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `superscript' on input line 148.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 148.
+
+[16 <./Figures Images/Figure 4.png>]
+<Figures Images/Figure 5.1.png, id=460, 1333.98375pt x 288.07625pt>
+File: Figures Images/Figure 5.1.png Graphic file (type png)
+<use Figures Images/Figure 5.1.png>
+Package pdftex.def Info: Figures Images/Figure 5.1.png  used on input line 205.
+
+(pdftex.def)             Requested size: 452.9679pt x 97.81714pt.
+<Figures Images/Figure 5.2.png, id=461, 1333.98375pt x 217.81375pt>
+File: Figures Images/Figure 5.2.png Graphic file (type png)
+<use Figures Images/Figure 5.2.png>
+Package pdftex.def Info: Figures Images/Figure 5.2.png  used on input line 208.
+
+(pdftex.def)             Requested size: 452.9679pt x 73.9593pt.
+<Figures Images/Figure 5.3.png, id=462, 1336.995pt x 393.47pt>
+File: Figures Images/Figure 5.3.png Graphic file (type png)
+<use Figures Images/Figure 5.3.png>
+Package pdftex.def Info: Figures Images/Figure 5.3.png  used on input line 211.
+
+(pdftex.def)             Requested size: 452.9679pt x 133.30371pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 ) (./electrical.tex
 
-LaTeX Warning: Citation `FIA_2026_PU_Regulations' on page 16 undefined on input
+LaTeX Warning: Citation `FIA_2026_PU_Regulations' on page 17 undefined on input
  line 4.
 
 
-LaTeX Warning: Citation `sic_power_lit' on page 16 undefined on input line 8.
+LaTeX Warning: Citation `sic_power_lit' on page 17 undefined on input line 8.
 
-[16] [17]
+[17] [18 <./Figures Images/Figure 5.1.png> <./Figures Images/Figure 5.2.png> <.
+/Figures Images/Figure 5.3.png>] [19]
+<Figures Images/Figure 6.png, id=489, 901.3675pt x 491.8375pt>
+File: Figures Images/Figure 6.png Graphic file (type png)
+<use Figures Images/Figure 6.png>
+Package pdftex.def Info: Figures Images/Figure 6.png  used on input line 61.
+(pdftex.def)             Requested size: 452.9679pt x 247.16394pt.
 
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-Underfull \hbox (badness 7151) in paragraph at lines 68--68
+Underfull \hbox (badness 7151) in paragraph at lines 67--67
 []\OT1/cmr/bx/n/14.4 Field Ori-ented Con-trol
  []
 
 
-LaTeX Warning: Citation `pmsm_foc_lit' on page 18 undefined on input line 70.
+LaTeX Warning: Citation `pmsm_foc_lit' on page 20 undefined on input line 69.
 
-[18]
-Underfull \hbox (badness 10000) in paragraph at lines 107--107
+[20 <./Figures Images/Figure 6.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 106--106
 []\OT1/cmr/bx/n/14.4 Maximum Torque Per
  []
 
 
-LaTeX Warning: Citation `pmsm_foc_lit' on page 19 undefined on input line 109.
+LaTeX Warning: Citation `pmsm_foc_lit' on page 21 undefined on input line 108.
 
-[19]
-Underfull \hbox (badness 10000) in paragraph at lines 125--125
+
+Underfull \hbox (badness 10000) in paragraph at lines 124--124
 []\OT1/cmr/bx/n/14.4 Space Vec-tor PWM
  []
 
 
-LaTeX Warning: Citation `pmsm_foc_lit' on page 20 undefined on input line 127.
+LaTeX Warning: Citation `pmsm_foc_lit' on page 21 undefined on input line 126.
 
-[20]
+<Figures Images/Figure 7.png, id=500, 901.3675pt x 664.4825pt>
+File: Figures Images/Figure 7.png Graphic file (type png)
+<use Figures Images/Figure 7.png>
+Package pdftex.def Info: Figures Images/Figure 7.png  used on input line 131.
+(pdftex.def)             Requested size: 452.9679pt x 333.92352pt.
 
-LaTeX Warning: Citation `kalman_soc_lit' on page 21 undefined on input line 169
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[21] [22 <./Figures Images/Figure 7.png>]
+
+LaTeX Warning: Citation `kalman_soc_lit' on page 23 undefined on input line 167
 .
 
+<Figures Images/Figure 8.png, id=520, 938.50626pt x 599.23875pt>
+File: Figures Images/Figure 8.png Graphic file (type png)
+<use Figures Images/Figure 8.png>
+Package pdftex.def Info: Figures Images/Figure 8.png  used on input line 204.
+(pdftex.def)             Requested size: 452.9679pt x 289.22232pt.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[21]
 
-LaTeX Warning: Citation `FIA_2026_Technical_Regulations' on page 22 undefined o
-n input line 250.
+LaTeX Warning: Citation `FIA_2026_Technical_Regulations' on page 23 undefined o
+n input line 247.
 
-[22]) (./thermal.tex
+[23]) (./thermal.tex [24 <./Figures Images/Figure 8.png>]
 
-LaTeX Warning: Citation `FIA_2026_PU_Regulations' on page 23 undefined on input
+LaTeX Warning: Citation `FIA_2026_PU_Regulations' on page 25 undefined on input
  line 4.
 
-[23]
+[25]
 
-LaTeX Warning: Citation `battery_thermal_lit' on page 24 undefined on input lin
+LaTeX Warning: Citation `battery_thermal_lit' on page 26 undefined on input lin
 e 82.
 
-[24]
+[26]
 Underfull \hbox (badness 10000) in paragraph at lines 152--152
 []\OT1/cmr/bx/n/14.4 Turbocharger & In-ter-
  []
 
-[25]
+[27]
 Overfull \hbox (14.90254pt too wide) detected at line 192
 []
  []
 
+<Figures Images/Figure 9.png, id=569, 1144.275pt x 738.76pt>
+File: Figures Images/Figure 9.png Graphic file (type png)
+<use Figures Images/Figure 9.png>
+Package pdftex.def Info: Figures Images/Figure 9.png  used on input line 199.
+(pdftex.def)             Requested size: 452.9679pt x 292.4439pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 222--222
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 221--221
 []|\OT1/cmr/m/n/12 Water-glycol, pri-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 222--222
+Underfull \hbox (badness 10000) in paragraph at lines 221--221
 \OT1/cmr/m/n/12 mary side-pod
  []
 
 
-Underfull \hbox (badness 1226) in paragraph at lines 222--222
+Underfull \hbox (badness 1226) in paragraph at lines 221--221
 []|\OT1/cmr/m/n/12 Liquid cold plates,
  []
 
 
-Underfull \hbox (badness 1681) in paragraph at lines 222--222
+Underfull \hbox (badness 1681) in paragraph at lines 221--221
 \OT1/cmr/m/n/12 ded-i-cated di-elec-tric
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 222--222
+Underfull \hbox (badness 10000) in paragraph at lines 221--221
 []|\OT1/cmr/m/n/12 Oil-spray wind-ing
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 222--222
+Underfull \hbox (badness 10000) in paragraph at lines 221--221
 []|\OT1/cmr/m/n/12 Direct-contact liq-
  []
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-) (./electronics.tex [26]
+) (./electronics.tex
 
-LaTeX Warning: Citation `FIA_2026_Technical_Regulations' on page 27 undefined o
+LaTeX Warning: Citation `FIA_2026_Technical_Regulations' on page 28 undefined o
 n input line 4.
 
 
-LaTeX Warning: Citation `mclaren_ecu_lit' on page 27 undefined on input line 8.
+LaTeX Warning: Citation `mclaren_ecu_lit' on page 28 undefined on input line 8.
 
 
-[27]
+[28] [29 <./Figures Images/Figure 9.png>]
 
-LaTeX Warning: Citation `automotive_networks_lit' on page 28 undefined on input
+LaTeX Warning: Citation `automotive_networks_lit' on page 30 undefined on input
  line 27.
 
+[30]
 
-LaTeX Warning: Citation `FIA_2026_Technical_Regulations' on page 28 undefined o
+LaTeX Warning: Citation `FIA_2026_Technical_Regulations' on page 31 undefined o
 n input line 38.
 
-[28]
 
-LaTeX Warning: Citation `FIA_2026_Technical_Regulations' on page 29 undefined o
+LaTeX Warning: Citation `FIA_2026_Technical_Regulations' on page 31 undefined o
 n input line 54.
+
+[31]
+<Figures Images/Figure 10.png, id=594, 1001.7425pt x 681.54625pt>
+File: Figures Images/Figure 10.png Graphic file (type png)
+<use Figures Images/Figure 10.png>
+Package pdftex.def Info: Figures Images/Figure 10.png  used on input line 65.
+(pdftex.def)             Requested size: 452.9679pt x 308.18011pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[29]
-Underfull \hbox (badness 10000) in paragraph at lines 100--101
+
+Underfull \hbox (badness 10000) in paragraph at lines 99--100
 \OT1/cmr/m/n/12 The em-bed-ded firmware run-ning on
  []
 
-) (./chassis.tex
+) (./chassis.tex [32 <./Figures Images/Figure 10.png>]
 
-LaTeX Warning: Citation `FIA_2026_Chassis_Regulations' on page 30 undefined on 
+LaTeX Warning: Citation `FIA_2026_Chassis_Regulations' on page 33 undefined on 
 input line 4.
 
-[30]
 
-LaTeX Warning: Citation `cfrp_materials_lit' on page 31 undefined on input line
+LaTeX Warning: Citation `cfrp_materials_lit' on page 33 undefined on input line
  22.
 
+[33]
 
-LaTeX Warning: Citation `ti6al4v_specs_lit' on page 31 undefined on input line 
+LaTeX Warning: Citation `ti6al4v_specs_lit' on page 34 undefined on input line 
 26.
 
 
@@ -788,122 +914,134 @@ Underfull \hbox (badness 10000) in paragraph at lines 43--43
  []
 
 
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[31]
-
-LaTeX Warning: Citation `FIA_2026_Chassis_Regulations' on page 32 undefined on 
+LaTeX Warning: Citation `FIA_2026_Chassis_Regulations' on page 34 undefined on 
 input line 50.
 
-[32]
-Underfull \hbox (badness 10000) in paragraph at lines 84--84
+[34]
+<Figures Images/Figure 11.png, id=614, 1037.8775pt x 682.55pt>
+File: Figures Images/Figure 11.png Graphic file (type png)
+<use Figures Images/Figure 11.png>
+Package pdftex.def Info: Figures Images/Figure 11.png  used on input line 77.
+(pdftex.def)             Requested size: 452.9679pt x 297.89627pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 83--83
 []\OT1/cmr/bx/n/14.4 Hybrid Com-po-nent
  []
 
-
-Overfull \vbox (4.49573pt too high) has occurred while \output is active []
-
-
-Overfull \vbox (15.74573pt too high) has occurred while \output is active []
-
-
-[33]) (./suspension.tex [34]
+[35]) (./suspension.tex [36 <./Figures Images/Figure 11.png>] [37]
 Underfull \hbox (badness 10000) in paragraph at lines 50--50
 []\OT1/cmr/bx/n/14.4 Anti-Dive and Anti-
  []
 
-[35] [36]
+[38]
+<Figures Images/Figure 12.png, id=639, 1051.93pt x 734.745pt>
+File: Figures Images/Figure 12.png Graphic file (type png)
+<use Figures Images/Figure 12.png>
+Package pdftex.def Info: Figures Images/Figure 12.png  used on input line 83.
+(pdftex.def)             Requested size: 452.9679pt x 316.38263pt.
 
-LaTeX Warning: Citation `inerter_mechanics_lit' on page 37 undefined on input l
-ine 92.
 
+LaTeX Warning: Citation `inerter_mechanics_lit' on page 39 undefined on input l
+ine 91.
 
-Underfull \hbox (badness 10000) in paragraph at lines 102--103
+[39 <./Figures Images/Figure 12.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 101--102
 \OT1/cmr/m/n/12 Laplace sus-pen-sion trans-fer func-tion
  []
 
 
-Underfull \hbox (badness 10000) in alignment at lines 131--131
+Underfull \hbox (badness 10000) in alignment at lines 130--130
 [][][] 
  []
 
 ) (./simulation.tex
 
-LaTeX Warning: Citation `monza_circuit_data' on page 37 undefined on input line
+LaTeX Warning: Citation `monza_circuit_data' on page 40 undefined on input line
  4.
 
 
-LaTeX Warning: Citation `laptimesim_theory' on page 37 undefined on input line 
+LaTeX Warning: Citation `laptimesim_theory' on page 40 undefined on input line 
 8.
-
-[37]
-
-LaTeX Warning: Citation `pacejka_tire_lit' on page 38 undefined on input line 3
-7.
-
-[38]
-Underfull \hbox (badness 10000) in paragraph at lines 71--72
-[]\OT1/cmr/m/n/12 Contextually, the cur-rent ab-so-lute
- []
-
-
-Underfull \hbox (badness 6910) in paragraph at lines 79--80
-\OT1/cmr/m/n/12 rived from Reynolds-Averaged Navier-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 89--90
-[]\OT1/cmr/m/n/12 Engineers metic-u-lously tar-geted a
- []
-
-
-Overfull \vbox (5.7515pt too high) has occurred while \output is active []
-
-
-[39]
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-) (./manufacturing.tex
-
-LaTeX Warning: Citation `cfrp_manufacturing_lit' on page 40 undefined on input 
-line 8.
 
 [40]
 
-LaTeX Warning: Citation `battery_pack_assembly' on page 41 undefined on input l
-ine 16.
+LaTeX Warning: Citation `pacejka_tire_lit' on page 41 undefined on input line 3
+7.
+
+<Figures Images/Figure 16.png, id=654, 347.3778pt x 396.5214pt>
+File: Figures Images/Figure 16.png Graphic file (type png)
+<use Figures Images/Figure 16.png>
+Package pdftex.def Info: Figures Images/Figure 16.png  used on input line 48.
+(pdftex.def)             Requested size: 452.9679pt x 517.05086pt.
+
+Overfull \vbox (1.93958pt too high) has occurred while \output is active []
+
 
 [41]
+<Figures Images/Figure 15.png, id=665, 606.5862pt x 225.9642pt>
+File: Figures Images/Figure 15.png Graphic file (type png)
+<use Figures Images/Figure 15.png>
+Package pdftex.def Info: Figures Images/Figure 15.png  used on input line 79.
+(pdftex.def)             Requested size: 452.9679pt x 168.74176pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 89--90
+[]\OT1/cmr/m/n/12 Contextually, the cur-rent ab-so-lute
+ []
+
+[42 <./Figures Images/Figure 16.png (PNG copy)>]
+<Figures Images/Figure 13.png, id=671, 608.0316pt x 166.221pt>
+File: Figures Images/Figure 13.png Graphic file (type png)
+<use Figures Images/Figure 13.png>
+Package pdftex.def Info: Figures Images/Figure 13.png  used on input line 98.
+(pdftex.def)             Requested size: 452.9679pt x 123.83604pt.
+<Figures Images/Figure 14.png, id=672, 609.9588pt x 158.0304pt>
+File: Figures Images/Figure 14.png Graphic file (type png)
+<use Figures Images/Figure 14.png>
+Package pdftex.def Info: Figures Images/Figure 14.png  used on input line 105.
+(pdftex.def)             Requested size: 452.9679pt x 117.36023pt.
+
+Underfull \hbox (badness 6910) in paragraph at lines 113--114
+\OT1/cmr/m/n/12 rived from Reynolds-Averaged Navier-
+ []
+
+[43 <./Figures Images/Figure 15.png (PNG copy)> <./Figures Images/Figure 13.png
+ (PNG copy)>]
+Underfull \hbox (badness 10000) in paragraph at lines 123--124
+[]\OT1/cmr/m/n/12 Engineers metic-u-lously tar-geted a
+ []
+
+) (./manufacturing.tex [44 <./Figures Images/Figure 14.png (PNG copy)>]
+
+LaTeX Warning: Citation `cfrp_manufacturing_lit' on page 45 undefined on input 
+line 8.
+
+
+LaTeX Warning: Citation `battery_pack_assembly' on page 45 undefined on input l
+ine 16.
+
+
 Underfull \hbox (badness 5260) in paragraph at lines 26--27
 []\OT1/cmr/m/n/12 The stressed 590 mm lon-gi-tu-di-nal
  []
 
-[42]) (./conclusion.tex
+[45]) (./conclusion.tex [46]
 Underfull \hbox (badness 5189) in paragraph at lines 18--18
 []\OT1/cmr/bx/n/14.4 2026 as an In-flec-tion
  []
 
 
-LaTeX Warning: Citation `f1_hybrid_history' on page 43 undefined on input line 
+LaTeX Warning: Citation `f1_hybrid_history' on page 47 undefined on input line 
 20.
 
-[43]
 
-LaTeX Warning: Citation `cfd_methodology_lit' on page 44 undefined on input lin
+LaTeX Warning: Citation `cfd_methodology_lit' on page 47 undefined on input lin
 e 28.
 
-
-Overfull \vbox (2.2515pt too high) has occurred while \output is active []
-
-
-[44]) (./main.aux)
+[47]) [48] (./main.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
@@ -912,23 +1050,17 @@ L3 programming layer <2026-01-19>
 
 LaTeX Warning: There were undefined references.
 
-
-Package rerunfilecheck Warning: File `main.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `main.out':
-(rerunfilecheck)             Before: 087626F1085809414B9D3C0D4D73672B;14472
-(rerunfilecheck)             After:  DC730404438D94EFD0E23864D01B4858;15341.
+Package rerunfilecheck Info: File `main.out' has not changed.
+(rerunfilecheck)             Checksum: DC730404438D94EFD0E23864D01B4858;15341.
  ) 
 Here is how much of TeX's memory you used:
- 9790 strings out of 467525
- 150430 string characters out of 5418983
- 594623 words of memory out of 5000000
- 38349 multiletter control sequences out of 15000+600000
+ 10763 strings out of 467525
+ 168008 string characters out of 5418983
+ 611248 words of memory out of 5000000
+ 39289 multiletter control sequences out of 15000+600000
  634361 words of font info for 63 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,20n,79p,1248b,627s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,20n,79p,1248b,619s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
 ></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb>
 </usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb><
@@ -943,10 +1075,10 @@ ve/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texliv
 e/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/
 2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/20
 26/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on main.pdf (44 pages, 326373 bytes).
+Output written on main.pdf (48 pages, 2297655 bytes).
 PDF statistics:
- 749 PDF objects out of 1000 (max. 8388607)
- 668 compressed objects within 7 object streams
- 234 named destinations out of 1000 (max. 500000)
- 625 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 817 PDF objects out of 1000 (max. 8388607)
+ 700 compressed objects within 7 object streams
+ 238 named destinations out of 1000 (max. 500000)
+ 763 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Figure 1 — Vehicle Packaging Zone Map</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Source+Code+Pro:wght@400;600&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#fff; font-family:'EB Garamond',Georgia,serif; color:#111; padding:40px 48px; }
+  .fig-label   { font-family:'Source Code Pro',monospace; font-size:12px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:4px; }
+  .fig-caption { font-size:13.5px; font-style:italic; color:#333; margin-bottom:24px; line-height:1.6; max-width:920px; }
+  .footnote    { margin-top:16px; font-size:11.5px; font-style:italic; color:#555; line-height:1.7; max-width:920px; }
+</style>
+</head>
+<body>
+
+<div class="fig-label">Figure 1</div>
+<div class="fig-caption">
+  Full Vehicle Packaging Zone Map — Longitudinal Station Diagram.
+  All dimensions in millimetres from nose tip datum. Wheelbase: 3580 mm.
+  Overall length: 5125 mm. Total mass: 800 kg. Weight distribution: 45F / 55R.
+  CoG height: 270 mm. Scale: 1 px ≈ 6.4 mm.
+</div>
+
+<!--
+  SCALE: 5125 mm → 800 px  ⟹  1 px = 6.406 mm
+  px(mm) = 80 + mm × (800/5125)  =  80 + mm × 0.15610
+
+  KEY STATION px VALUES:
+    Nose tip (0 mm):            80
+    Front axle (900 mm):       220
+    Mono start (1050 mm):      244
+    Battery start (1100 mm):   252
+    Battery end (2650 mm):     494
+    Fuel start (2650 mm):      494
+    Fuel end (3050 mm):        556
+    ICE start (3050 mm):       556
+    ICE end (3650 mm):         650
+    MGU-K start (3650 mm):     650
+    MGU-K end (3850 mm):       681
+    Gearbox start (3850 mm):   681
+    Gearbox end (4440 mm):     773
+    Rear axle (4480 mm):       779
+    Tail (5125 mm):            880
+
+  CoG from nose: 900 + 0.45×3580 = 2511 mm → px = 472
+-->
+
+<svg width="920" height="520" viewBox="0 0 920 520"
+     xmlns="http://www.w3.org/2000/svg"
+     style="display:block; font-family:'Source Code Pro',monospace;">
+<defs>
+  <!-- CFRP hatch -->
+  <pattern id="cfrp" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+    <line x1="0" y1="0" x2="0" y2="6" stroke="#bbb" stroke-width="1.2"/>
+  </pattern>
+  <!-- Battery hatch -->
+  <pattern id="batt" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(30)">
+    <line x1="0" y1="0" x2="0" y2="6" stroke="#c8a830" stroke-width="1.3"/>
+  </pattern>
+  <!-- Fuel dots -->
+  <pattern id="fuel" width="5" height="5" patternUnits="userSpaceOnUse">
+    <circle cx="2.5" cy="2.5" r="1.1" fill="#aaa"/>
+  </pattern>
+  <!-- Dim arrow markers -->
+  <marker id="da"  markerWidth="6" markerHeight="5" refX="6" refY="2.5" orient="auto"><polygon points="0 0,6 2.5,0 5" fill="#666"/></marker>
+  <marker id="dal" markerWidth="6" markerHeight="5" refX="0" refY="2.5" orient="auto"><polygon points="6 0,0 2.5,6 5" fill="#666"/></marker>
+  <marker id="wt"  markerWidth="7" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0,7 3,0 6" fill="#111"/></marker>
+</defs>
+
+<!-- ═══════════════════════════════════════════
+     OVERALL LENGTH DIMENSION  (top, y=48)
+═══════════════════════════════════════════ -->
+<line x1="80"  y1="48" x2="80"  y2="54" stroke="#666" stroke-width="0.8"/>
+<line x1="880" y1="48" x2="880" y2="54" stroke="#666" stroke-width="0.8"/>
+<line x1="80"  y1="51" x2="880" y2="51" stroke="#666" stroke-width="0.8" marker-end="url(#da)" marker-start="url(#dal)"/>
+<text x="480" y="44" text-anchor="middle" font-size="9" font-weight="600" fill="#444">OVERALL LENGTH  5125 mm</text>
+
+<!-- ═══════════════════════════════════════════
+     WHEELBASE DIMENSION  (y=68)
+═══════════════════════════════════════════ -->
+<line x1="220" y1="60" x2="220" y2="72" stroke="#888" stroke-width="0.8"/>
+<line x1="779" y1="60" x2="779" y2="72" stroke="#888" stroke-width="0.8"/>
+<line x1="220" y1="66" x2="779" y2="66" stroke="#888" stroke-width="0.8" marker-end="url(#da)" marker-start="url(#dal)"/>
+<text x="499" y="62" text-anchor="middle" font-size="8.5" fill="#666">WHEELBASE  3580 mm</text>
+
+<!-- ═══════════════════════════════════════════
+     AXLE VERTICAL LINES  (run full height)
+═══════════════════════════════════════════ -->
+<line x1="220" y1="75" x2="220" y2="410" stroke="#111" stroke-width="1" stroke-dasharray="8,4"/>
+<line x1="779" y1="75" x2="779" y2="410" stroke="#111" stroke-width="1" stroke-dasharray="8,4"/>
+<text x="220" y="421" text-anchor="middle" font-size="8" fill="#555">FRONT AXLE</text>
+<text x="220" y="431" text-anchor="middle" font-size="8" fill="#777">Station 900</text>
+<text x="779" y="421" text-anchor="middle" font-size="8" fill="#555">REAR AXLE</text>
+<text x="779" y="431" text-anchor="middle" font-size="8" fill="#777">Station 4480</text>
+
+<!-- ═══════════════════════════════════════════
+     ZONE ROW A — BODYWORK / STRUCTURE  (y=82–152)
+     Height = 70px
+═══════════════════════════════════════════ -->
+
+<!-- A1: FRONT OVERHANG — nose + FW zone  x=80..220 -->
+<rect x="80"  y="82" width="140" height="70" fill="url(#cfrp)" stroke="#111" stroke-width="1.4" rx="1"/>
+<text x="150" y="108" text-anchor="middle" font-size="8.5" font-weight="600" fill="#111">NOSE</text>
+<text x="150" y="120" text-anchor="middle" font-size="8.5" font-weight="600" fill="#111">CONE</text>
+<text x="150" y="133" text-anchor="middle" font-size="7.5" fill="#555">+ Front Wing</text>
+<text x="150" y="144" text-anchor="middle" font-size="7.5" fill="#777">CFRP</text>
+
+<!-- A2: MONOCOQUE  x=220..494 -->
+<rect x="220" y="82" width="274" height="70" fill="url(#cfrp)" stroke="#111" stroke-width="1.8" rx="1"/>
+<text x="300" y="108" text-anchor="middle" font-size="9.5" font-weight="600" fill="#111">MONOCOQUE</text>
+<text x="300" y="122" text-anchor="middle" font-size="8.5" fill="#444">CFRP — Ti-6Al-4V halo mounts</text>
+<text x="300" y="134" text-anchor="middle" font-size="8"   fill="#555">Driver cell · crash structures</text>
+<text x="300" y="146" text-anchor="middle" font-size="7.5" fill="#777">1600 mm · t = 18 mm wall</text>
+
+<!-- A3: ICE FAIRING + GEARBOX SHROUD  x=494..773 -->
+<rect x="494" y="82" width="279" height="70" fill="#f0f0f0" stroke="#111" stroke-width="1.4" rx="1"/>
+<text x="633" y="108" text-anchor="middle" font-size="9.5" font-weight="600" fill="#111">REAR BODYWORK</text>
+<text x="633" y="122" text-anchor="middle" font-size="8.5" fill="#444">PU fairing · gearbox shroud</text>
+<text x="633" y="134" text-anchor="middle" font-size="8"   fill="#555">Sidepod trailing edge · diffuser</text>
+<text x="633" y="146" text-anchor="middle" font-size="7.5" fill="#777">Carbon-fibre composite</text>
+
+<!-- A4: REAR OVERHANG  x=773..880 -->
+<rect x="773" y="82" width="107" height="70" fill="url(#cfrp)" stroke="#111" stroke-width="1.4" rx="1"/>
+<text x="826" y="108" text-anchor="middle" font-size="8.5" font-weight="600" fill="#111">REAR</text>
+<text x="826" y="120" text-anchor="middle" font-size="8.5" font-weight="600" fill="#111">WING</text>
+<text x="826" y="133" text-anchor="middle" font-size="7.5" fill="#555">DRS</text>
+<text x="826" y="144" text-anchor="middle" font-size="7.5" fill="#777">CFRP</text>
+
+<!-- ROW A separator -->
+<line x1="80" y1="165" x2="880" y2="165" stroke="#ddd" stroke-width="0.6"/>
+
+<!-- ═══════════════════════════════════════════
+     ZONE ROW B — POWERTRAIN / INTERNALS  (y=175–280)
+     Height = 105px
+═══════════════════════════════════════════ -->
+
+<!-- B1: BATTERY TUB  x=220..494 -->
+<rect x="220" y="175" width="274" height="105" fill="url(#batt)" stroke="#c8a830" stroke-width="1.8" stroke-dasharray="6,3" rx="1"/>
+<text x="300" y="205" text-anchor="middle" font-size="10"  font-weight="600" fill="#7a5800">BATTERY TUB</text>
+<text x="300" y="220" text-anchor="middle" font-size="8.5" fill="#7a5800">648 V · 4 MJ · 180S2P</text>
+<text x="300" y="234" text-anchor="middle" font-size="8"   fill="#9a7020">360 NMC cells</text>
+<text x="300" y="248" text-anchor="middle" font-size="8"   fill="#9a7020">Liquid cold-plate floor</text>
+<text x="300" y="261" text-anchor="middle" font-size="7.5" fill="#aa8030">1550 mm long</text>
+<text x="300" y="272" text-anchor="middle" font-size="7.5" fill="#aa8030">Integrated CFRP tub</text>
+
+<!-- B2: FUEL TANK  x=494..556 -->
+<rect x="494" y="175" width="62" height="105" fill="url(#fuel)" stroke="#111" stroke-width="1.4" rx="1"/>
+<text x="525" y="213" text-anchor="middle" font-size="8.5" font-weight="600" fill="#111">FUEL</text>
+<text x="525" y="226" text-anchor="middle" font-size="8.5" font-weight="600" fill="#111">TANK</text>
+<text x="525" y="242" text-anchor="middle" font-size="8"   fill="#444">70 kg</text>
+<text x="525" y="255" text-anchor="middle" font-size="7.5" fill="#666">400 mm</text>
+<text x="525" y="267" text-anchor="middle" font-size="7"   fill="#888">FIA §6</text>
+
+<!-- B3: ICE V6  x=556..650 -->
+<rect x="556" y="175" width="94" height="105" fill="#fff" stroke="#111" stroke-width="1.8" rx="1"/>
+<text x="603" y="205" text-anchor="middle" font-size="9.5" font-weight="600" fill="#111">V6</text>
+<text x="603" y="218" text-anchor="middle" font-size="9.5" font-weight="600" fill="#111">TURBO</text>
+<text x="603" y="233" text-anchor="middle" font-size="8"   fill="#333">450 kW</text>
+<text x="603" y="246" text-anchor="middle" font-size="8"   fill="#555">15k RPM</text>
+<text x="603" y="259" text-anchor="middle" font-size="7.5" fill="#666">1600cc</text>
+<text x="603" y="271" text-anchor="middle" font-size="7.5" fill="#777">Stressed</text>
+
+<!-- B4: MGU-K  x=650..681 -->
+<rect x="650" y="175" width="31" height="105" fill="#111" stroke="#111" stroke-width="1.4" rx="1"/>
+<!-- Rotated text -->
+<text x="665" y="258" text-anchor="middle" font-size="7.5" font-weight="600" fill="#fff"
+      transform="rotate(-90,665,228)">MGU-K  350 kW</text>
+
+<!-- B5: GEARBOX  x=681..773 -->
+<rect x="681" y="175" width="92" height="105" fill="#ececec" stroke="#111" stroke-width="1.6" rx="1"/>
+<text x="727" y="205" text-anchor="middle" font-size="9.5" font-weight="600" fill="#111">GEAR-</text>
+<text x="727" y="218" text-anchor="middle" font-size="9.5" font-weight="600" fill="#111">BOX</text>
+<text x="727" y="233" text-anchor="middle" font-size="8"   fill="#333">8-speed</text>
+<text x="727" y="246" text-anchor="middle" font-size="8"   fill="#555">590 mm</text>
+<text x="727" y="259" text-anchor="middle" font-size="7.5" fill="#666">Semi-auto</text>
+<text x="727" y="271" text-anchor="middle" font-size="7.5" fill="#777">Carbon</text>
+
+<!-- B6: FRONT OVERHANG lower band  x=80..220  -->
+<rect x="80" y="175" width="140" height="105" fill="#f7f7f7" stroke="#ccc" stroke-width="1" rx="1"/>
+<text x="150" y="220" text-anchor="middle" font-size="8.5" fill="#aaa">Front</text>
+<text x="150" y="233" text-anchor="middle" font-size="8.5" fill="#aaa">suspension</text>
+<text x="150" y="246" text-anchor="middle" font-size="8.5" fill="#aaa">+ brake</text>
+<text x="150" y="259" text-anchor="middle" font-size="8.5" fill="#aaa">assembly</text>
+
+<!-- B7: REAR OVERHANG lower band  x=773..880 -->
+<rect x="773" y="175" width="107" height="105" fill="#f7f7f7" stroke="#ccc" stroke-width="1" rx="1"/>
+<text x="826" y="218" text-anchor="middle" font-size="8.5" fill="#aaa">Rear</text>
+<text x="826" y="231" text-anchor="middle" font-size="8.5" fill="#aaa">suspension</text>
+<text x="826" y="244" text-anchor="middle" font-size="8.5" fill="#aaa">+ diffuser</text>
+<text x="826" y="257" text-anchor="middle" font-size="8.5" fill="#aaa">assembly</text>
+
+<!-- ROW B separator -->
+<line x1="80" y1="295" x2="880" y2="295" stroke="#ddd" stroke-width="0.6"/>
+
+<!-- ═══════════════════════════════════════════
+     ZONE ROW C — SYSTEMS  (y=305–355)
+     Narrow band showing thermal / electrical routing
+═══════════════════════════════════════════ -->
+<rect x="80" y="305" width="800" height="50" fill="#fafafa" stroke="#ccc" stroke-width="0.8" rx="1"/>
+
+<!-- Sub-zones within systems band -->
+<!-- HV cabling zone: x=220..773 (within wheelbase) -->
+<rect x="220" y="308" width="553" height="14" fill="none" stroke="#8b0000" stroke-width="1" stroke-dasharray="5,3" rx="1"/>
+<text x="496" y="318" text-anchor="middle" font-size="7.5" font-weight="600" fill="#8b0000">HV CABLE ROUTE  648 V  (FIA §8.14 — min. 200 mm separation)</text>
+
+<!-- Cooling loop zones -->
+<rect x="252" y="326" width="242" height="24" fill="none" stroke="#1a4fa3" stroke-width="0.8" stroke-dasharray="4,2" rx="1"/>
+<text x="373" y="341" text-anchor="middle" font-size="7.5" fill="#1a4fa3">Loop 1/2: ICE + Battery coolant (sidepod radiators)</text>
+
+<rect x="494" y="326" width="62" height="24" fill="none" stroke="#1a7a3a" stroke-width="0.8" stroke-dasharray="4,2" rx="1"/>
+<text x="525" y="341" text-anchor="middle" font-size="7" fill="#1a7a3a">Loop 3</text>
+
+<rect x="556" y="326" width="215" height="24" fill="none" stroke="#7a1a9a" stroke-width="0.8" stroke-dasharray="4,2" rx="1"/>
+<text x="663" y="341" text-anchor="middle" font-size="7.5" fill="#7a1a9a">Loop 4: MGU-K / Inverter / Gearbox oil</text>
+
+<!-- Systems row label -->
+<text x="152" y="334" text-anchor="middle" font-size="8" fill="#aaa">SYSTEMS</text>
+
+<!-- ═══════════════════════════════════════════
+     CoG MARKER
+     px=472, sits between the two zone rows
+═══════════════════════════════════════════ -->
+<!-- Vertical CoG line -->
+<line x1="472" y1="75" x2="472" y2="295" stroke="#111" stroke-width="0.9" stroke-dasharray="5,3"/>
+<!-- CoG diamond at mid-height -->
+<polygon points="472,235 480,248 472,261 464,248" fill="#111"/>
+<!-- CoG label box -->
+<rect x="368" y="226" width="90" height="52" fill="#fff" stroke="#ccc" stroke-width="0.8" rx="1"/>
+<text x="374" y="238" font-size="8.5" font-weight="600" fill="#111">CoG</text>
+<text x="374" y="250" font-size="8"   fill="#444">45F / 55R</text>
+<text x="374" y="261" font-size="8"   fill="#555">h = 270 mm</text>
+<text x="374" y="272" font-size="7.5" fill="#777">x = 2511 mm</text>
+
+<!-- ═══════════════════════════════════════════
+     STATION DIMENSION CALLOUTS  (below row C)
+     Sub-dimensions for each zone
+═══════════════════════════════════════════ -->
+<line x1="80"  y1="368" x2="880" y2="368" stroke="#eee" stroke-width="0.6"/>
+
+<!-- Front overhang sub-dim -->
+<line x1="80"  y1="372" x2="80"  y2="380" stroke="#888" stroke-width="0.8"/>
+<line x1="220" y1="372" x2="220" y2="380" stroke="#888" stroke-width="0.8"/>
+<line x1="80"  y1="376" x2="220" y2="376" stroke="#888" stroke-width="0.8" marker-end="url(#da)" marker-start="url(#dal)"/>
+<text x="150" y="392" text-anchor="middle" font-size="8" fill="#666">900 mm</text>
+<text x="150" y="402" text-anchor="middle" font-size="7.5" fill="#888">F. overhang</text>
+
+<!-- Monocoque sub-dim -->
+<line x1="220" y1="372" x2="220" y2="380" stroke="#888" stroke-width="0.8"/>
+<line x1="494" y1="372" x2="494" y2="380" stroke="#888" stroke-width="0.8"/>
+<line x1="220" y1="376" x2="494" y2="376" stroke="#888" stroke-width="0.8" marker-end="url(#da)" marker-start="url(#dal)"/>
+<text x="357" y="392" text-anchor="middle" font-size="8" fill="#666">1750 mm</text>
+<text x="357" y="402" text-anchor="middle" font-size="7.5" fill="#888">Monocoque</text>
+
+<!-- Fuel sub-dim -->
+<line x1="494" y1="372" x2="494" y2="380" stroke="#888" stroke-width="0.8"/>
+<line x1="556" y1="372" x2="556" y2="380" stroke="#888" stroke-width="0.8"/>
+<line x1="494" y1="376" x2="556" y2="376" stroke="#888" stroke-width="0.8" marker-end="url(#da)" marker-start="url(#dal)"/>
+<text x="525" y="392" text-anchor="middle" font-size="8" fill="#666">400 mm</text>
+<text x="525" y="402" text-anchor="middle" font-size="7.5" fill="#888">Fuel</text>
+
+<!-- ICE sub-dim -->
+<line x1="556" y1="372" x2="556" y2="380" stroke="#888" stroke-width="0.8"/>
+<line x1="650" y1="372" x2="650" y2="380" stroke="#888" stroke-width="0.8"/>
+<line x1="556" y1="376" x2="650" y2="376" stroke="#888" stroke-width="0.8" marker-end="url(#da)" marker-start="url(#dal)"/>
+<text x="603" y="392" text-anchor="middle" font-size="8" fill="#666">600 mm</text>
+<text x="603" y="402" text-anchor="middle" font-size="7.5" fill="#888">ICE</text>
+
+<!-- MGU-K sub-dim -->
+<line x1="650" y1="372" x2="650" y2="380" stroke="#888" stroke-width="0.8"/>
+<line x1="681" y1="372" x2="681" y2="380" stroke="#888" stroke-width="0.8"/>
+<line x1="650" y1="376" x2="681" y2="376" stroke="#888" stroke-width="0.8" marker-end="url(#da)" marker-start="url(#dal)"/>
+<text x="665" y="392" text-anchor="middle" font-size="7" fill="#666">200</text>
+<text x="665" y="402" text-anchor="middle" font-size="6.5" fill="#888">MGU-K</text>
+
+<!-- Gearbox sub-dim -->
+<line x1="681" y1="372" x2="681" y2="380" stroke="#888" stroke-width="0.8"/>
+<line x1="773" y1="372" x2="773" y2="380" stroke="#888" stroke-width="0.8"/>
+<line x1="681" y1="376" x2="773" y2="376" stroke="#888" stroke-width="0.8" marker-end="url(#da)" marker-start="url(#dal)"/>
+<text x="727" y="392" text-anchor="middle" font-size="8" fill="#666">590 mm</text>
+<text x="727" y="402" text-anchor="middle" font-size="7.5" fill="#888">Gearbox</text>
+
+<!-- Rear overhang sub-dim -->
+<line x1="779" y1="372" x2="779" y2="380" stroke="#888" stroke-width="0.8"/>
+<line x1="880" y1="372" x2="880" y2="380" stroke="#888" stroke-width="0.8"/>
+<line x1="779" y1="376" x2="880" y2="376" stroke="#888" stroke-width="0.8" marker-end="url(#da)" marker-start="url(#dal)"/>
+<text x="830" y="392" text-anchor="middle" font-size="8" fill="#666">645 mm</text>
+<text x="830" y="402" text-anchor="middle" font-size="7.5" fill="#888">R. overhang</text>
+
+<!-- ═══════════════════════════════════════════
+     WEIGHT DISTRIBUTION ARROWS
+     Axle loads at bottom
+═══════════════════════════════════════════ -->
+<!-- Front: 360 kg (45%) -->
+<line x1="220" y1="450" x2="220" y2="430" stroke="#111" stroke-width="2" marker-end="url(#wt)"/>
+<text x="220" y="465" text-anchor="middle" font-size="9.5" font-weight="600" fill="#111">360 kg</text>
+<text x="220" y="477" text-anchor="middle" font-size="8.5" fill="#555">(45%)</text>
+
+<!-- Rear: 440 kg (55%) -->
+<line x1="779" y1="450" x2="779" y2="430" stroke="#111" stroke-width="2" marker-end="url(#wt)"/>
+<text x="779" y="465" text-anchor="middle" font-size="9.5" font-weight="600" fill="#111">440 kg</text>
+<text x="779" y="477" text-anchor="middle" font-size="8.5" fill="#555">(55%)</text>
+
+<!-- Total mass label -->
+<text x="499" y="460" text-anchor="middle" font-size="9" fill="#777">Total: 800 kg (incl. 70 kg fuel)</text>
+<text x="499" y="472" text-anchor="middle" font-size="8.5" fill="#999">Ground clearance: 32 mm front / 30 mm rear</text>
+
+<!-- ═══════════════════════════════════════════
+     LEGEND STRIP
+═══════════════════════════════════════════ -->
+<rect x="20" y="488" width="880" height="24" fill="#fafafa" stroke="#ccc" stroke-width="0.8" rx="1"/>
+
+<rect x="30"  y="494" width="16" height="12" fill="url(#cfrp)"  stroke="#111" stroke-width="0.8"/>
+<text x="52"  y="504" font-size="8.5" fill="#333">CFRP structure</text>
+
+<rect x="155" y="494" width="16" height="12" fill="url(#batt)"  stroke="#c8a830" stroke-width="0.8" stroke-dasharray="4,2"/>
+<text x="177" y="504" font-size="8.5" fill="#7a5800">Battery tub (648 V)</text>
+
+<rect x="305" y="494" width="16" height="12" fill="url(#fuel)"  stroke="#aaa" stroke-width="0.8"/>
+<text x="327" y="504" font-size="8.5" fill="#555">Fuel cell (70 kg)</text>
+
+<rect x="445" y="494" width="16" height="12" fill="#fff"        stroke="#111" stroke-width="1.2"/>
+<text x="467" y="504" font-size="8.5" fill="#555">ICE (stressed member)</text>
+
+<rect x="600" y="494" width="16" height="12" fill="#111"/>
+<text x="622" y="504" font-size="8.5" fill="#555">MGU-K</text>
+
+<rect x="682" y="494" width="16" height="12" fill="#ececec"     stroke="#111" stroke-width="0.8"/>
+<text x="704" y="504" font-size="8.5" fill="#555">Gearbox (CFRP housing)</text>
+
+<!-- OUTER BOX -->
+<rect x="4" y="4" width="912" height="512" fill="none" stroke="#ccc" stroke-width="0.8"/>
+
+</svg>
+
+<div class="footnote">
+  All station positions measured from nose tip datum (x = 0 mm). Front axle at x = 900 mm; rear axle at x = 4480 mm.
+  Centre of gravity at x = 2511 mm (45F/55R split), height 270 mm above reference plane.
+  Battery tub (180S2P, 1550 mm longitudinal extent) integrated within monocoque floor between front and rear axles.
+  ICE treated as a fully stressed structural member — no separate chassis frame in rear section.
+  HV cable routing constrained to inner body channels; FIA Technical Regulation §8.14 mandates ≥ 200 mm HV+/HV− separation.
+  Cooling loop zones indicative — full thermal architecture detailed in Figure 9.
+</div>
+
+</body>
+</html>

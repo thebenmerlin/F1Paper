@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Cascaded Efficiency Chain</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Latin+Modern+Roman&family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Source+Code+Pro:wght@400;600&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    font-family: 'EB Garamond', Georgia, serif;
+    padding: 40px 48px;
+    color: #111111;
+  }
+
+  .figure-label {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #111;
+    margin-bottom: 4px;
+  }
+
+  .figure-caption {
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 13.5px;
+    color: #333;
+    margin-bottom: 28px;
+    font-style: italic;
+    max-width: 920px;
+    line-height: 1.6;
+  }
+
+  .chain {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 920px;
+    margin-bottom: 28px;
+  }
+
+  .node {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+  }
+
+  .box {
+    border: 1.5px solid #111111;
+    border-radius: 0px;
+    padding: 12px 16px;
+    text-align: center;
+    background: #ffffff;
+    min-width: 115px;
+  }
+
+  .box-label {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #111;
+    margin-bottom: 6px;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 5px;
+  }
+
+  .box-eta {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 17px;
+    font-weight: 600;
+    color: #111;
+    margin: 4px 0;
+  }
+
+  .box-desc {
+    font-family: 'EB Garamond', serif;
+    font-size: 10px;
+    color: #555;
+    margin-top: 4px;
+    font-style: italic;
+  }
+
+  .energy-val {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border: 1px solid #999;
+    background: #f5f5f5;
+    color: #111;
+    letter-spacing: 0.04em;
+  }
+
+  .arrow-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    flex-shrink: 0;
+    width: 72px;
+  }
+
+  .arrow-wrap {
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+
+  .arrow-line {
+    flex: 1;
+    height: 1.5px;
+    background: #111;
+  }
+
+  .arrow-head {
+    width: 0;
+    height: 0;
+    border-left: 8px solid #111;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+  }
+
+  .loss-tag {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 9px;
+    color: #cc0000;
+    letter-spacing: 0.04em;
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  .loss-down {
+    font-size: 9px;
+    color: #cc0000;
+    font-family: 'Source Code Pro', monospace;
+  }
+
+  /* Summary table */
+  .summary-table {
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 920px;
+    margin-top: 8px;
+    font-family: 'EB Garamond', serif;
+    font-size: 13px;
+  }
+
+  .summary-table th {
+    border: 1px solid #111;
+    padding: 6px 14px;
+    background: #f0f0f0;
+    font-family: 'Source Code Pro', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-align: center;
+    color: #111;
+  }
+
+  .summary-table td {
+    border: 1px solid #aaa;
+    padding: 6px 14px;
+    text-align: center;
+    color: #111;
+  }
+
+  .summary-table tr:nth-child(even) td {
+    background: #fafafa;
+  }
+
+  .table-caption {
+    font-family: 'EB Garamond', serif;
+    font-size: 11px;
+    color: #555;
+    font-style: italic;
+    margin-top: 8px;
+    text-align: center;
+  }
+
+  .section-label {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #666;
+    margin-bottom: 12px;
+    margin-top: 32px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 4px;
+    width: 100%;
+    max-width: 920px;
+    text-align: left;
+  }
+</style>
+</head>
+<body>
+
+<div class="figure-label">Figure 4</div>
+<div class="figure-caption">
+  Cascaded Efficiency Chain — Kinetic Energy Recovery to Chemical Storage.<br>
+  2026 F1 Hybrid Architecture: MGU-K → SiC Inverter → NMC Battery Pack (180S2P, 648V)
+</div>
+
+<!-- CHAIN -->
+<div class="chain">
+
+  <!-- INPUT -->
+  <div class="node">
+    <div class="energy-val">4.375 MJ</div>
+    <div class="box">
+      <div class="box-label">Braking Event</div>
+      <div class="box-eta">Input</div>
+      <div class="box-desc">Kinetic Energy</div>
+    </div>
+  </div>
+
+  <!-- Arrow 1 -->
+  <div class="arrow-container">
+    <div class="loss-tag">−0.219 MJ</div>
+    <div class="arrow-wrap">
+      <div class="arrow-line"></div>
+      <div class="arrow-head"></div>
+    </div>
+    <div class="loss-down">↓ 5% loss</div>
+  </div>
+
+  <!-- MGU-K -->
+  <div class="node">
+    <div class="energy-val">4.156 MJ</div>
+    <div class="box">
+      <div class="box-label">MGU-K Motor</div>
+      <div class="box-eta">η = 95%</div>
+      <div class="box-desc">PMSM · Electromech.</div>
+    </div>
+  </div>
+
+  <!-- Arrow 2 -->
+  <div class="arrow-container">
+    <div class="loss-tag">−0.125 MJ</div>
+    <div class="arrow-wrap">
+      <div class="arrow-line"></div>
+      <div class="arrow-head"></div>
+    </div>
+    <div class="loss-down">↓ 3% loss</div>
+  </div>
+
+  <!-- INVERTER -->
+  <div class="node">
+    <div class="energy-val">4.031 MJ</div>
+    <div class="box">
+      <div class="box-label">SiC Inverter</div>
+      <div class="box-eta">η = 97%</div>
+      <div class="box-desc">3-Ph Full Bridge</div>
+    </div>
+  </div>
+
+  <!-- Arrow 3 -->
+  <div class="arrow-container">
+    <div class="loss-tag">−0.081 MJ</div>
+    <div class="arrow-wrap">
+      <div class="arrow-line"></div>
+      <div class="arrow-head"></div>
+    </div>
+    <div class="loss-down">↓ 2% loss</div>
+  </div>
+
+  <!-- BATTERY -->
+  <div class="node">
+    <div class="energy-val">3.950 MJ</div>
+    <div class="box">
+      <div class="box-label">NMC Battery</div>
+      <div class="box-eta">η = 98%</div>
+      <div class="box-desc">Coulombic Eff.</div>
+    </div>
+  </div>
+
+  <!-- Arrow 4 -->
+  <div class="arrow-container">
+    <div class="loss-tag">&nbsp;</div>
+    <div class="arrow-wrap">
+      <div class="arrow-line"></div>
+      <div class="arrow-head"></div>
+    </div>
+    <div class="loss-down">&nbsp;</div>
+  </div>
+
+  <!-- OUTPUT -->
+  <div class="node">
+    <div class="energy-val">3.950 MJ</div>
+    <div class="box" style="border: 2px solid #111; background:#f8f8f8;">
+      <div class="box-label">Stored Energy</div>
+      <div class="box-eta">η = 90.3%</div>
+      <div class="box-desc">Total Chain</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Summary Table -->
+<div class="section-label">Chain Summary</div>
+<table class="summary-table">
+  <thead>
+    <tr>
+      <th>Stage</th>
+      <th>Efficiency</th>
+      <th>Energy In (MJ)</th>
+      <th>Loss (MJ)</th>
+      <th>Energy Out (MJ)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Braking Event (Input)</td>
+      <td>—</td>
+      <td>4.375</td>
+      <td>—</td>
+      <td>4.375</td>
+    </tr>
+    <tr>
+      <td>MGU-K Motor (PMSM)</td>
+      <td>95%</td>
+      <td>4.375</td>
+      <td>0.219</td>
+      <td>4.156</td>
+    </tr>
+    <tr>
+      <td>SiC Inverter (3-Ph)</td>
+      <td>97%</td>
+      <td>4.156</td>
+      <td>0.125</td>
+      <td>4.031</td>
+    </tr>
+    <tr>
+      <td>NMC Battery Pack</td>
+      <td>98%</td>
+      <td>4.031</td>
+      <td>0.081</td>
+      <td>3.950</td>
+    </tr>
+    <tr style="font-weight:600; background:#f0f0f0;">
+      <td><strong>Total Chain</strong></td>
+      <td><strong>90.3%</strong></td>
+      <td><strong>4.375</strong></td>
+      <td><strong>0.425</strong></td>
+      <td><strong>3.950</strong></td>
+    </tr>
+  </tbody>
+</table>
+<div class="table-caption">η<sub>total</sub> = η<sub>motor</sub> × η<sub>inverter</sub> × η<sub>battery</sub> = 0.95 × 0.97 × 0.98 = 0.903</div>
+
+</body>
+</html>

@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Figure 3 — Torque Curves</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Source+Code+Pro:wght@400;600&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#fff; font-family:'EB Garamond',Georgia,serif; color:#111; padding:40px 48px; }
+  .fig-label   { font-family:'Source Code Pro',monospace; font-size:12px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:4px; }
+  .fig-caption { font-size:13.5px; font-style:italic; color:#333; margin-bottom:24px; line-height:1.6; max-width:920px; }
+  .footnote    { margin-top:16px; font-size:11.5px; font-style:italic; color:#555; line-height:1.7; max-width:920px; }
+</style>
+</head>
+<body>
+
+<div class="fig-label">Figure 3</div>
+<div class="fig-caption">
+  MGU-K Output Torque vs. ICE Torque Curve — Low-RPM Torque Fill Strategy.
+  MGU-K delivers constant 222 Nm from 0 RPM, compensating for turbo lag below 4 000 RPM.
+  Combined peak: 644 Nm at 8 000 RPM. ICE peak: 422 Nm at 8 000 RPM. Field weakening onset: 14 500 RPM.
+</div>
+
+<!--
+  PLOT AREA:
+    x: 80..840  (760 px = 0..18 000 RPM)   1 px = 23.68 RPM
+    y: 60..380  (320 px = 0..650 Nm)        1 px = 2.03  Nm
+
+  Mapping:
+    px(rpm) = 80  + (rpm  / 18000) * 760
+    py(nm)  = 380 - (nm   / 650)   * 320
+
+  Key data points pre-calculated:
+  ─────────────────────────────────────────────────────────
+  RPM      ICE_Nm  MGU_Nm  Comb_Nm  px    py_ICE  py_MGU  py_Comb
+    0         0     222     222      80    380     271     271
+  2000        80    222     302     164    341     271     231
+  3000       160    222     382     207    301     271     192
+  4000       250    222     472     249    257     271     148
+  5000       340    222     562     291    213     271     104
+  6000       390    222     612     333    188     271      79
+  7000       415    222     637     376    176     271      67
+  8000       422    222     644     418    172     271      63
+ 10000       420    222     642     502    173     271      64
+ 12000       390    222     612     587    188     271      79
+ 14000       325    222     547     671    220     271     111
+ 14500       308    222     530     691    228     271     118
+ 15000       295    210     505     713    234     277     134  (FW onset)
+ 16000       255    195     450     756    255     284     157  (approx)
+ 17000       218    163     381     798    272     299     192
+ 18000       178    128     306     840    292     317     231
+-->
+
+<svg width="920" height="500" viewBox="0 0 920 500"
+     xmlns="http://www.w3.org/2000/svg"
+     style="display:block; font-family:'Source Code Pro',monospace;">
+<defs>
+  <!-- Turbo lag shading pattern -->
+  <pattern id="lagHatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+    <line x1="0" y1="0" x2="0" y2="6" stroke="#ccc" stroke-width="1.2"/>
+  </pattern>
+  <!-- Fill region between Combined and ICE at low RPM -->
+  <pattern id="fillHatch" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(60)">
+    <line x1="0" y1="0" x2="0" y2="5" stroke="#bbb" stroke-width="0.9"/>
+  </pattern>
+</defs>
+
+<!-- ═══════════════════════════════
+     PLOT BACKGROUND
+═══════════════════════════════ -->
+<rect x="80" y="60" width="760" height="320" fill="#fafafa" stroke="#ccc" stroke-width="0.8"/>
+
+<!-- ═══════════════════════════════
+     GRID LINES (horizontal)
+═══════════════════════════════ -->
+<!-- y=380 → 0 Nm (baseline, solid) -->
+<!-- y=331 → 100 Nm -->
+<!-- py(100) = 380 - (100/650)*320 = 380-49 = 331 -->
+<!-- py(200) = 380 - (200/650)*320 = 380-98 = 282 -->
+<!-- py(300) = 380 - (300/650)*320 = 380-148 = 232 -->
+<!-- py(400) = 380 - (400/650)*320 = 380-197 = 183 -->
+<!-- py(500) = 380 - (500/650)*320 = 380-246 = 134 -->
+<!-- py(600) = 380 - (600/650)*320 = 380-295 =  85 -->
+<line x1="80" y1="331" x2="840" y2="331" stroke="#e8e8e8" stroke-width="0.8"/>
+<line x1="80" y1="282" x2="840" y2="282" stroke="#e8e8e8" stroke-width="0.8"/>
+<line x1="80" y1="232" x2="840" y2="232" stroke="#e8e8e8" stroke-width="0.8"/>
+<line x1="80" y1="183" x2="840" y2="183" stroke="#e8e8e8" stroke-width="0.8"/>
+<line x1="80" y1="134" x2="840" y2="134" stroke="#e8e8e8" stroke-width="0.8"/>
+<line x1="80" y1="85"  x2="840" y2="85"  stroke="#e8e8e8" stroke-width="0.8"/>
+
+<!-- Vertical grid lines -->
+<!-- px(3000)=207, px(6000)=333, px(9000)=460, px(12000)=587, px(15000)=713 -->
+<line x1="207" y1="60" x2="207" y2="380" stroke="#eeeeee" stroke-width="0.8"/>
+<line x1="333" y1="60" x2="333" y2="380" stroke="#eeeeee" stroke-width="0.8"/>
+<line x1="460" y1="60" x2="460" y2="380" stroke="#eeeeee" stroke-width="0.8"/>
+<line x1="587" y1="60" x2="587" y2="380" stroke="#eeeeee" stroke-width="0.8"/>
+<line x1="713" y1="60" x2="713" y2="380" stroke="#eeeeee" stroke-width="0.8"/>
+
+<!-- ═══════════════════════════════
+     TURBO LAG ZONE  0–4000 RPM
+     px(4000)=249
+═══════════════════════════════ -->
+<rect x="80" y="60" width="169" height="320"
+      fill="url(#lagHatch)" opacity="0.4"/>
+<!-- Zone label -->
+<text x="164" y="430" text-anchor="middle" font-size="8" fill="#999" letter-spacing="0.3">TURBO LAG ZONE</text>
+<text x="164" y="441" text-anchor="middle" font-size="7.5" fill="#bbb">0 – 4 000 RPM</text>
+
+<!-- ═══════════════════════════════
+     FIELD WEAKENING ZONE  14500–18000 RPM
+     px(14500)=691
+═══════════════════════════════ -->
+<rect x="691" y="60" width="149" height="320"
+      fill="#f5f5f5" opacity="0.7"/>
+<text x="765" y="430" text-anchor="middle" font-size="8" fill="#aaa" letter-spacing="0.3">FIELD WEAKENING</text>
+<text x="765" y="441" text-anchor="middle" font-size="7.5" fill="#bbb">14 500 – 18 000 RPM</text>
+
+<!-- ═══════════════════════════════
+     MGU-K FILL REGION
+     Shaded area between Combined and ICE curves, 0–4000 RPM
+     Polygon: ICE curve then Combined curve reversed
+     Points at key x:  80,249
+     ICE bottom:  (80,380)→(164,341)→(207,301)→(249,257)
+     Combined top (reversed): (249,148)→(207,192)→(164,231)→(80,271)
+═══════════════════════════════ -->
+<polygon
+  points="80,380 164,341 207,301 249,257
+          249,148 207,192 164,231 80,271"
+  fill="url(#fillHatch)" opacity="0.6"/>
+
+<!-- Fill region label -->
+<text x="155" y="225" text-anchor="middle" font-size="8" fill="#888">MGU-K</text>
+<text x="155" y="236" text-anchor="middle" font-size="8" fill="#888">torque fill</text>
+<line x1="155" y1="240" x2="155" y2="260" stroke="#aaa" stroke-width="0.8"/>
+
+<!-- ═══════════════════════════════
+     CURVE 1 — ICE TORQUE (medium solid, #555)
+═══════════════════════════════ -->
+<path d="M 80,380
+         C 110,378 140,360 164,341
+         C 185,324 196,312 207,301
+         C 220,288 235,270 249,257
+         C 263,244 277,228 291,213
+         C 305,200 319,193 333,188
+         C 348,183 362,178 376,176
+         C 390,174 404,172 418,172
+         C 438,172 460,173 502,173
+         C 530,173 558,180 587,188
+         C 618,197 644,208 671,220
+         C 690,228 702,234 713,234
+         C 726,234 741,244 756,255
+         C 770,265 784,278 798,272
+         C 816,278 830,285 840,292"
+      fill="none" stroke="#555" stroke-width="2.2"/>
+
+<!-- ═══════════════════════════════
+     CURVE 2 — MGU-K TORQUE (dashed, #888)
+     Flat 222 Nm until 14500 RPM, then field weakening
+     py(222) = 380 - (222/650)*320 = 380-109 = 271
+═══════════════════════════════ -->
+<!-- Flat section 0→14500 RPM: y=271 -->
+<line x1="80" y1="271" x2="691" y2="271"
+      stroke="#888" stroke-width="2" stroke-dasharray="10,4"/>
+<!-- Field weakening: 14500→18000 -->
+<path d="M 691,271
+         C 706,272 720,276 734,280
+         C 748,285 770,299 798,299
+         C 816,305 828,311 840,317"
+      fill="none" stroke="#888" stroke-width="2" stroke-dasharray="10,4"/>
+
+<!-- ═══════════════════════════════
+     CURVE 3 — COMBINED TORQUE (thick solid, #111)
+═══════════════════════════════ -->
+<path d="M 80,271
+         C 110,262 140,245 164,231
+         C 182,220 194,206 207,192
+         C 220,179 234,162 249,148
+         C 262,136 276,120 291,104
+         C 305,90 319,83 333,79
+         C 347,75 361,69 376,67
+         C 390,65 404,63 418,63
+         C 438,63 460,64 502,64
+         C 530,65 558,70 587,79
+         C 616,89 643,100 671,111
+         C 691,119 702,126 713,134
+         C 728,143 742,148 756,157
+         C 770,166 784,179 798,192
+         C 816,205 830,218 840,231"
+      fill="none" stroke="#111" stroke-width="2.8"/>
+
+<!-- ═══════════════════════════════
+     AXES
+═══════════════════════════════ -->
+<!-- X axis -->
+<line x1="80" y1="380" x2="845" y2="380" stroke="#111" stroke-width="1.4"/>
+<!-- Y axis -->
+<line x1="80" y1="55"  x2="80"  y2="385" stroke="#111" stroke-width="1.4"/>
+
+<!-- X axis ticks + labels -->
+<!-- 0, 3000, 6000, 9000, 12000, 15000, 18000 -->
+<line x1="80"  y1="380" x2="80"  y2="386" stroke="#111" stroke-width="1.2"/>
+<line x1="207" y1="380" x2="207" y2="386" stroke="#111" stroke-width="1.2"/>
+<line x1="333" y1="380" x2="333" y2="386" stroke="#111" stroke-width="1.2"/>
+<line x1="460" y1="380" x2="460" y2="386" stroke="#111" stroke-width="1.2"/>
+<line x1="587" y1="380" x2="587" y2="386" stroke="#111" stroke-width="1.2"/>
+<line x1="713" y1="380" x2="713" y2="386" stroke="#111" stroke-width="1.2"/>
+<line x1="840" y1="380" x2="840" y2="386" stroke="#111" stroke-width="1.2"/>
+
+<text x="80"  y="396" text-anchor="middle" font-size="9">0</text>
+<text x="207" y="396" text-anchor="middle" font-size="9">3 000</text>
+<text x="333" y="396" text-anchor="middle" font-size="9">6 000</text>
+<text x="460" y="396" text-anchor="middle" font-size="9">9 000</text>
+<text x="587" y="396" text-anchor="middle" font-size="9">12 000</text>
+<text x="713" y="396" text-anchor="middle" font-size="9">15 000</text>
+<text x="840" y="396" text-anchor="middle" font-size="9">18 000</text>
+
+<!-- X axis label -->
+<text x="460" y="418" text-anchor="middle" font-size="10.5" font-style="italic">Engine / Motor Speed  (RPM)</text>
+
+<!-- Y axis ticks + labels -->
+<line x1="80" y1="380" x2="74" y2="380" stroke="#111" stroke-width="1.2"/>
+<line x1="80" y1="331" x2="74" y2="331" stroke="#111" stroke-width="1.2"/>
+<line x1="80" y1="282" x2="74" y2="282" stroke="#111" stroke-width="1.2"/>
+<line x1="80" y1="232" x2="74" y2="232" stroke="#111" stroke-width="1.2"/>
+<line x1="80" y1="183" x2="74" y2="183" stroke="#111" stroke-width="1.2"/>
+<line x1="80" y1="134" x2="74" y2="134" stroke="#111" stroke-width="1.2"/>
+<line x1="80" y1="85"  x2="74" y2="85"  stroke="#111" stroke-width="1.2"/>
+
+<text x="70" y="383" text-anchor="end" font-size="9">0</text>
+<text x="70" y="334" text-anchor="end" font-size="9">100</text>
+<text x="70" y="285" text-anchor="end" font-size="9">200</text>
+<text x="70" y="235" text-anchor="end" font-size="9">300</text>
+<text x="70" y="186" text-anchor="end" font-size="9">400</text>
+<text x="70" y="137" text-anchor="end" font-size="9">500</text>
+<text x="70" y="88"  text-anchor="end" font-size="9">600</text>
+
+<!-- Y axis label -->
+<text x="20" y="220" text-anchor="middle" font-size="10.5" font-style="italic"
+      transform="rotate(-90, 20, 220)">Output Torque  (Nm)</text>
+
+<!-- ═══════════════════════════════
+     ANNOTATIONS
+═══════════════════════════════ -->
+
+<!-- Peak combined torque marker: (418, 63) = 8000 RPM, 644 Nm -->
+<line x1="418" y1="63" x2="418" y2="380" stroke="#111" stroke-width="0.8" stroke-dasharray="6,4"/>
+<circle cx="418" cy="63" r="4.5" fill="#fff" stroke="#111" stroke-width="1.6"/>
+<!-- Peak label -->
+<rect x="426" y="56" width="130" height="28" fill="#fff" stroke="#ccc" stroke-width="0.8" rx="1"/>
+<text x="432" y="68" font-size="8.5" font-weight="600" fill="#111">Peak: 644 Nm</text>
+<text x="432" y="80" font-size="8"   fill="#555">@ 8 000 RPM (combined)</text>
+
+<!-- ICE peak marker: (418, 172) = 8000 RPM, 422 Nm -->
+<circle cx="418" cy="172" r="4.5" fill="#fff" stroke="#555" stroke-width="1.6"/>
+<rect x="426" y="162" width="118" height="28" fill="#fff" stroke="#ccc" stroke-width="0.8" rx="1"/>
+<text x="432" y="174" font-size="8.5" font-weight="600" fill="#555">Peak: 422 Nm</text>
+<text x="432" y="186" font-size="8"   fill="#777">@ 8 000 RPM (ICE)</text>
+
+<!-- MGU-K flat torque label -->
+<rect x="292" y="258" width="118" height="22" fill="#fff" stroke="#ccc" stroke-width="0.8" rx="1"/>
+<text x="298" y="270" font-size="8.5" font-weight="600" fill="#888">222 Nm (constant)</text>
+<text x="298" y="281" font-size="8"   fill="#aaa">0 → 14 500 RPM</text>
+<line x1="290" y1="271" x2="292" y2="271" stroke="#888" stroke-width="1"/>
+
+<!-- Field weakening onset vertical marker -->
+<line x1="691" y1="60" x2="691" y2="380" stroke="#999" stroke-width="1" stroke-dasharray="4,3"/>
+<text x="693" y="74" font-size="8" fill="#888">FW onset</text>
+<text x="693" y="85" font-size="8" fill="#999">14 500 RPM</text>
+
+<!-- 4000 RPM torque fill callout vertical -->
+<line x1="249" y1="60" x2="249" y2="380" stroke="#bbb" stroke-width="0.8" stroke-dasharray="4,3"/>
+<text x="251" y="74" font-size="7.5" fill="#aaa">Lag ends</text>
+<text x="251" y="85" font-size="7.5" fill="#bbb">4 000 RPM</text>
+
+<!-- Torque fill bracket at x=160 -->
+<line x1="68" y1="271" x2="68" y2="341" stroke="#aaa" stroke-width="1.2"/>
+<line x1="68" y1="271" x2="74" y2="271" stroke="#aaa" stroke-width="1.2"/>
+<line x1="68" y1="341" x2="74" y2="341" stroke="#aaa" stroke-width="1.2"/>
+<text x="58" y="310" text-anchor="middle" font-size="8" fill="#888" transform="rotate(-90,58,310)">Δ = 142 Nm @ 2 000</text>
+
+<!-- ═══════════════════════════════
+     LEGEND
+═══════════════════════════════ -->
+<rect x="540" y="290" width="295" height="82" fill="#fff" stroke="#ccc" stroke-width="0.8" rx="2"/>
+
+<!-- Combined -->
+<line x1="554" y1="308" x2="590" y2="308" stroke="#111" stroke-width="2.8"/>
+<text x="598" y="312" font-size="9.5" font-weight="600" fill="#111">Combined  (ICE + MGU-K)</text>
+<text x="598" y="323" font-size="8.5" fill="#555">Peak 644 Nm · @ 8 000 RPM</text>
+
+<!-- ICE -->
+<line x1="554" y1="338" x2="590" y2="338" stroke="#555" stroke-width="2.2"/>
+<text x="598" y="342" font-size="9.5" font-weight="600" fill="#555">ICE (V6 Turbo)</text>
+<text x="598" y="353" font-size="8.5" fill="#777">Peak 422 Nm · @ 8 000 RPM</text>
+
+<!-- MGU-K -->
+<line x1="554" y1="366" x2="590" y2="366" stroke="#888" stroke-width="2" stroke-dasharray="9,4"/>
+<text x="598" y="370" font-size="9.5" font-weight="600" fill="#888">MGU-K (PMSM)</text>
+<text x="598" y="381" font-size="8.5" fill="#aaa">222 Nm flat · FW from 14 500 RPM</text>
+
+<!-- ═══════════════════════════════
+     OUTER BOX
+═══════════════════════════════ -->
+<rect x="4" y="4" width="912" height="492" fill="none" stroke="#ccc" stroke-width="0.8"/>
+
+</svg>
+
+<div class="footnote">
+  Torque fill strategy: MGU-K delivers constant 222 Nm from standstill, compensating for ICE turbo lag below 4 000 RPM where turbocharged output is insufficient.
+  ICE torque rises steeply 2 000–6 000 RPM as boost builds; peak 422 Nm at 8 000 RPM.
+  Combined system peak 644 Nm at 8 000 RPM. MGU-K field weakening onset at 14 500 RPM.
+  Torque values derived from rated power: P<sub>ICE</sub> = 450 kW, P<sub>MGU-K</sub> = 350 kW.
+  MGU-K constant-torque region: T = P / ω limited by peak current I<sub>pk</sub> = 540 A, K<sub>t</sub> = 0.41 Nm/A.
+</div>
+
+</body>
+</html>

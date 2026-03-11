@@ -41,7 +41,16 @@ Combining the absolute longitudinal and lateral limits synthesizes the dynamic o
 \end{equation}
 
 where $a_x$ is longitudinal acceleration relative to its limit $a_{x,max}$, and $a_y$ is the lateral equivalent. Aerodynamic downforce dramatically expands this performance envelope at speed. At 252 km/h (simulated exit velocity of the chicane), the car generates a $\sim$3.5g envelope. However, at 360 km/h (full straight), the immense downforce artificially expands this envelope to $\sim$5.5g. Because Monza is fundamentally a low-downforce, high-speed circuit, it predominately exploits longitudinal acceleration events, pushing the ellipse to its traction and braking boundaries.
+\end{multicols}
 
+\begin{figure*}[ht!]
+\centering
+\includegraphics[width=\textwidth]{"Figures Images/Figure 16.png"}
+\caption{GGG friction ellipse at 252 km/h and 360 km/h (MATLAB simulation).}
+\label{fig:sim_ggg_ellipse}
+\end{figure*}
+
+\begin{multicols}{2}
 \subsection{Energy Deployment Simulation}
 
 To optimize lap time while respecting the physical state of charge (SOC) degradation limit, the MATLAB solver implements a tiered State of Charge deployment logic with a hard energy budget gate. Deployment is only permitted while:
@@ -63,7 +72,16 @@ E_{deployed} = E_{harvested} + E_{ICE\_supplement}
 \end{equation}
 
 The actual results over the 5.793 km lap yielded an active $E_{deployed} = 4.005$ MJ. This was reconciled perfectly against heavy braking recovery of $E_{harvested} = 1.911$ MJ, supplemented by the ICE acting as a continuous generator providing $E_{ICE\_supplement} = 2.094$ MJ.
+\end{multicols}
 
+\begin{figure*}[ht!]
+\centering
+\includegraphics[width=\textwidth]{"Figures Images/Figure 15.png"}
+\caption{Battery SOC trace over lap distance with 20\%/95\% limits marked (MATLAB simulation).}
+\label{fig:sim_soc}
+\end{figure*}
+
+\begin{multicols}{2}
 \subsection{Lap Time Simulation Results — Monza}
 
 Aggregating the point mass matrices yields profound simulation results. The theoretical lap time crossed at \textbf{76.79 seconds (1:16.79)}. 
@@ -73,7 +91,23 @@ Contextually, the current absolute lap record at Monza stands at 79.119s (1:19.1
 The simulation logged a maximum speed of 348.2 km/h, securing an astonishing average speed of 250.2 km/h. Dynamically, the battery SOC depleted to a minimum of 25.3\%—never hitting the 20\% physical degradation floor—thereby completely validating the tiered energy management logic. The lap concluded with a final SOC of 42.6\%, securing a healthy margin for subsequent running.
 
 The speed trace explicitly maps this aerodynamic reliance: the long straights readily reached $340+$ km/h, while chicanes plunged the minimums to $65-80$ km/h, concluding with the Parabolica exit rocketing at $\sim$250 km/h feeding back down the main straight.
+\end{multicols}
 
+\begin{figure*}[ht!]
+\centering
+\includegraphics[width=\textwidth]{"Figures Images/Figure 13.png"}
+\caption{Speed trace over lap distance --- Monza (MATLAB simulation).}
+\label{fig:sim_speed}
+\end{figure*}
+
+\begin{figure*}[ht!]
+\centering
+\includegraphics[width=\textwidth]{"Figures Images/Figure 14.png"}
+\caption{MGU-K deployment and harvesting map over lap distance (MATLAB simulation).}
+\label{fig:sim_mgu}
+\end{figure*}
+
+\begin{multicols}{2}
 \subsection{Aerodynamic Efficiency Simulation}
 
 The aerodynamic maps utilized were derived from Reynolds-Averaged Navier-Stokes (RANS) Computational Fluid Dynamics (CFD), utilizing heavily discretized meshes in ANSYS Fluent and OpenFOAM environments.
@@ -117,34 +151,3 @@ Aero Model & Per-timestep RANS-derived forces \\
 \label{tab:monza_results}
 \end{table*}
 
-\begin{figure*}[h]
-\centering
-% \includegraphics[width=\textwidth]{speed_trace_monza.pdf}
-\vspace{6cm} % Placeholder height
-\caption{Speed trace over lap distance — Monza (MATLAB simulation placeholder).}
-\label{fig:sim_speed}
-\end{figure*}
-
-\begin{figure*}[h]
-\centering
-% \includegraphics[width=\textwidth]{mgu_k_map.pdf}
-\vspace{6cm} % Placeholder height
-\caption{MGU-K deployment and harvesting map over lap distance (MATLAB simulation placeholder).}
-\label{fig:sim_mgu}
-\end{figure*}
-
-\begin{figure*}[h]
-\centering
-% \includegraphics[width=\textwidth]{soc_trace_monza.pdf}
-\vspace{5cm} % Placeholder height
-\caption{Battery SOC trace over lap distance with 20\%/95\% limits marked (MATLAB simulation placeholder).}
-\label{fig:sim_soc}
-\end{figure*}
-
-\begin{figure*}[h]
-\centering
-% \includegraphics[width=\textwidth]{ggg_ellipse_monza.pdf}
-\vspace{6cm} % Placeholder height
-\caption{GGG friction ellipse at 252 km/h and 360 km/h (MATLAB simulation placeholder).}
-\label{fig:sim_ggg_ellipse}
-\end{figure*}
