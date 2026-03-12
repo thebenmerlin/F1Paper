@@ -1,0 +1,33 @@
+\section{Manufacturing Considerations}
+
+\begin{multicols}{2}
+Transitioning theoretical CAD geometries and simulated performance vectors into physical reality requires an uncompromising adherence to aerospace-grade manufacturing tolerances. This section concisely outlines the fabrication processes, curing parameters, and validation testing mandated for the 2026 vehicle architecture.
+
+\subsection{Carbon Fibre Layup \& Monocoque}
+
+The primary survival cell and structural bodywork are constructed exclusively from ultra-high modulus T800/T1000 prepreg carbon fibre \cite{cfrp_manufacturing_lit}. The pre-impregnated resin matrix dictates that layup must occur in highly controlled cleanroom environments to prevent particulate contamination before curing. 
+
+The ply orientation strategy derived from the structural stiffness calculations is applied meticulously during the hand-layup phase: quasi-isotropic [0$^\circ$/45$^\circ$/90$^\circ$/-45$^\circ$] stacking is localized exactly at suspension pickup points, while unidirectional [0$^\circ$] plies are layered longitudinally in bending-dominant zones such as the floor sills. Nomex honeycomb cores are co-cured directly into the floor panels to provide immense shear stiffness.
+
+Once consolidated via vacuum bagging, the structures are cured inside a pressurized autoclave at 120$^\circ$C under 6-7 bar of pressure for 4-6 hours. This aggressive curing cycle strictly eliminates microscopic voids. Following the cure, Non-Destructive Testing (NDT) via ultrasonic C-scanning is mandatory to detect any internal delamination or localized resin-rich zones. Finally, coordinate measuring machines (CMM) verify the structural dimensional tolerances: the machined hardpoints for suspension pickups must be held to a rigorous $\pm$0.1 mm tolerance to ensure geometric suspension consistency.
+
+\subsection{Battery Pack Assembly}
+
+The Energy Storage System (ESS) is assembled in a dedicated high-voltage cleanroom \cite{battery_pack_assembly}. The 360 Nickel Manganese Cobalt (NMC) cells must be rigorously binned and matched; initial cell voltages are verified to a strict $\pm$10 mV tolerance before assembly to guarantee balanced charge/discharge distribution across the entire 180S2P pack life cycle.
+
+Cells are mechanically secured and structurally bonded to the chassis utilizing a highly specialized, thermally conductive dielectric adhesive. This directly couples the cells to the localized liquid cold plates, which are previously co-bonded with the raw carbon floor structure. To handle the brutal 540 A continuous discharging phase, the inter-cell electrical connections utilize thick nickel-coated copper bus bars. These interconnects are precisely laser-welded onto each individual cell terminal, eliminating the thermal variations and localized resistance of traditional ultrasonic wire bonding. 
+
+Prior to integration into the vehicle monocoque, the fully assembled module undergoes a brutal, pack-level internal isolation validation test performed at 1000V DC to ensure absolute dielectric integrity between the live cells and the conductive carbon chassis.
+
+\subsection{Machining Tolerances}
+
+Crucial metallic components interfacing with the carbon structures require profound subtractive manufacturing precision. The highly-stressed titanium (Ti-6Al-4V) suspension uprights and inboard mounting rockers are CNC machined continuously on 5-axis mills, holding critical spherical bearing seats to a $\pm$0.05 mm diametric tolerance to prevent suspension slop under 5G cornering loads.
+
+The stressed 590 mm longitudinal gearbox casing, cast from an advanced aluminium-lithium alloy, is subjected to post-cast 5-axis machining to hold the primary gear shaft bearing bores to a $\pm$0.02 mm concentricity tolerance, ensuring the 350 kW MGU-K torque delivery does not induce catastrophic gear misalignment. The Carbon-Carbon brake discs are heavily diamond ground to ensure a $\pm$0.1 mm thickness uniformity across the braking annulus, preventing high-speed brake judder. Every single safety-critical structural fastener is torque-verified manually and mechanically wire-locked to prevent vibrational backing-out.
+
+\subsection{Quality Control \& Sign-Off}
+
+General vehicle assembly cannot commence without exhaustive Quality Control (QC) sign-offs. This includes a 100\% ultrasonic NDT scan of all Class-A structural carbon elements and extensive CMM verification of the completed rolling chassis to ensure the global suspension points mathematically align with the static vehicle dynamics model.
+
+The completed 4 MJ battery pack undergoes a full, aggressive charge-discharge cycle test protocol \textit{ex-situ} to validate the active liquid cooling loop functionality and BMS cell balancing logic before it is physically bolted into the car. Finally, immediately prior to the installation of the protective outer bodywork, the entire High-Voltage (HV) tractive system is subjected to a final isolation test: the resistance between the active 648 V DC link and the grounded carbon chassis must definitively exceed $>$500 M$\Omega$ before the vehicle is legally signed off for track operation.
+\end{multicols}

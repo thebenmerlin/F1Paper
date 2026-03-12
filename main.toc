@@ -1,0 +1,84 @@
+\contentsline {section}{\numberline {1}Introduction}{5}{section.1}%
+\contentsline {section}{\numberline {2}2026 FIA Technical Regulations Overview}{6}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Power Unit Regulations}{6}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Aerodynamic Changes}{6}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Weight and Packaging Constraints}{7}{subsection.2.3}%
+\contentsline {section}{\numberline {3}Vehicle Architecture Overview}{8}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Dimensional Constraints and Mass Properties}{8}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Powertrain and Energy Packaging}{9}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Aerodynamic Architecture and Thermal Management}{10}{subsection.3.3}%
+\contentsline {section}{\numberline {4}Aerodynamics}{10}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Front Wing}{10}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Floor \& Venturi Tunnels}{11}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Sidepods}{12}{subsection.4.3}%
+\contentsline {subsection}{\numberline {4.4}Rear Wing}{13}{subsection.4.4}%
+\contentsline {subsection}{\numberline {4.5}Active Aerodynamics}{13}{subsection.4.5}%
+\contentsline {subsection}{\numberline {4.6}Drag Reduction \& Energy Interaction}{13}{subsection.4.6}%
+\contentsline {section}{\numberline {5}Hybrid Electric Power Unit Architecture}{14}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Internal Combustion Engine}{14}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}MGU-K}{16}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3}Turbocharger System}{17}{subsection.5.3}%
+\contentsline {section}{\numberline {6}Energy Storage System}{18}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Cell Chemistry Selection}{18}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}Pack Architecture: 180S2P}{19}{subsection.6.2}%
+\contentsline {subsection}{\numberline {6.3}C-Rate Analysis}{19}{subsection.6.3}%
+\contentsline {subsection}{\numberline {6.4}Regenerative Energy Harvesting}{20}{subsection.6.4}%
+\contentsline {subsection}{\numberline {6.5}Efficiency Chain: MGU-K to Battery}{20}{subsection.6.5}%
+\contentsline {subsection}{\numberline {6.6}$I^2R$ Losses and Thermal Design Load}{21}{subsection.6.6}%
+\contentsline {subsection}{\numberline {6.7}Lap Energy Budget}{21}{subsection.6.7}%
+\contentsline {section}{\numberline {7}Electrical Power Management}{23}{section.7}%
+\contentsline {subsection}{\numberline {7.1}Power Electronics Architecture: Inverter Design}{23}{subsection.7.1}%
+\contentsline {subsection}{\numberline {7.2}DC Link Capacitor Sizing}{24}{subsection.7.2}%
+\contentsline {subsection}{\numberline {7.3}Field Oriented Control (FOC)}{25}{subsection.7.3}%
+\contentsline {subsection}{\numberline {7.4}Maximum Torque Per Ampere (MTPA)}{26}{subsection.7.4}%
+\contentsline {subsection}{\numberline {7.5}Space Vector PWM (SVPWM)}{26}{subsection.7.5}%
+\contentsline {subsection}{\numberline {7.6}State of Charge Estimation}{27}{subsection.7.6}%
+\contentsline {subsection}{\numberline {7.7}Energy Deployment Strategy}{28}{subsection.7.7}%
+\contentsline {subsection}{\numberline {7.8}Protection and Isolation Systems}{30}{subsection.7.8}%
+\contentsline {section}{\numberline {8}Thermal Management}{30}{section.8}%
+\contentsline {subsection}{\numberline {8.1}ICE Cooling}{30}{subsection.8.1}%
+\contentsline {subsection}{\numberline {8.2}Battery Thermal Management}{31}{subsection.8.2}%
+\contentsline {subsection}{\numberline {8.3}Inverter Thermal Management}{32}{subsection.8.3}%
+\contentsline {subsection}{\numberline {8.4}MGU-K Motor Thermal Management}{32}{subsection.8.4}%
+\contentsline {subsection}{\numberline {8.5}Turbocharger \& Intercooler}{32}{subsection.8.5}%
+\contentsline {subsection}{\numberline {8.6}Integrated Thermal Architecture}{35}{subsection.8.6}%
+\contentsline {section}{\numberline {9}Electronics \& Control Systems}{35}{section.9}%
+\contentsline {subsection}{\numberline {9.1}Electronic Control Unit (ECU)}{35}{subsection.9.1}%
+\contentsline {subsection}{\numberline {9.2}Sensor Architecture}{35}{subsection.9.2}%
+\contentsline {subsection}{\numberline {9.3}Onboard Data Architecture}{36}{subsection.9.3}%
+\contentsline {subsection}{\numberline {9.4}Telemetry System}{36}{subsection.9.4}%
+\contentsline {subsection}{\numberline {9.5}Power Distribution Architecture}{37}{subsection.9.5}%
+\contentsline {subsection}{\numberline {9.6}Software \& Control Algorithms}{38}{subsection.9.6}%
+\contentsline {section}{\numberline {10}Chassis \& Materials}{38}{section.10}%
+\contentsline {subsection}{\numberline {10.1}Monocoque Design}{38}{subsection.10.1}%
+\contentsline {subsection}{\numberline {10.2}Material Selection}{39}{subsection.10.2}%
+\contentsline {subsection}{\numberline {10.3}Impact Structures}{40}{subsection.10.3}%
+\contentsline {subsection}{\numberline {10.4}Safety Halo}{40}{subsection.10.4}%
+\contentsline {subsection}{\numberline {10.5}Hybrid Component Packaging}{41}{subsection.10.5}%
+\contentsline {section}{\numberline {11}Suspension Geometry}{42}{section.11}%
+\contentsline {subsection}{\numberline {11.1}Wishbone Geometry}{42}{subsection.11.1}%
+\contentsline {subsection}{\numberline {11.2}Pullrod Actuation Strategy}{42}{subsection.11.2}%
+\contentsline {subsection}{\numberline {11.3}Camber Settings}{43}{subsection.11.3}%
+\contentsline {subsection}{\numberline {11.4}Toe Settings}{43}{subsection.11.4}%
+\contentsline {subsection}{\numberline {11.5}Caster and Kingpin Inclination}{43}{subsection.11.5}%
+\contentsline {subsection}{\numberline {11.6}Anti-Dive and Anti-Squat Geometry}{44}{subsection.11.6}%
+\contentsline {subsection}{\numberline {11.7}Ride Frequency}{44}{subsection.11.7}%
+\contentsline {subsection}{\numberline {11.8}Inerter (J-Damper) Architecture}{45}{subsection.11.8}%
+\contentsline {section}{\numberline {12}Performance Simulation}{46}{section.12}%
+\contentsline {subsection}{\numberline {12.1}Simulation Methodology}{46}{subsection.12.1}%
+\contentsline {subsection}{\numberline {12.2}GGG Friction Ellipse}{46}{subsection.12.2}%
+\contentsline {subsection}{\numberline {12.3}Energy Deployment Simulation}{48}{subsection.12.3}%
+\contentsline {subsection}{\numberline {12.4}Lap Time Simulation Results — Monza}{49}{subsection.12.4}%
+\contentsline {subsection}{\numberline {12.5}Aerodynamic Efficiency Simulation}{50}{subsection.12.5}%
+\contentsline {subsection}{\numberline {12.6}Vehicle Dynamics Simulation}{50}{subsection.12.6}%
+\contentsline {section}{\numberline {13}Manufacturing Considerations}{51}{section.13}%
+\contentsline {subsection}{\numberline {13.1}Carbon Fibre Layup \& Monocoque}{51}{subsection.13.1}%
+\contentsline {subsection}{\numberline {13.2}Battery Pack Assembly}{52}{subsection.13.2}%
+\contentsline {subsection}{\numberline {13.3}Machining Tolerances}{52}{subsection.13.3}%
+\contentsline {subsection}{\numberline {13.4}Quality Control \& Sign-Off}{52}{subsection.13.4}%
+\contentsline {section}{\numberline {14}Conclusion}{52}{section.14}%
+\contentsline {subsection}{\numberline {14.1}Design Summary}{53}{subsection.14.1}%
+\contentsline {subsection}{\numberline {14.2}Simulation Validation}{53}{subsection.14.2}%
+\contentsline {subsection}{\numberline {14.3}2026 as an Inflection Point}{53}{subsection.14.3}%
+\contentsline {subsection}{\numberline {14.4}Model Limitations}{54}{subsection.14.4}%
+\contentsline {subsection}{\numberline {14.5}Future Work}{54}{subsection.14.5}%

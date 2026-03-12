@@ -1,0 +1,282 @@
+% =============================================================
+%  references.bib — Complete bibliography for the 2026 F1 paper
+%  Format: IEEEtran-compatible BibTeX
+% =============================================================
+
+% ----- FIA REGULATORY DOCUMENTS --------------------------------
+
+@techreport{FIA_2026_Technical_Regulations,
+  author       = {{Fédération Internationale de l'Automobile}},
+  title        = {2026 {Formula One} Technical Regulations},
+  institution  = {FIA},
+  year         = {2024},
+  type         = {Issue 3},
+  url          = {https://www.fia.com/regulation/category/110},
+  note         = {Published 2024-06-28. Covers chassis, aerodynamics,
+                  active aero (X-mode/Z-mode), safety structures,
+                  and packaging regulations. Accessed: 2025-12-01}
+}
+
+@techreport{FIA_2026_PU_Regulations,
+  author       = {{Fédération Internationale de l'Automobile}},
+  title        = {2026 {Formula One} Power Unit Regulations},
+  institution  = {FIA},
+  year         = {2024},
+  type         = {Issue 3},
+  url          = {https://www.fia.com/regulation/category/110},
+  note         = {Published 2024-06-28. Defines MGU-K 350\,kW limit,
+                  MGU-H removal, 100\% sustainable fuel mandate,
+                  energy store constraints, and fuel mass reduction
+                  (110\,kg $\to$ 70\,kg). Accessed: 2025-12-01}
+}
+
+@techreport{FIA_2026_Chassis_Regulations,
+  author       = {{Fédération Internationale de l'Automobile}},
+  title        = {2026 {Formula One} Chassis Technical Regulations},
+  institution  = {FIA},
+  year         = {2024},
+  type         = {Issue 3},
+  url          = {https://www.fia.com/regulation/category/110},
+  note         = {Published 2024-06-28. Covers minimum weight (800\,kg),
+                  simplified bodywork, underbody floor constraints,
+                  impact structure mandates, and battery safety volume.
+                  Accessed: 2025-12-01}
+}
+
+% ----- MOTOR DRIVES & PMSM CONTROL ----------------------------
+
+@book{pmsm_control_lit,
+  author       = {D. W. Novotny and T. A. Lipo},
+  title        = {Vector Control and Dynamics of {AC} Drives},
+  publisher    = {Oxford University Press},
+  year         = {1996},
+  isbn         = {978-0-198-56439-3}
+}
+
+@book{pmsm_foc_lit,
+  author       = {P. C. Krause and O. Wasynczuk and S. D. Sudhoff
+                  and S. D. Pekarek},
+  title        = {Analysis of Electric Machinery and Drive Systems},
+  edition      = {3rd},
+  publisher    = {Wiley--IEEE Press},
+  year         = {2013},
+  isbn         = {978-1-118-02429-4}
+}
+
+% ----- POWER ELECTRONICS (SiC) --------------------------------
+
+@article{sic_power_lit,
+  author       = {J. Millan and P. Godignon and X. Perpina
+                  and A. Perez-Tomas and J. Rebollo},
+  title        = {A Survey of Wide Bandgap Power Semiconductor
+                  Devices},
+  journal      = {IEEE Transactions on Power Electronics},
+  volume       = {29},
+  number       = {5},
+  pages        = {2155--2163},
+  year         = {2014},
+  doi          = {10.1109/TPEL.2013.2268900}
+}
+
+% ----- NMC CELL CHEMISTRY -------------------------------------
+
+@article{nmc_chemistry_lit,
+  author       = {R. Jung and M. Metzger and F. Maglia
+                  and C. Stinner and H. A. Gasteiger},
+  title        = {Oxygen Release and Its Effect on the Cycling
+                  Stability of {LiNi$_x$Mn$_y$Co$_z$O$_2$} ({NMC})
+                  Cathode Materials for {Li-Ion} Batteries},
+  journal      = {Journal of the Electrochemical Society},
+  volume       = {164},
+  number       = {7},
+  pages        = {A1361--A1377},
+  year         = {2017},
+  doi          = {10.1149/2.0021707jes}
+}
+
+% ----- BATTERY THERMAL MANAGEMENT ------------------------------
+
+@article{battery_thermal_lit,
+  author       = {T. M. Bandhauer and S. Garimella
+                  and T. F. Fuller},
+  title        = {A Critical Review of Thermal Issues in
+                  {Lithium-Ion} Batteries},
+  journal      = {Journal of the Electrochemical Society},
+  volume       = {158},
+  number       = {3},
+  pages        = {R1--R25},
+  year         = {2011},
+  doi          = {10.1149/1.3515880}
+}
+
+% ----- KALMAN FILTER SOC ESTIMATION ----------------------------
+
+@article{kalman_soc_lit,
+  author       = {G. L. Plett},
+  title        = {Extended {Kalman} Filtering for Battery
+                  Management Systems of {LiPB}-Based {HEV}
+                  Battery Packs --- Part 3: State and Parameter
+                  Estimation},
+  journal      = {Journal of Power Sources},
+  volume       = {134},
+  number       = {2},
+  pages        = {277--292},
+  year         = {2004},
+  doi          = {10.1016/j.jpowsour.2004.02.033}
+}
+
+% ----- McLAREN ECU ---------------------------------------------
+
+@misc{mclaren_ecu_lit,
+  author       = {{McLaren Applied}},
+  title        = {Standard {ECU} ({SECU}) for {FIA Formula One}},
+  year         = {2023},
+  url          = {https://www.mclarenapplied.com/motorsport},
+  note         = {FIA-homologated standard electronic control unit
+                  used across all F1 teams since 2008.
+                  Accessed: 2025-12-01}
+}
+
+% ----- AUTOMOTIVE NETWORKS ------------------------------------
+
+@misc{automotive_networks_lit,
+  author       = {{ISO}},
+  title        = {{ISO} 17458:2013 --- Road Vehicles --- {FlexRay}
+                  Communications System},
+  year         = {2013},
+  url          = {https://www.iso.org/standard/59804.html},
+  note         = {Defines the FlexRay protocol for deterministic
+                  in-vehicle networks. CAN FD defined separately
+                  in ISO 11898-1:2015. Accessed: 2025-12-01}
+}
+
+% ----- CARBON FIBRE MATERIALS ----------------------------------
+
+@misc{cfrp_materials_lit,
+  author       = {{Toray Industries}},
+  title        = {{TORAYCA} {T800S} and {T1000G} Carbon Fibre
+                  Technical Data Sheets},
+  year         = {2023},
+  url          = {https://www.toray.com/global/products/carbon-fiber/},
+  note         = {T800S: tensile modulus 294\,GPa, tensile strength
+                  5\,880\,MPa; T1000G: tensile strength 6\,370\,MPa.
+                  Accessed: 2025-12-01}
+}
+
+@misc{cfrp_manufacturing_lit,
+  author       = {{Toray Industries}},
+  title        = {{TORAYCA} Prepreg Technical Data Sheets ---
+                  Autoclave Curing Guidelines},
+  year         = {2023},
+  url          = {https://www.toray.com/global/products/carbon-fiber/},
+  note         = {Recommended cure cycle: 120\,$^\circ$C at 6--7\,bar
+                  for aerospace-grade laminates. Accessed: 2025-12-01}
+}
+
+% ----- TITANIUM ALLOY ------------------------------------------
+
+@book{ti6al4v_specs_lit,
+  author       = {{ASM International}},
+  title        = {{ASM} Handbook, Volume 2: Properties and Selection
+                  --- Nonferrous Alloys and Special-Purpose Materials},
+  publisher    = {ASM International},
+  year         = {1990},
+  edition      = {10th},
+  isbn         = {978-0-871-70378-1},
+  note         = {Ti-6Al-4V (Grade 5): UTS 950\,MPa,
+                  density 4\,430\,kg/m$^3$}
+}
+
+% ----- BATTERY PACK ASSEMBLY -----------------------------------
+
+@article{battery_pack_assembly,
+  author       = {M. J. Brand and M. H. Hofmann and M. Steinhardt
+                  and S. F. Schuster and A. Jossen},
+  title        = {Current Distribution Within Parallel-Connected
+                  Battery Cells},
+  journal      = {Journal of Power Sources},
+  volume       = {334},
+  pages        = {202--212},
+  year         = {2016},
+  doi          = {10.1016/j.jpowsour.2016.10.010},
+  note         = {Covers cell binning, welded interconnect
+                  resistance, and matching tolerances for
+                  parallel-string packs}
+}
+
+% ----- INERTER (J-DAMPER) --------------------------------------
+
+@article{inerter_mechanics_lit,
+  author       = {M. C. Smith},
+  title        = {Synthesis of Mechanical Networks: The Inerter},
+  journal      = {IEEE Transactions on Automatic Control},
+  volume       = {47},
+  number       = {10},
+  pages        = {1648--1662},
+  year         = {2002},
+  doi          = {10.1109/TAC.2002.803532}
+}
+
+% ----- MONZA CIRCUIT DATA AND LAP RECORD -----------------------
+
+@misc{monza_circuit_data,
+  author       = {{Autodromo Nazionale Monza}},
+  title        = {Circuit Data --- {Autodromo Nazionale di Monza}},
+  year         = {2024},
+  url          = {https://www.monzanet.it/en/autodromo/},
+  note         = {Circuit length: 5.793\,km. F1 qualifying
+                  lap record: 1:19.119 (C.~Leclerc, Ferrari, 2019
+                  Italian GP qualifying). Accessed: 2025-12-01}
+}
+
+% ----- LAP TIME SIMULATION METHODOLOGY -------------------------
+
+@book{laptimesim_theory,
+  author       = {W. F. Milliken and D. L. Milliken},
+  title        = {Race Car Vehicle Dynamics},
+  publisher    = {Society of Automotive Engineers (SAE International)},
+  year         = {1995},
+  isbn         = {978-1-560-91526-3},
+  note         = {Chapters 5--8: quasi-steady-state point-mass
+                  simulation methodology}
+}
+
+% ----- GGG FRICTION ELLIPSE / TIRE MODEL -----------------------
+
+@book{pacejka_tire_lit,
+  author       = {H. B. Pacejka},
+  title        = {Tire and Vehicle Dynamics},
+  edition      = {3rd},
+  publisher    = {Butterworth-Heinemann (Elsevier)},
+  year         = {2012},
+  isbn         = {978-0-080-97016-5},
+  note         = {Chapter 4: combined-slip friction ellipse model}
+}
+
+% ----- CFD METHODOLOGY -----------------------------------------
+
+@book{cfd_methodology_lit,
+  author       = {{ANSYS Inc.}},
+  title        = {{ANSYS Fluent} Theory Guide --- Release 2024 R1},
+  publisher    = {ANSYS Inc.},
+  year         = {2024},
+  note         = {Reynolds-Averaged Navier--Stokes (RANS) turbulence
+                  modelling, $k$--$\omega$ SST. OpenFOAM equivalent
+                  methodology documented in \texttt{openfoam.org}}
+}
+
+% ----- HISTORICAL HYBRID F1 ------------------------------------
+
+@article{f1_hybrid_history,
+  author       = {P. Patel and R. Stone and N. Ladommatos},
+  title        = {Energy Recovery Systems for {Formula One} Racing
+                  Cars: A Review},
+  journal      = {Proceedings of the Institution of Mechanical
+                  Engineers, Part D: Journal of Automobile
+                  Engineering},
+  volume       = {235},
+  number       = {4},
+  pages        = {1097--1117},
+  year         = {2021},
+  doi          = {10.1177/0954407020958549}
+}
