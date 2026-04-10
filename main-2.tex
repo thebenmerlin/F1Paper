@@ -1,0 +1,174 @@
+\pdfoutput=1
+% ============================================================
+%  Design and Simulation of a 2026 FIA Formula 1 Hybrid
+%  Powertrain Vehicle — arXiv / TechRxiv submission format
+% ============================================================
+\documentclass[12pt, a4paper]{article}
+% arXiv subject: eess.SY (primary), cs.SY (cross-list)
+% TechRxiv category: Transportation / Automotive Engineering
+
+% ── Encoding & Language ──────────────────────────────────────
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+% ── Page Geometry ────────────────────────────────────────────
+\usepackage{geometry}
+\geometry{a4paper, margin=1in}
+
+% ── Mathematics ──────────────────────────────────────────────
+\usepackage{amsmath}
+
+% ── Graphics ─────────────────────────────────────────────────
+\usepackage{graphicx}
+
+% ── Tables ───────────────────────────────────────────────────
+\usepackage{booktabs}
+\usepackage{tabularx}
+
+% ── Multi-column Body ────────────────────────────────────────
+\usepackage{multicol}
+
+% ── SI Units ─────────────────────────────────────────────────
+\usepackage{siunitx}
+
+% ── Citations ────────────────────────────────────────────────
+\usepackage{cite}
+
+% ── Float control ────────────────────────────────────────────
+\usepackage{float}
+
+% FIGURES — ALL PROVIDED AS PNG SCREENSHOTS
+% Fig 1  - figure1_zone_map.png
+% Fig 2  - figure2_aero.png
+% Fig 3  - figure3_torque.png
+% Fig 4  - figure4_efficiency.png
+% Fig 5  - figure5_energy_1.png, figure5_energy_2.png, figure5_energy_3.png
+% Fig 6  - figure6_foc.png
+% Fig 7  - figure7_svpwm.png
+% Fig 8  - figure8_state.png
+% Fig 9  - figure9_thermal.png
+% Fig 10 - figure10_electronics.png
+% Fig 11 - figure11_monocoque.png
+% Fig 12 - figure12_suspension.png
+% Figs 13-16 - MATLAB outputs (.png)
+% All figures included in zip as-is. No export needed.
+% NOTE: Ensure all \includegraphics{} calls match these exact filenames.
+% NOTE: All files must be flat in the same directory as main.tex for arXiv compile.
+
+% ── Hyperlinks (print-safe: all links black) ─────────────────
+\usepackage[colorlinks=true,
+            linkcolor=black,
+            citecolor=black,
+            urlcolor=black,
+            filecolor=black]{hyperref}
+
+% ── Cross-references (load after hyperref) ───────────────────
+\usepackage{cleveref}
+
+% ── Suppress Running Headers (arXiv convention) ──────────────
+\pagestyle{plain}
+
+% ── Keywords Command ─────────────────────────────────────────
+\providecommand{\keywords}[1]{%
+  \vspace{0.5em}\noindent\textbf{Keywords:}\enspace #1}
+
+% ============================================================
+%                        DOCUMENT
+% ============================================================
+\begin{document}
+
+% ── Title Block (single-column, full-width) ──────────────────
+\begin{center}
+  {\LARGE\bfseries Design and Simulation of a 2026 FIA Formula~1 Hybrid\\[4pt]
+   Powertrain Vehicle: Architecture, Electrical Systems,\\[4pt]
+   and Lap Performance Analysis\par}
+  \vspace{1.2em}
+  {\large Gajanan Barve\par}
+  \vspace{0.4em}
+  {\normalsize Independent Researcher\par}
+  \vspace{0.3em}
+  {\normalsize \href{mailto:gajananbarve@icloud.com}{gajananbarve@icloud.com}\par}
+\end{center}
+
+\vspace{0.6em}
+\noindent\rule{\textwidth}{0.4pt}
+
+\renewcommand{\abstractname}{\large Abstract}
+\begin{abstract}
+\noindent
+The 2026 FIA Technical Regulations introduce the most transformative
+powertrain overhaul in the hybrid era of Formula~1, mandating a
+\SI{350}{\kilo\watt} Motor Generator Unit--Kinetic (MGU-K)---nearly
+triple the outgoing \SI{120}{\kilo\watt} specification---while
+simultaneously eliminating the Motor Generator Unit--Heat (MGU-H)
+and requiring the exclusive use of fully sustainable fuel.  These
+regulatory changes fundamentally rebalance the power-unit
+architecture, elevating the electrical drivetrain from a secondary
+energy-recovery device to a primary propulsive element that
+contributes approximately 43\% of total system power.  This paper
+presents a complete ground-up concept design of a 2026-regulation-compliant
+Formula~1 car encompassing vehicle architecture---\SI{3580}{\milli\metre}
+wheelbase, \SI{800}{\kilo\gram} minimum mass, and a 45\,F\,/\,55\,R
+weight distribution---alongside a detailed electrical-system design
+featuring a 180S2P nickel--manganese--cobalt (NMC) battery pack
+operating at \SI{648}{\volt} nominal, a field-oriented control (FOC)
+strategy with space-vector pulse-width modulation (SVPWM) for the
+inverter stage, and an extended Kalman filter for real-time
+state-of-charge (SOC) estimation.  The removal of the MGU-H
+cooling load motivates a minimalist undercut sidepod aero-thermal
+philosophy that reduces frontal area and drag.  A point-mass lap
+time simulator implemented in MATLAB models energy deployment
+around the Autodromo Nazionale Monza, subject to SOC constraints
+of 20--95\%, a hard energy-budget gate of \SI{3}{\mega\joule}, and
+an end-to-end drivetrain efficiency chain of 90.3\%.  Simulation
+results predict a lap time of 1:16.79---a \SI{2.3}{\second}
+improvement over the 2019 Monza lap record---with a peak speed of
+\SI{348.2}{\kilo\metre\per\hour}, total energy deployed of
+\SI{4.005}{\mega\joule}, and a minimum SOC of 25.3\%.  These
+findings underscore the decisive shift of the engineering
+battleground toward the inverter, battery-management, and
+motor-control subsystems.  Limitations of the present study and
+avenues for future work---including multi-lap race simulation,
+a full 14-degree-of-freedom vehicle dynamics model, and
+Reynolds-averaged Navier--Stokes (RANS) computational fluid
+dynamics validation---are discussed.
+\end{abstract}
+
+\keywords{Formula~1, hybrid powertrain, MGU-K, battery management
+system, lap time simulation, field-oriented control, 2026 FIA
+regulations}
+
+\vspace{0.4em}
+\noindent\rule{\textwidth}{0.4pt}
+\vspace{1.0em}
+
+% ── Table of Contents ────────────────────────────────────────
+\tableofcontents
+\newpage
+
+% ============================================================
+%                     BODY SECTIONS
+%   (each section uses \begin{multicols}{2} internally for
+%    two-column body text; figures/tables sit between multicol
+%    blocks at full page width)
+% ============================================================
+
+\input{introduction}
+\input{regulations}
+\input{architecture}
+\input{aerodynamics}
+\input{powerunit}
+\input{energy}
+\input{electrical-2}
+\input{thermal}
+\input{electronics}
+\input{chassis}
+\input{suspension}
+\input{simulation}
+\input{manufacturing}
+\input{conclusion}
+
+\bibliographystyle{IEEEtran}
+\bibliography{references}
+
+\end{document}
