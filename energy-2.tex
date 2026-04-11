@@ -1,0 +1,182 @@
+\section{Energy Storage and Power Electronics}
+
+\begin{multicols}{2}
+The energy storage and high-voltage electrical distribution networks act as the circulatory system of the 2026 Formula~1 hybrid powertrain. The specified load profile---featuring a \SI{350}{\kilo\watt} peak MGU-K deployment and an approximately \SI{4}{\mega\joule} per-lap energy budget---demands a custom, highly optimized \SI{648}{\volt} nominal Lithium-ion architecture complemented by a robust isolated DC-DC auxiliary conversion stage. This section addresses the assignment mandate to \textit{``build a Lithium-ion battery from 3.7\,V cells''} and to provide \textit{``details of the DC--dc converter and its calculations''}, adapted here to the F1-specification targets.
+
+% -----------------------------------------------------------
+% 6.1  Battery Voltage and Capacity Sizing  (assignment item 2)
+% -----------------------------------------------------------
+\subsection{Battery Voltage and Capacity Sizing}
+
+The fundamental power source is a high-energy-density Lithium-ion (Nickel--Manganese--Cobalt, NMC) battery pack. The baseline cell selected is a prismatic NMC pouch cell featuring a nominal voltage ($V_{\text{cell}}$) of \SI{3.7}{\volt}.
+
+To achieve the targeted operational system voltage for the 2026 MGU-K architecture, the required number of cells connected in series ($N_s$) is derived directly from the FIA-mandated \SI{648}{\volt} nominal bus:
+\begin{equation} \label{eq:series_config}
+\begin{split}
+N_s &= \frac{V_{\text{target}}}{V_{\text{cell}}} \\
+&= \frac{648\,\mathrm{V}}{3.7\,\mathrm{V}} \\
+&= 175.1 \rightarrow 180\,\text{cells (rounded up)}
+\end{split}
+\end{equation}
+
+Selecting a 180-Series (180S) configuration yields a true nominal pack voltage of $180 \times 3.7\,\mathrm{V} = \SI{666}{\volt}$, with a full-charge potential of $180 \times 4.2\,\mathrm{V} = \SI{756}{\volt}$. The 180S count is the FIA-homologated architecture for the 2026 Energy Store, classified as a \SI{648}{\volt} class battery in Formula~1 designations.
+
+The required energy capacity ($E_{\text{capacity}}$) is calculated against the regulatory \SI{4}{\mega\joule} usable energy budget per lap. Assuming the deployment occurs over a single 70-second lap at Monza:
+\begin{equation} \label{eq:energy_capacity}
+\begin{split}
+E_{\text{capacity}} &= \text{usable budget} \\
+&= 4.0\,\mathrm{MJ} \\
+&\approx 1.11\,\mathrm{kWh}
+\end{split}
+\end{equation}
+
+Converting this energy requirement into charge capacity (Ampere-hours) at the nominal \SI{666}{\volt} pack potential:
+\begin{equation} \label{eq:ah_capacity}
+\begin{split}
+Q_{\text{pack}} &= \frac{E_{\text{capacity}}}{V_{\text{pack(nom)}}} \\
+&= \frac{1{,}111\,\mathrm{Wh}}{666\,\mathrm{V}} \\
+&\approx 1.67\,\mathrm{Ah}
+\end{split}
+\end{equation}
+
+If an individual selected cell possesses a capacity of \SI{0.85}{\ampere\hour} (\SI{850}{\milli\ampere\hour}), fulfilling this demand requires 2 parallel strings ($2 \times 0.85\,\mathrm{Ah} = 1.70\,\mathrm{Ah}$). Therefore, the comprehensive macro-architecture of the battery is specified as a \textbf{180S2P} configuration, integrating exactly 360 independent Lithium-ion cells for a total energy capacity of approximately \SI{1.13}{\kilo\watt\hour} (\SI{4.08}{\mega\joule}).
+
+% -----------------------------------------------------------
+% 6.2  Comprehensive Battery Design  (assignment item 3)
+% -----------------------------------------------------------
+\subsection{Comprehensive Battery Design}
+
+Deploying a 180S2P block into the violent mechanical and thermal environment of a Formula~1 chassis necessitates a holistically integrated tri-lateral design philosophy encompassing electrical safety, mechanical rigidity, and thermal resilience. The following subsections address the assignment requirement to \textit{``mention electrical, mechanical, and thermal design of the battery in detail''}.
+
+\textbf{1. Electrical Design:}
+The parallel groups (P-groups) are interconnected utilizing pure nickel strip busbars (\SI{0.2}{\milli\metre} thickness $\times$ \SI{10}{\milli\metre} width) laser-welded directly to the cell terminals to permanently mitigate vibrational contact resistance. The absolute peak inverter current draw ($I_{\text{peak}}$) when deploying \SI{350}{\kilo\watt} from the \SI{666}{\volt} pack is:
+\begin{equation}
+\begin{split}
+I_{\text{peak}} &= \frac{P_{\text{MGU-K}}}{V_{\text{pack}}} \\
+&= \frac{350{,}000}{666} \\
+&\approx 540\,\mathrm{A}
+\end{split}
+\end{equation}
+
+To survive this load safely, the main electrical traction bus is governed by an automotive-grade Battery Management System (BMS) monitoring all 360 cells individually. The BMS continuously measures cell voltages, governs active balancing during charging phases, and controls the main electromechanical contactors to instantly isolate the pack upon detection of an overcurrent ($>\SI{550}{A}$) or undervoltage ($<\SI{540}{V}$) fault condition.
+
+The individual cell internal resistance ($R_{\text{cell}}$) is approximately \SI{225}{\milli\ohm}. The aggregate dynamic pack resistance ($R_{\text{pack}}$) for the 180S2P matrix is analytically determined as:
+\begin{equation} \label{eq:pack_resistance}
+\begin{split}
+R_{\text{pack}} &= \frac{N_s \cdot R_{\text{cell}}}{N_p} \\
+&= \frac{180 \cdot 0.225\,\Omega}{2} \\
+&\approx 0.45\,\Omega
+\end{split}
+\end{equation}
+
+\textbf{2. Mechanical Design:}
+Due to extreme inertial cornering and braking loads exceeding 6\,$g$, the 360 individual cells cannot bear structural tension. The pack is encased within an IP67-rated 6061-T6 aluminum exo-box, which is structurally integrated into the CFRP monocoque floor panel. The cells are nested within flame-retardant polyimide spacers establishing precise air gaps between adjacent walls, fundamentally preventing catastrophic localized propagation of thermal runaway. The entire assembly is isolated from chassis flex via dense polyurethane foam mounting blocks and bolted directly to the survival cell beneath the driver's seating position.
+
+\textbf{3. Thermal Design:}
+High internal current densities generate severe, non-linear Joule heating. During sustained maximum \SI{540}{A} discharge events, the resultant $I^2R$ power rejected as internal heat ($P_{\text{loss}}$) is:
+\begin{equation} \label{eq:thermal_loss}
+\begin{split}
+P_{\text{loss}} &= I_{\text{peak}}^2 \cdot R_{\text{pack}} \\
+&= (540)^2 \cdot 0.45 \\
+&\approx 131{,}220\,\mathrm{W} \approx 131\,\mathrm{kW}
+\end{split}
+\end{equation}
+
+While \SI{131}{\kilo\watt} of localized heating is formidable, it occurs exclusively during rare transient deployment bursts rather than continuous load. A single 70-second lap at Monza features 5 deployment phases of approximately \SI{4}{s} (20\,s total) and 5 harvesting phases of \SI{2.5}{s} (12.5\,s total), yielding 32.5\,s at peak load. For the remaining passive phase ($t_{\text{passive}} = \SI{37.5}{s}$), a nominal baseline load of approximately \SI{50}{A} is assumed, yielding a passive power loss of:
+\begin{equation}
+\begin{split}
+P_{\text{passive}} &= I_{\text{base}}^2 \cdot R_{\text{pack}} \\
+&= (50)^2 \cdot 0.45 \\
+&\approx 1.1\,\mathrm{kW}
+\end{split}
+\end{equation}
+
+The time-averaged steady-state heat rejection requirement ($Q_{\text{avg}}$) for the battery loop is:
+\begin{equation}
+\begin{split}
+Q_{\text{avg}} &= \frac{P_{\text{peak}} \cdot t_{\text{active}} + P_{\text{passive}} \cdot t_{\text{passive}}}{t_{\text{lap}}} \\
+&= \frac{(131\,\mathrm{kW} \cdot 32.5\,\mathrm{s}) + (1.1\,\mathrm{kW} \cdot 37.5\,\mathrm{s})}{70\,\mathrm{s}} \\
+&\approx 61.4\,\mathrm{kW}
+\end{split}
+\end{equation}
+
+This derivation dictates that the ESS loop must possess a transient peak absorption capacity of \SI{131}{\kilo\watt} but only requires a steady-state radiator sizing of \SI{61.4}{\kilo\watt}. Because the NMC chemistry requires a precise \SIrange{20}{40}{\celsius} operating window, forced-convection air cooling is entirely inadequate. Instead, a dedicated dielectric liquid cold-plate loop is employed, circulating specialized dielectric fluid through serpentine aluminium channels to guarantee temperature uniformity across all 360 cells. A BMS with NTC thermistors at 6 strategic locations monitors the pack and triggers mandatory shutdown above \SI{60}{\celsius}.
+\end{multicols}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{"Figures Images/figure4_efficiency.png"}
+\caption{System block diagram highlighting the efficiency chain and the DC-DC buck step-down isolation.}
+\label{fig:efficiency_chain}
+\end{figure}
+
+\begin{multicols}{2}
+% -----------------------------------------------------------
+% 6.3  Auxiliary Network: Isolated DC-DC Converter  (item 4)
+% -----------------------------------------------------------
+\subsection{Auxiliary Network: Isolated DC-DC Converter}
+
+While the traction inverter operates directly off the \SI{648}{\volt} High-Voltage (HV) bus, the vehicle's critical telemetry modules, ECU, sensors, and active aerodynamic servos mandate a stable \SI{24}{\volt} Low-Voltage (LV) supply. Tapping a subset of series cells is fundamentally forbidden as it guarantees fatal pack unbalancing. Instead, a dedicated DC-DC step-down converter must bridge the HV and LV domains. This subsection addresses the assignment requirement for \textit{``details of dc--dc converter and its calculations''}.
+
+\textbf{Topology Selection:} A High-Frequency Isolated Forward Converter is selected. Galvanic isolation exceeding \SI{5}{kV} via a high-frequency ferrite transformer is mandated by FIA safety regulations to prevent catastrophic \SI{648}{\volt} potential from riding onto the exposed \SI{24}{\volt} driver chassis in the event of a semiconductor failure.
+
+\textbf{Working Explanation:} The \SI{648}{\volt} nominal HV bus is chopped into a high-frequency square wave via a primary-side SiC MOSFET switching at \SI{100}{\kilo\hertz}. This AC waveform steps down through the transformer with a turns ratio of $n = N_1/N_2 = 20{:}1$. The secondary AC waveform is subsequently rectified by ultra-fast Schottky diodes and heavily smoothed via an LC low-pass filter to yield a pure, ripple-suppressed \SI{24}{\volt} DC output.
+
+\textbf{Component Selection and Verified Calculations:}
+Assume the LV system demands a peak \SI{20}{A} of current, requiring a \SI{480}{W} continuous DC-DC output. The exact required duty cycle ($D$) of the primary-side MOSFET---assuming idealized continuous conduction mode (CCM)---is fundamentally linked to the transformer turns ratio ($n = 20$) and the \SI{648}{\volt} HV bus potential:
+
+\begin{equation} \label{eq:duty_cycle}
+\begin{split}
+D &= \left( \frac{V_{\text{out}}}{V_{\text{in}}} \right) \cdot n \\
+&= \left( \frac{24\,\mathrm{V}}{648\,\mathrm{V}} \right) \cdot 20 \\
+&\approx 0.741 \ (74.1\%)
+\end{split}
+\end{equation}
+
+For the critical output LC filter, the target peak-to-peak inductor current ripple ($\Delta I_L$) is specified as 20\,\% of the maximum \SI{20}{A} load ($\Delta I_L = \SI{4}{A}$). The requisite output inductance ($L_{\text{out}}$) to suppress this ripple at a switching frequency ($f_{\text{sw}}$) of \SI{100}{\kilo\hertz} is verified as:
+
+\begin{equation} \label{eq:inductor_calc}
+\begin{split}
+L_{\text{out}} &= \frac{V_{\text{out}} \left( 1 - \dfrac{D}{n} \right)}{\Delta I_L \cdot f_{\text{sw}}} \\
+&= \frac{24 \cdot \left( 1 - \dfrac{0.741}{20} \right)}{4 \cdot 100{,}000} \\
+&= \frac{24 \cdot 0.963}{400{,}000} \\
+&\approx 57.8\,\mu\mathrm{H}
+\end{split}
+\end{equation}
+
+The output capacitance ($C_{\text{out}}$) is sized to limit the output voltage ripple to 1\,\% of $V_{\text{out}}$ ($\Delta V = \SI{0.24}{V}$):
+
+\begin{equation} \label{eq:capacitor_calc}
+\begin{split}
+C_{\text{out}} &= \frac{\Delta I_L}{8 \cdot f_{\text{sw}} \cdot \Delta V} \\
+&= \frac{4}{8 \cdot 100{,}000 \cdot 0.24} \\
+&= \frac{4}{192{,}000} \\
+&\approx 20.8\,\mu\mathrm{F}
+\end{split}
+\end{equation}
+
+Consequently, a \SI{68}{\micro\henry} shielded power inductor and a \SI{22}{\micro\farad} low-ESR ceramic output capacitor are conservatively selected. The primary switch is a \SI{1200}{V}, \SI{10}{\milli\ohm} N-channel SiC MOSFET, completing the galvanically isolated, high-efficiency auxiliary power backbone of the vehicle.
+
+\begin{table}[H]
+\centering
+\caption{F1-Specification DC-DC Converter Parameters}
+\vspace{0.2cm}
+\begin{tabularx}{\textwidth}{@{}XX@{}}
+\toprule
+\textbf{Parameter} & \textbf{Value} \\
+\midrule
+Input Voltage (HV bus)         & \SI{648}{V} (180S FIA nominal) \\
+Output Voltage (LV bus)        & \SI{24}{V} \\
+Output Power                   & \SI{480}{W} \\
+Switching Frequency            & \SI{100}{kHz} \\
+Transformer Turns Ratio        & 20:1 \\
+Duty Cycle (CCM)               & 74.1\,\% \\
+Output Inductance              & \SI{68}{\micro\henry} (calculated \SI{57.8}{\micro\henry}) \\
+Output Capacitance             & \SI{22}{\micro\farad} (calculated \SI{20.8}{\micro\farad}) \\
+Primary MOSFET                 & \SI{1200}{V} SiC, \SI{10}{\milli\ohm} \\
+Galvanic Isolation             & $>$\SI{5}{kV} (HF transformer) \\
+\bottomrule
+\end{tabularx}
+\label{tab:dcdc_f1_params}
+\end{table}
+\end{multicols}

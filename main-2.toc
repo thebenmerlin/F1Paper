@@ -21,64 +21,56 @@
 \contentsline {section}{\numberline {6}Energy Storage and Power Electronics}{17}{section.6}%
 \contentsline {subsection}{\numberline {6.1}Battery Voltage and Capacity Sizing}{17}{subsection.6.1}%
 \contentsline {subsection}{\numberline {6.2}Comprehensive Battery Design}{18}{subsection.6.2}%
-\contentsline {subsection}{\numberline {6.3}Auxiliary Network: Isolated DC-DC Converter}{19}{subsection.6.3}%
-\contentsline {section}{\numberline {7}Powertrain Modeling and Motor Selection}{20}{section.7}%
-\contentsline {subsection}{\numberline {7.1}Longitudinal Vehicle Dynamics}{20}{subsection.7.1}%
-\contentsline {subsection}{\numberline {7.2}Motor Rating Determination}{21}{subsection.7.2}%
-\contentsline {subsection}{\numberline {7.3}Motor Selection: IPM vs. SPM}{22}{subsection.7.3}%
-\contentsline {subsection}{\numberline {7.4}Matching Control Method (FOC)}{22}{subsection.7.4}%
-\contentsline {subsection}{\numberline {7.5}Ground-Up EV Traction Design --- Reference Calculations}{23}{subsection.7.5}%
-\contentsline {subsubsection}{\numberline {7.5.1}Motor Rating Calculation}{23}{subsubsection.7.5.1}%
-\contentsline {subsubsection}{\numberline {7.5.2}Battery Pack Design}{24}{subsubsection.7.5.2}%
-\contentsline {paragraph}{Electrical Design.}{24}{section*.2}%
-\contentsline {paragraph}{Mechanical Design.}{25}{section*.3}%
-\contentsline {paragraph}{Thermal Design.}{25}{section*.4}%
-\contentsline {subsubsection}{\numberline {7.5.3}DC-DC Converter Design}{26}{subsubsection.7.5.3}%
-\contentsline {subsubsection}{\numberline {7.5.4}Motor Control --- IPM Torque Analysis and FOC}{27}{subsubsection.7.5.4}%
-\contentsline {section}{\numberline {8}Thermal Management}{27}{section.8}%
-\contentsline {subsection}{\numberline {8.1}ICE Cooling}{28}{subsection.8.1}%
-\contentsline {subsection}{\numberline {8.2}Battery Thermal Management}{28}{subsection.8.2}%
-\contentsline {subsection}{\numberline {8.3}Inverter Thermal Management}{29}{subsection.8.3}%
-\contentsline {subsection}{\numberline {8.4}MGU-K Motor Thermal Management}{29}{subsection.8.4}%
-\contentsline {subsection}{\numberline {8.5}Turbocharger \& Intercooler}{30}{subsection.8.5}%
-\contentsline {subsection}{\numberline {8.6}Integrated Thermal Architecture}{32}{subsection.8.6}%
-\contentsline {section}{\numberline {9}Electronics \& Control Systems}{32}{section.9}%
-\contentsline {subsection}{\numberline {9.1}Electronic Control Unit (ECU)}{32}{subsection.9.1}%
-\contentsline {subsection}{\numberline {9.2}Sensor Architecture}{32}{subsection.9.2}%
-\contentsline {subsection}{\numberline {9.3}Onboard Data Architecture}{33}{subsection.9.3}%
-\contentsline {subsection}{\numberline {9.4}Telemetry System}{33}{subsection.9.4}%
-\contentsline {subsection}{\numberline {9.5}Power Distribution Architecture}{34}{subsection.9.5}%
-\contentsline {subsection}{\numberline {9.6}Software \& Control Algorithms}{35}{subsection.9.6}%
-\contentsline {section}{\numberline {10}Chassis \& Materials}{35}{section.10}%
-\contentsline {subsection}{\numberline {10.1}Monocoque Design}{35}{subsection.10.1}%
-\contentsline {subsection}{\numberline {10.2}Material Selection}{36}{subsection.10.2}%
-\contentsline {subsection}{\numberline {10.3}Impact Structures}{37}{subsection.10.3}%
-\contentsline {subsection}{\numberline {10.4}Safety Halo}{37}{subsection.10.4}%
-\contentsline {subsection}{\numberline {10.5}Hybrid Component Packaging}{38}{subsection.10.5}%
-\contentsline {section}{\numberline {11}Suspension Geometry}{39}{section.11}%
-\contentsline {subsection}{\numberline {11.1}Wishbone Geometry}{39}{subsection.11.1}%
-\contentsline {subsection}{\numberline {11.2}Pullrod Actuation Strategy}{39}{subsection.11.2}%
-\contentsline {subsection}{\numberline {11.3}Camber Settings}{40}{subsection.11.3}%
-\contentsline {subsection}{\numberline {11.4}Toe Settings}{40}{subsection.11.4}%
-\contentsline {subsection}{\numberline {11.5}Caster and Kingpin Inclination}{40}{subsection.11.5}%
-\contentsline {subsection}{\numberline {11.6}Anti-Dive and Anti-Squat Geometry}{41}{subsection.11.6}%
-\contentsline {subsection}{\numberline {11.7}Ride Frequency}{41}{subsection.11.7}%
-\contentsline {subsection}{\numberline {11.8}Inerter (J-Damper) Architecture}{42}{subsection.11.8}%
-\contentsline {section}{\numberline {12}Performance Simulation}{43}{section.12}%
-\contentsline {subsection}{\numberline {12.1}Simulation Methodology}{43}{subsection.12.1}%
-\contentsline {subsection}{\numberline {12.2}GGG Friction Ellipse}{43}{subsection.12.2}%
-\contentsline {subsection}{\numberline {12.3}Energy Deployment Simulation}{45}{subsection.12.3}%
-\contentsline {subsection}{\numberline {12.4}Lap Time Simulation Results — Monza}{46}{subsection.12.4}%
-\contentsline {subsection}{\numberline {12.5}Aerodynamic Efficiency Simulation}{47}{subsection.12.5}%
-\contentsline {subsection}{\numberline {12.6}Vehicle Dynamics Simulation}{47}{subsection.12.6}%
-\contentsline {section}{\numberline {13}Manufacturing Considerations}{48}{section.13}%
-\contentsline {subsection}{\numberline {13.1}Carbon Fibre Layup \& Monocoque}{48}{subsection.13.1}%
-\contentsline {subsection}{\numberline {13.2}Battery Pack Assembly}{49}{subsection.13.2}%
-\contentsline {subsection}{\numberline {13.3}Machining Tolerances}{49}{subsection.13.3}%
-\contentsline {subsection}{\numberline {13.4}Quality Control \& Sign-Off}{49}{subsection.13.4}%
-\contentsline {section}{\numberline {14}Conclusion}{49}{section.14}%
-\contentsline {subsection}{\numberline {14.1}Design Summary}{50}{subsection.14.1}%
-\contentsline {subsection}{\numberline {14.2}Simulation Validation}{50}{subsection.14.2}%
-\contentsline {subsection}{\numberline {14.3}2026 as an Inflection Point}{50}{subsection.14.3}%
-\contentsline {subsection}{\numberline {14.4}Model Limitations}{51}{subsection.14.4}%
-\contentsline {subsection}{\numberline {14.5}Future Work}{51}{subsection.14.5}%
+\contentsline {subsection}{\numberline {6.3}Auxiliary Network: Isolated DC-DC Converter}{20}{subsection.6.3}%
+\contentsline {section}{\numberline {7}Powertrain Modeling and Motor Selection}{21}{section.7}%
+\contentsline {subsection}{\numberline {7.1}Longitudinal Vehicle Dynamics}{21}{subsection.7.1}%
+\contentsline {subsection}{\numberline {7.2}Motor Rating Determination}{22}{subsection.7.2}%
+\contentsline {subsection}{\numberline {7.3}Motor Selection: IPM vs. SPM}{23}{subsection.7.3}%
+\contentsline {subsection}{\numberline {7.4}Matching Control Method (FOC)}{24}{subsection.7.4}%
+\contentsline {section}{\numberline {8}Thermal Management}{24}{section.8}%
+\contentsline {subsection}{\numberline {8.1}ICE Cooling}{25}{subsection.8.1}%
+\contentsline {subsection}{\numberline {8.2}Battery Thermal Management}{25}{subsection.8.2}%
+\contentsline {subsection}{\numberline {8.3}Inverter Thermal Management}{26}{subsection.8.3}%
+\contentsline {subsection}{\numberline {8.4}MGU-K Motor Thermal Management}{26}{subsection.8.4}%
+\contentsline {subsection}{\numberline {8.5}Turbocharger \& Intercooler}{27}{subsection.8.5}%
+\contentsline {subsection}{\numberline {8.6}Integrated Thermal Architecture}{29}{subsection.8.6}%
+\contentsline {section}{\numberline {9}Electronics \& Control Systems}{29}{section.9}%
+\contentsline {subsection}{\numberline {9.1}Electronic Control Unit (ECU)}{29}{subsection.9.1}%
+\contentsline {subsection}{\numberline {9.2}Sensor Architecture}{29}{subsection.9.2}%
+\contentsline {subsection}{\numberline {9.3}Onboard Data Architecture}{30}{subsection.9.3}%
+\contentsline {subsection}{\numberline {9.4}Telemetry System}{30}{subsection.9.4}%
+\contentsline {subsection}{\numberline {9.5}Power Distribution Architecture}{31}{subsection.9.5}%
+\contentsline {subsection}{\numberline {9.6}Software \& Control Algorithms}{32}{subsection.9.6}%
+\contentsline {section}{\numberline {10}Chassis \& Materials}{32}{section.10}%
+\contentsline {subsection}{\numberline {10.1}Monocoque Design}{32}{subsection.10.1}%
+\contentsline {subsection}{\numberline {10.2}Material Selection}{33}{subsection.10.2}%
+\contentsline {subsection}{\numberline {10.3}Impact Structures}{34}{subsection.10.3}%
+\contentsline {subsection}{\numberline {10.4}Safety Halo}{34}{subsection.10.4}%
+\contentsline {subsection}{\numberline {10.5}Hybrid Component Packaging}{35}{subsection.10.5}%
+\contentsline {section}{\numberline {11}Suspension Geometry}{36}{section.11}%
+\contentsline {subsection}{\numberline {11.1}Wishbone Geometry}{36}{subsection.11.1}%
+\contentsline {subsection}{\numberline {11.2}Pullrod Actuation Strategy}{36}{subsection.11.2}%
+\contentsline {subsection}{\numberline {11.3}Camber Settings}{37}{subsection.11.3}%
+\contentsline {subsection}{\numberline {11.4}Toe Settings}{37}{subsection.11.4}%
+\contentsline {subsection}{\numberline {11.5}Caster and Kingpin Inclination}{37}{subsection.11.5}%
+\contentsline {subsection}{\numberline {11.6}Anti-Dive and Anti-Squat Geometry}{38}{subsection.11.6}%
+\contentsline {subsection}{\numberline {11.7}Ride Frequency}{38}{subsection.11.7}%
+\contentsline {subsection}{\numberline {11.8}Inerter (J-Damper) Architecture}{39}{subsection.11.8}%
+\contentsline {section}{\numberline {12}Performance Simulation}{40}{section.12}%
+\contentsline {subsection}{\numberline {12.1}Simulation Methodology}{40}{subsection.12.1}%
+\contentsline {subsection}{\numberline {12.2}GGG Friction Ellipse}{40}{subsection.12.2}%
+\contentsline {subsection}{\numberline {12.3}Energy Deployment Simulation}{42}{subsection.12.3}%
+\contentsline {subsection}{\numberline {12.4}Lap Time Simulation Results — Monza}{43}{subsection.12.4}%
+\contentsline {subsection}{\numberline {12.5}Aerodynamic Efficiency Simulation}{44}{subsection.12.5}%
+\contentsline {subsection}{\numberline {12.6}Vehicle Dynamics Simulation}{44}{subsection.12.6}%
+\contentsline {section}{\numberline {13}Manufacturing Considerations}{45}{section.13}%
+\contentsline {subsection}{\numberline {13.1}Carbon Fibre Layup \& Monocoque}{45}{subsection.13.1}%
+\contentsline {subsection}{\numberline {13.2}Battery Pack Assembly}{46}{subsection.13.2}%
+\contentsline {subsection}{\numberline {13.3}Machining Tolerances}{46}{subsection.13.3}%
+\contentsline {subsection}{\numberline {13.4}Quality Control \& Sign-Off}{46}{subsection.13.4}%
+\contentsline {section}{\numberline {14}Conclusion}{46}{section.14}%
+\contentsline {subsection}{\numberline {14.1}Design Summary}{47}{subsection.14.1}%
+\contentsline {subsection}{\numberline {14.2}Simulation Validation}{47}{subsection.14.2}%
+\contentsline {subsection}{\numberline {14.3}2026 as an Inflection Point}{47}{subsection.14.3}%
+\contentsline {subsection}{\numberline {14.4}Model Limitations}{48}{subsection.14.4}%
+\contentsline {subsection}{\numberline {14.5}Future Work}{48}{subsection.14.5}%
